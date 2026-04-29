@@ -264,9 +264,9 @@ export default function Home() {
         
         {/* FOOTER MIT BUTTON */}
         <div className="mt-5 flex justify-end">
-          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
+          <a href="/tryPage_shap" className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
             Try it out! ➔ 
-          </button>
+          </a>
         </div>
 
       </section>
@@ -352,9 +352,9 @@ export default function Home() {
 
         {/* FOOTER MIT BUTTON */}
         <div className="mt-5 flex justify-end">
-          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
+          <a href="/tryPage_lime" className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
             Try it out! ➔ 
-          </button>
+          </a>
         </div>
       </section>
 
