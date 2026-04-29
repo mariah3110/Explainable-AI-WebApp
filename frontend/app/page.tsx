@@ -49,12 +49,22 @@ export default function Home() {
       </section>
 
       {/* SECTION 2 */}
-      <section className="min-h-screen bg-slate-900 flex flex-col justify-center px-6 py-20">
+      <section className="min-h-screen bg-slate-800 flex flex-col justify-center px-6 py-20">
 
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold">
-            What is Machine Learning?
+            
+            What is 
+            <span className="bg-gradient-to-r from-purple-700 to-cyan-300 bg-clip-text text-transparent">
+            {" "}M
+            </span>
+            achine 
+            <span className="bg-gradient-to-r from-purple-700 to-cyan-300 bg-clip-text text-transparent">
+            {" "}L
+            </span>
+            earning?
+
           </h2>
         </div>
 
@@ -108,7 +118,11 @@ export default function Home() {
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold">
-            Explainable AI
+            EXPL
+          <span className="bg-gradient-to-r from-cyan-700 to-cyan-300 bg-clip-text text-transparent">
+            AI
+          </span>
+            NABLE AI
           </h2>
         </div>
 
@@ -130,25 +144,27 @@ export default function Home() {
           <div className="w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[440px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
               <div className="absolute top-1/2 -left-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
-              Bis jetzt haben wir gesehen, wie ein Modell Entscheidungen trifft. 
-              Aber oft bleibt eine wichtige Frage offen: Warum eigentlich?
-              <br /><br />
-              Genau hier kommt Explainable AI ins Spiel. 
-              Sie hilft uns zu verstehen, welche Gründe hinter einer 
-              Vorhersage stecken.
-              <br />
-              Statt nur ein Ergebnis wie Spam oder Kein Spam zu zeigen, 
-              können wir sichtbar machen, welche Merkmale besonders wichtig 
-              waren – zum Beispiel viele Links, bestimmte Wörter oder ein 
-              unbekannter Absender.
-              <br /><br />
-              Das ist hilfreich, weil Menschen Entscheidungen besser 
-              nachvollziehen, prüfen und ihnen eher vertrauen können.
-              <br /><br />
-              In dieser App schauen wir uns dafür zwei bekannte Methoden an: 
-              LIME und SHAP. Beide helfen dabei, komplexe Modelle wie den 
-              Random Forest verständlicher zu machen – nur auf unterschiedliche 
-              Weise.
+                <div className="max-h-[400px] overflow-y-auto">
+                Bis jetzt haben wir gesehen, wie ein Modell Entscheidungen trifft. 
+                Aber oft bleibt eine wichtige Frage offen: Warum eigentlich?
+                <br /><br />
+                Genau hier kommt Explainable AI ins Spiel. 
+                Sie hilft uns zu verstehen, welche Gründe hinter einer 
+                Vorhersage stecken.
+                <br />
+                Statt nur ein Ergebnis wie Spam oder Kein Spam zu zeigen, 
+                können wir sichtbar machen, welche Merkmale besonders wichtig 
+                waren – zum Beispiel viele Links, bestimmte Wörter oder ein 
+                unbekannter Absender.
+                <br /><br />
+                Das ist hilfreich, weil Menschen Entscheidungen besser 
+                nachvollziehen, prüfen und ihnen eher vertrauen können.
+                <br /><br />
+                In dieser App schauen wir uns dafür zwei bekannte Methoden an: 
+                LIME und SHAP. Beide helfen dabei, komplexe Modelle wie den 
+                Random Forest verständlicher zu machen – nur auf unterschiedliche 
+                Weise.
+              </div>
             </div>
           </div>
 
@@ -165,12 +181,16 @@ export default function Home() {
       </section>
 
       {/* SECTION 4 */}
-      <section className="min-h-screen bg-violet-700 flex flex-col justify-center px-6 py-20">
+      <section className="min-h-screen bg-violet-900 flex flex-col justify-center px-6">
 
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold">
-            Explainable AI mit SHAP
+            Explainable AI mit 
+            <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
+            {" "}SHAP
+            </span>
+            
           </h2>
         </div>
 
@@ -187,43 +207,45 @@ export default function Home() {
           </div>
 
           {/* SPEECH BUBBLE */}
-          <div className="w-full md:w-[40%] flex justify-center">
+          <div className="w-full md:w-[40%] flex justify-center min-h-0">
             <div className="relative w-full max-w-[420px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
-              Schauen wir uns jetzt SHAP an. 🔍
-              <br />
-              SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis 
-              vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes 
-              einzelne Merkmal zur Entscheidung leistet.
-              <br />
-              Stell dir das wie ein Team aus Spielern vor. ⚽🏀 
-              Jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.
-              <br /><br />
-              In unserer Visualisierung steht jeder Spieler für ein Merkmal – 
-              zum Beispiel:
-              <br />
-              - Viele Links
-              <br />
-              - Wort „FREE“
-              <br />
-              - Unbekannter Absender
-              <br />
-              - Bekannter Kontakt
-              <br /><br />
-              Einige Spieler verbessern das Ergebnis, andere verschlechtern es.
-              <br />
-              Du kannst einzelne Spieler aus dem Team herausziehen und direkt 
-              sehen, wie sich das Gesamtergebnis verändert. Entfernst du zum 
-              Beispiel den Spieler „Viele Links“, sinkt die 
-              Spam-Wahrscheinlichkeit deutlich.
-              <br />
-              So zeigt SHAP ganz anschaulich:
-              <br />
-              Wer hat stark beeinflusst?
-              Wer hatte nur wenig Wirkung?
-              Welche Faktoren waren entscheidend?
-              <br />
-              Dadurch verstehen wir nicht nur was das Modell entschieden hat, 
-              sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨              <div className="absolute top-1/2 -right-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+              <div className="max-h-[400px] overflow-y-auto">
+                Schauen wir uns jetzt SHAP an. 🔍
+                <br />
+                SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis 
+                vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes 
+                einzelne Merkmal zur Entscheidung leistet.
+                <br />
+                Stell dir das wie ein Team aus Spielern vor. ⚽🏀 
+                Jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.
+                <br /><br />
+                In unserer Visualisierung steht jeder Spieler für ein Merkmal – 
+                zum Beispiel:
+                <br />
+                - Viele Links
+                <br />
+                - Wort „FREE“
+                <br />
+                - Unbekannter Absender
+                <br />
+                - Bekannter Kontakt
+                <br /><br />
+                Einige Spieler verbessern das Ergebnis, andere verschlechtern es.
+                <br />
+                Du kannst einzelne Spieler aus dem Team herausziehen und direkt 
+                sehen, wie sich das Gesamtergebnis verändert. Entfernst du zum 
+                Beispiel den Spieler „Viele Links“, sinkt die 
+                Spam-Wahrscheinlichkeit deutlich.
+                <br />
+                So zeigt SHAP ganz anschaulich:
+                <br />
+                Wer hat stark beeinflusst?
+                Wer hatte nur wenig Wirkung?
+                Welche Faktoren waren entscheidend?
+                <br />
+                Dadurch verstehen wir nicht nur was das Modell entschieden hat, 
+                sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨              <div className="absolute top-1/2 -right-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+              </div>
             </div>
           </div>
 
@@ -239,15 +261,26 @@ export default function Home() {
           </div>
 
         </div>
+        
+        {/* FOOTER MIT BUTTON */}
+        <div className="mt-5 flex justify-end">
+          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
+            Try it out! ➔ 
+          </button>
+        </div>
+
       </section>
 
       {/* SECTION 5 */}
-      <section className="min-h-screen bg-violet-500 flex flex-col justify-center px-6 py-20">
+      <section className="min-h-screen bg-violet-800 flex flex-col justify-center px-6">
         
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-6xl font-bold">
-            Explainable AI mit LIME
+            Explainable AI mit 
+            <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
+            {" "}LIME
+            </span>
           </h2>
         </div>
 
@@ -269,39 +302,41 @@ export default function Home() {
           <div className="w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[440px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
               <div className="absolute top-1/2 -left-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
-              Jetzt schauen wir uns LIME an. 🔍
-              <br /><br />
-              LIME hilft uns zu verstehen, warum ein Modell genau bei einem 
-              einzelnen Beispiel so entschieden hat. Dabei wird nicht das ganze 
-              Modell erklärt, sondern nur die Entscheidung für diesen einen 
-              konkreten Fall.
-              <br />
-              Stell dir vor, wir untersuchen eine bestimmte E-Mail, die als Spam 
-              erkannt wurde.
-              <br /><br />
-              In der interaktiven Ansicht kannst du einzelne Bestandteile dieser 
-              Mail verändern:
-              <br />
-              Wort FREE entfernen
-              <br />
-              Einen Link löschen
-              <br />
-              Absender auf bekannten Kontakt ändern
-              <br />
-              Betreff neutraler machen
-              <br /><br />
-              Sobald du etwas änderst, siehst du direkt, wie sich die Vorhersage 
-              verändert.
-              <br />
-              So erkennt man schnell:
-              <br /><br />
-              Welche Merkmale waren für diese eine E-Mail besonders wichtig?
-              Was hat die Spam-Wahrscheinlichkeit erhöht?
-              Welche Änderung hätte das Ergebnis beeinflusst?
-              <br />
-              LIME arbeitet also wie eine Lupe für Einzelfälle.
-              Es schaut sich nur die Umgebung eines Beispiels an und erklärt 
-              genau diese lokale Entscheidung – einfach und nachvollziehbar.            
+              <div className="max-h-[400px] overflow-y-auto">
+                Jetzt schauen wir uns LIME an. 🔍
+                <br /><br />
+                LIME hilft uns zu verstehen, warum ein Modell genau bei einem 
+                einzelnen Beispiel so entschieden hat. Dabei wird nicht das ganze 
+                Modell erklärt, sondern nur die Entscheidung für diesen einen 
+                konkreten Fall.
+                <br />
+                Stell dir vor, wir untersuchen eine bestimmte E-Mail, die als Spam 
+                erkannt wurde.
+                <br /><br />
+                In der interaktiven Ansicht kannst du einzelne Bestandteile dieser 
+                Mail verändern:
+                <br />
+                Wort FREE entfernen
+                <br />
+                Einen Link löschen
+                <br />
+                Absender auf bekannten Kontakt ändern
+                <br />
+                Betreff neutraler machen
+                <br /><br />
+                Sobald du etwas änderst, siehst du direkt, wie sich die Vorhersage 
+                verändert.
+                <br />
+                So erkennt man schnell:
+                <br /><br />
+                Welche Merkmale waren für diese eine E-Mail besonders wichtig?
+                Was hat die Spam-Wahrscheinlichkeit erhöht?
+                Welche Änderung hätte das Ergebnis beeinflusst?
+                <br />
+                LIME arbeitet also wie eine Lupe für Einzelfälle.
+                Es schaut sich nur die Umgebung eines Beispiels an und erklärt 
+                genau diese lokale Entscheidung – einfach und nachvollziehbar.            
+              </div>
             </div>
           </div>
 
@@ -313,8 +348,33 @@ export default function Home() {
               </div>
             </div>
           </div>
-
         </div>
+
+        {/* FOOTER MIT BUTTON */}
+        <div className="mt-5 flex justify-end">
+          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
+            Try it out! ➔ 
+          </button>
+        </div>
+      </section>
+
+      {/* SECTION 6 - CONGRATULATIONS */}
+      <section className="min-h-screen bg-violet-950 flex flex-col justify-center items-center px-6 py-20">
+        <h2 className="text-4xl md:text-6xl font-bold text-center">
+          YOU DID IT!
+        </h2>
+        <Image
+          src="/pixel1.png"
+          alt="Pixel"
+          width={250}
+          height={250}
+          className="mt-6"
+        />
+        <p className="mt-6 max-w-2xl text-lg text-white/70 text-center">
+          Congratulations! You've taken your first steps into the world of 
+          Explainable AI. Keep exploring, keep asking questions, 
+          and most importantly, have fun learning! 🚀✨
+        </p>
       </section>
 
     </main>
