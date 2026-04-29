@@ -1,6 +1,27 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const frames = [
+    "/pixel_dancing1.png",
+    "/pixel_dancing2.png",
+    "/pixel_dancing3.png",
+    "/pixel_dancing4.png",
+  ];
+
+  const [frame, setFrame] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrame((prev) => (prev + 1) % frames.length);
+    }, 400); // alle 400ms wechseln
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main>
 
@@ -26,7 +47,7 @@ export default function Home() {
         ">
 
           <Image
-            src="/pixel1.png"
+            src="/pixel3R.png"
             alt="AI Guide"
             width={140}
             height={140}
@@ -101,7 +122,7 @@ export default function Home() {
           {/* CHARACTER*/}
           <div className="w-full md:w-[20%] flex justify-center">
             <Image
-              src="/pixel1.png"
+              src="/pixel5L.png"
               alt="Pixel"
               width={220}
               height={220}
@@ -132,7 +153,7 @@ export default function Home() {
           {/* CHARACTER*/}
           <div className="w-full md:w-[20%] flex justify-center">
             <Image
-              src="/pixel1.png"
+              src="/pixel1R.png"
               alt="Pixel"
               width={200}
               height={200}
@@ -252,7 +273,7 @@ export default function Home() {
           {/* CHARACTER*/}
           <div className="w-full md:w-[20%] flex justify-center">
             <Image
-              src="/pixel1.png"
+              src="/pixel2L.png"
               alt="Pixel"
               width={220}
               height={220}
@@ -290,7 +311,7 @@ export default function Home() {
           {/* CHARACTER*/}
           <div className="w-full md:w-[20%] flex justify-center">
             <Image
-              src="/pixel1.png"
+              src="/pixel5R.png"
               alt="Pixel"
               width={200}
               height={200}
@@ -363,13 +384,15 @@ export default function Home() {
         <h2 className="text-4xl md:text-6xl font-bold text-center">
           YOU DID IT!
         </h2>
-        <Image
-          src="/pixel1.png"
-          alt="Pixel"
-          width={250}
-          height={250}
-          className="mt-6"
-        />
+        <div className="relative w-52 h-52 md:w-64 md:h-64 mt-6">
+          <Image
+            src={frames[frame]}
+            alt="Pixel Animation"
+            fill
+            sizes="(max-width: 768px) 208px, 256px"
+            className="object-contain"
+          />
+        </div>
         <p className="mt-6 max-w-2xl text-lg text-white/70 text-center">
           Congratulations! You've taken your first steps into the world of 
           Explainable AI. Keep exploring, keep asking questions, 
