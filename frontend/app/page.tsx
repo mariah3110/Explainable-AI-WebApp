@@ -59,7 +59,6 @@ export default function Home() {
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold">
-            
             What is 
             <span className="bg-gradient-to-r from-purple-700 to-cyan-300 bg-clip-text text-transparent">
             {" "}M
@@ -69,7 +68,6 @@ export default function Home() {
             {" "}L
             </span>
             earning?
-
           </h2>
         </div>
 
@@ -77,14 +75,14 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* MODEL */}
-          <div className="w-full md:w-[40%] flex justify-center">
+          <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6 overflow-hidden">
               <ForestAnimation />
             </div>
           </div>
 
           {/* SPEECH BUBBLE */}
-          <div className="w-full md:w-[40%] flex justify-center">
+          <div className="order-2 md:order-2 w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[420px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
               <b>Machine Learning</b> bedeutet, dass ein Computer aus Beispielen lernt, 
               statt nur feste Regeln zu befolgen. Er erkennt Muster in Daten und 
@@ -102,7 +100,9 @@ export default function Home() {
           </div>
 
           {/* CHARACTER*/}
-          <Character src="/pixel5L.png" alt="Pixel" loading="eager" />
+          <div className="order-1 md:order-3">
+            <Character src="/pixel5L.png" alt="Pixel" loading="eager" />
+          </div>
 
         </div>
       </section>
@@ -185,7 +185,7 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* MODEL */}
-          <div className="w-full md:w-[40%] flex justify-center">
+          <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
               <div className="absolute inset-0 flex items-center justify-center">
                   MODEL
@@ -194,7 +194,7 @@ export default function Home() {
           </div>
 
           {/* SPEECH BUBBLE */}
-          <div className="w-full md:w-[40%] flex justify-center min-h-0">
+          <div className="order-2 md:order-2 w-full md:w-[40%] flex justify-center min-h-0">
             <div className="relative w-full max-w-[420px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
               <div className="max-h-[400px] overflow-y-auto">
                 Schauen wir uns jetzt SHAP an. 🔍
@@ -238,7 +238,9 @@ export default function Home() {
           </div>
 
           {/* CHARACTER*/}
-          <Character src="/pixel2L.png"/>
+          <div className="order-1 md:order-3">
+            <Character src="/pixel2L.png"/>
+          </div>
         </div>
         
         {/* FOOTER MIT BUTTON */}
