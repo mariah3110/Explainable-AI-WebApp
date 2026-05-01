@@ -1,193 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import PixelAnimation from "@/components/PixelAnimation";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-export function DecisionTreeAnimation() {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setStep(1), 800),
-      setTimeout(() => setStep(2), 1600),
-      setTimeout(() => setStep(3), 2400),
-      setTimeout(() => setStep(4), 3200),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  return (
-    <div className="w-full h-full flex items-center justify-center">
-      <svg viewBox="100 100 600 400" className="w-full h-full">
-
-        {/* ROOT */}
-        <motion.g
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: step >= 0 ? 1 : 0, scale: step >= 0 ? 1 : 0 }}
-        >
-          <rect x={360} y={80} width={180} height={70} rx={12} fill="#4e2572" />
-          <text x={450} y={115} textAnchor="middle" fill="white">
-            Größe &gt; 5cm?
-          </text>
-        </motion.g>
-
-        {/* LINES */}
-        {step >= 1 && (
-          <>
-            <motion.line
-              x1={450}
-              y1={150}
-              x2={300}
-              y2={260}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-            <motion.line
-              x1={450}
-              y1={150}
-              x2={600}
-              y2={260}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-          </>
-        )}
-
-        {/* LEFT NODE */}
-        {step >= 2 && (
-          <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-            <rect x={210} y={260} width={180} height={70} rx={12} fill="#4e2572" />
-            <text x={300} y={295} textAnchor="middle" fill="white">
-              Farbe = blau?
-            </text>
-          </motion.g>
-        )}
-
-        {/* RIGHT LEAF */}
-        {step >= 2 && (
-          <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-            <rect x={510} y={260} width={180} height={70} rx={12} fill="#9a8ad8" />
-            <text x={600} y={295} textAnchor="middle" fill="white">
-              🍊 Orange
-            </text>
-          </motion.g>
-        )}
-
-        {/* SECOND LEVEL LINES */}
-        {step >= 3 && (
-          <>
-            <motion.line
-              x1={300}
-              y1={330}
-              x2={200}
-              y2={430}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-            <motion.line
-              x1={300}
-              y1={330}
-              x2={400}
-              y2={430}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-          </>
-        )}
-
-        {/* LEAVES */}
-        {step >= 4 && (
-          <>
-            <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-              <rect x={110} y={430} width={180} height={70} rx={12} fill="#9a8ad8" />
-              <text x={200} y={465} textAnchor="middle" fill="white">
-                🫐 Blaubeere
-              </text>
-            </motion.g>
-
-            <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-              <rect x={310} y={430} width={180} height={70} rx={12} fill="#9a8ad8" />
-              <text x={400} y={465} textAnchor="middle" fill="white">
-                🍓 Erdbeere
-              </text>
-            </motion.g>
-          </>
-        )}
-
-      </svg>
-    </div>
-  );
-}
-
-
-function ForestAnimation() {
-  const [phase, setPhase] = useState(0);
- 
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setPhase(1), 1500),
-      setTimeout(() => setPhase(2), 2500),
-      setTimeout(() => setPhase(3), 3500),
-      setTimeout(() => setPhase(4), 4500),
-    ];
-
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  return (
-    <div className="flex flex-col items-center justify-center">
-
-
-      <motion.div
-        animate={{
-          scale: phase >= 2 ? 0.5 : 1,
-          opacity: phase >= 3 ? 0 : 1
-        }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <DecisionTreeAnimation />
-      </motion.div>
-
-
-      {phase >= 3 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex gap-2 mt-4 scale-75"
-        >
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-        </motion.div>
-      )}
-
-
-      {phase >= 4 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 text-lg"
-        >
-          🍎 🍎 🫐 🍎 🍓 → <b>🍎</b>
-        </motion.div>
-      )}
-
-    </div>
-  );
-}
-
+import Character from "@/components/Character";
+import { ForestAnimation } from "@/components/ForestAnimation";
 
 
 export default function Home() {
@@ -205,7 +20,7 @@ export default function Home() {
           </span>
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg text-white/70">
+        <p className="mt-6 max-w-2xl text-lg text-white/70 mb-20 md:mb-32">
           Learn Machine Learning, Explainable AI and modern KI concepts with
           interactive visuals, playful examples and clear explanations.
         </p>
@@ -232,7 +47,7 @@ export default function Home() {
           ">
             Hi, I'm Pixel. I will guide you through the world of AI and Machine Learning. Let's explore together!
 
-            <div className="absolute bottom-4 -left-2 w-4 h-4 bg-gray-200 rotate-45"></div>
+            <div className="absolute bottom-6 -left-2 w-4 h-4 bg-gray-200 rotate-45"></div>
           </div>
 
         </div>
@@ -287,15 +102,7 @@ export default function Home() {
           </div>
 
           {/* CHARACTER*/}
-          <div className="relative  w-32 h-32 md:w-52 md:h-52">
-            <Image
-              src="/pixel5L.png"
-              alt="Pixel"
-              fill
-              sizes="(max-width: 768px) 128px, 208px"
-              className="object-contain"
-            />
-          </div>
+          <Character src="/pixel5L.png" alt="Pixel" loading="eager" />
 
         </div>
       </section>
@@ -318,15 +125,7 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* CHARACTER*/}
-          <div className="relative w-32 h-32 md:w-52 md:h-52">
-            <Image
-              src="/pixel1R.png"
-              alt="Pixel"
-              fill
-              sizes="(max-width: 768px) 128px, 208px"
-              className="object-contain"
-            />
-          </div>
+          <Character src="/pixel1R.png"/>
 
           {/* SPEECH BUBBLE */}
           <div className="w-full md:w-[40%] flex justify-center">
@@ -439,16 +238,7 @@ export default function Home() {
           </div>
 
           {/* CHARACTER*/}
-          <div className="relative w-32 h-32 md:w-52 md:h-52">
-            <Image
-              src="/pixel2L.png"
-              alt="Pixel"
-              fill
-              sizes="(max-width: 768px) 128px, 208px"
-              className="object-contain"
-            />
-          </div>
-
+          <Character src="/pixel2L.png"/>
         </div>
         
         {/* FOOTER MIT BUTTON */}
@@ -477,15 +267,7 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* CHARACTER*/}
-          <div className="relative w-32 h-32 md:w-52 md:h-52">
-            <Image
-              src="/pixel5R.png"
-              alt="Pixel"
-              fill
-              sizes="(max-width: 768px) 128px, 208px"
-              className="object-contain"
-            />
-          </div>
+          <Character src="/pixel5R.png"/>
 
           {/* SPEECH BUBBLE */}
           <div className="w-full md:w-[40%] flex justify-center">
@@ -549,10 +331,12 @@ export default function Home() {
 
       {/* SECTION 6 - CONGRATULATIONS */}
       <section className="min-h-screen bg-violet-950 flex flex-col justify-center items-center px-6 py-20">
-        <h2 className="text-4xl md:text-6xl font-bold text-center">
-          YOU DID IT!
-        </h2>
-        <div className="relative w-52 h-52 md:w-64 md:h-64 mt-6">
+
+        <div className="relative max-w-2xl items-center justify-center flex flex-col gap-1">
+          <h2 className="text-4xl md:text-6xl font-bold text-center">
+            YOU DID IT!
+          </h2>
+
           <PixelAnimation
             frames={[
               "/pixel_dancing1.png",
@@ -561,13 +345,16 @@ export default function Home() {
               "/pixel_dancing4.png",
             ]}
             interval={300}
+            size="xl:w-[20vw] xl:h-[20vw]"
           />
+        
+          <p className="max-w-2xl text-lg text-white/70 text-center">
+            Congratulations! You've taken your first steps into the world of 
+            Explainable AI. Keep exploring, keep asking questions, 
+            and most importantly, have fun learning! 🚀✨
+          </p>
         </div>
-        <p className="mt-6 max-w-2xl text-lg text-white/70 text-center">
-          Congratulations! You've taken your first steps into the world of 
-          Explainable AI. Keep exploring, keep asking questions, 
-          and most importantly, have fun learning! 🚀✨
-        </p>
+
       </section>
 
     </main>
