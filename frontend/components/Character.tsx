@@ -13,7 +13,7 @@ type Props = {
 export default function Character({
   src,
   alt = "Pixel",
-  className = "w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[320px] max-h-[320px]",
+  className = "w-[40vw] h-[40vw] md:w-[25vw] md:h-[25vw] max-w-[280px] max-h-[280px]",
   sizes = "(max-width: 768px) 40vw, 25vw",
   loading,
 }: Props) {

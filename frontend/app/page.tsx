@@ -76,7 +76,7 @@ export default function Home() {
 
           {/* MODEL */}
           <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center">
-            <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6 overflow-hidden">
+            <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
               <ForestAnimation />
             </div>
           </div>
@@ -95,7 +95,12 @@ export default function Home() {
               <br /><br />
               So entstehen oft zuverlässige Ergebnisse – und wir können später 
               mit <b>LIME</b> und <b>SHAP</b> erklären, warum das Modell so entschieden hat.              
-              <div className="absolute top-1/2 -right-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+              <div className="
+                absolute z-20
+                w-5 h-5 bg-gray-200 rotate-45
+                top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                md:top-1/2 md:left-auto md:right-0 md:translate-x-1/2 md:-translate-y-1/2
+              "></div>
             </div>
           </div>
 
@@ -130,7 +135,11 @@ export default function Home() {
           {/* SPEECH BUBBLE */}
           <div className="w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[440px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
-              <div className="absolute top-1/2 -left-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+              <div className="
+                absolute 
+                top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                md:top-1/2 md:left-0 md:-translate-x-1/2 md:-translate-y-1/2
+                w-5 h-5 bg-gray-200 rotate-45"></div>                
                 <div className="max-h-[400px] overflow-y-auto">
                 Bis jetzt haben wir gesehen, wie ein Modell Entscheidungen trifft. 
                 Aber oft bleibt eine wichtige Frage offen: Warum eigentlich?
@@ -197,6 +206,13 @@ export default function Home() {
           <div className="order-2 md:order-2 w-full md:w-[40%] flex justify-center min-h-0">
             <div className="relative w-full max-w-[420px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
               <div className="max-h-[400px] overflow-y-auto">
+              <div className="
+                absolute z-20
+                w-5 h-5 bg-gray-200 rotate-45
+                top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                md:top-1/2 md:left-auto md:right-0 md:translate-x-1/2 md:-translate-y-1/2
+              "></div>              
+
                 Schauen wir uns jetzt SHAP an. 🔍
                 <br />
                 SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis 
@@ -231,8 +247,7 @@ export default function Home() {
                 Welche Faktoren waren entscheidend?
                 <br />
                 Dadurch verstehen wir nicht nur was das Modell entschieden hat, 
-                sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨              
-                <div className="absolute top-1/2 -right-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+                sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨                 
               </div>
             </div>
           </div>
@@ -274,7 +289,12 @@ export default function Home() {
           {/* SPEECH BUBBLE */}
           <div className="w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[440px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
-              <div className="absolute top-1/2 -left-2 w-5 h-5 bg-gray-200 rotate-45 -translate-y-1/2"></div>
+              <div className="
+                absolute 
+                top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+                md:top-1/2 md:-left-0 md:-translate-y-1/2
+                w-5 h-5 bg-gray-200 rotate-45">
+              </div>
               <div className="max-h-[400px] overflow-y-auto">
                 Jetzt schauen wir uns LIME an. 🔍
                 <br /><br />
