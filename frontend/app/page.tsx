@@ -3,7 +3,7 @@
 import PixelAnimation from "@/components/PixelAnimation";
 import Character from "@/components/Character";
 import { ForestAnimation } from "@/components/ForestAnimation";
-
+import { ExplainableAIDiagram } from "@/components/ExplainableAIDiagram";
 
 export default function Home() {
 
@@ -75,10 +75,8 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* MODEL */}
-          <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center">
-            <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
-              <ForestAnimation />
-            </div>
+          <div className="w-full md:w-[40%] flex justify-center">
+            <ForestAnimation />
           </div>
 
           {/* SPEECH BUBBLE */}
@@ -168,7 +166,7 @@ export default function Home() {
           <div className="w-full md:w-[40%] flex justify-center">
             <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
               <div className="absolute inset-0 flex items-center justify-center">
-                  MODEL
+                  <ExplainableAIDiagram />
               </div>
             </div>
           </div>
