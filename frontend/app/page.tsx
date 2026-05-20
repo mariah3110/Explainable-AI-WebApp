@@ -2,6 +2,7 @@
 
 import PixelAnimation from "@/components/PixelAnimation";
 import Character from "@/components/Character";
+import FootballField from "@/components/FootballField";
 import { ForestAnimation } from "@/components/ForestAnimation";
 import { ExplainableAIDiagram } from "@/components/ExplainableAIDiagram";
 
@@ -21,8 +22,8 @@ export default function Home() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-white/70 mb-20 md:mb-32">
-          Learn Machine Learning, Explainable AI and modern KI concepts with
-          interactive visuals, playful examples and clear explanations.
+          Lerne die Welt der Künstlichen Intelligenz und des Machine Learnings auf eine völlig neue Art kennen – 
+          durch interaktive Visualisierungen und anschauliche Erklärungen.
         </p>
 
         {/* Pixel */}
@@ -45,8 +46,8 @@ export default function Home() {
             rounded-2xl bg-gray-200 text-black
             px-4 py-3 text-sm shadow-xl
           ">
-            Hi, I'm Pixel. I will guide you through the world of AI and Machine Learning. Let's explore together!
-
+            Hi, ich bin Pixel. Ich werde dich durch die Welt der KI und des Machine Learnings führen. 
+            Lass es uns gemeinsam entdecken!
             <div className="absolute bottom-6 -left-2 w-4 h-4 bg-gray-200 rotate-45"></div>
           </div>
 
@@ -180,11 +181,10 @@ export default function Home() {
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold">
-            Explainable AI mit 
+            Explainable AI mit
             <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
-            {" "}SHAP
+              {" "}SHAP
             </span>
-            
           </h2>
         </div>
 
@@ -192,75 +192,95 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
           {/* MODEL */}
-          <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center">
-            <div className="relative w-full max-w-[420px] aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
-              <div className="absolute inset-0 flex items-center justify-center">
-                  MODEL
-              </div>
-            </div>
+          <div className="order-3 md:order-1 w-full md:w-[40%] flex justify-center min-h-0 max-h-[460px]">
+            <FootballField />
           </div>
 
           {/* SPEECH BUBBLE */}
           <div className="order-2 md:order-2 w-full md:w-[40%] flex justify-center min-h-0">
+
             <div className="relative w-full max-w-[420px] rounded-3xl bg-gray-200 text-black px-6 py-5 text-base shadow-2xl">
-              <div className="max-h-[400px] overflow-y-auto">
+
+              {/* SPEECH TRIANGLE */}
               <div className="
                 absolute z-20
                 w-5 h-5 bg-gray-200 rotate-45
                 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
                 md:top-1/2 md:left-auto md:right-0 md:translate-x-1/2 md:-translate-y-1/2
-              "></div>              
+              "></div>
+
+              <div className="max-h-[400px] overflow-y-auto">
 
                 Schauen wir uns jetzt SHAP an. 🔍
-                <br />
-                SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis 
-                vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes 
+                <br /><br />
+
+                SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis
+                vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes
                 einzelne Merkmal zur Entscheidung leistet.
-                <br />
-                Stell dir das wie ein Team aus Spielern vor. ⚽🏀 
+                <br /><br />
+
+                Stell dir das wie ein Team aus Spielern vor. ⚽
                 Jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.
                 <br /><br />
-                In unserer Visualisierung steht jeder Spieler für ein Merkmal – 
+
+                In unserer Visualisierung steht jeder Spieler für ein Merkmal –
                 zum Beispiel:
-                <br />
-                - Viele Links
-                <br />
-                - Wort „FREE“
-                <br />
-                - Unbekannter Absender
-                <br />
-                - Bekannter Kontakt
                 <br /><br />
+
+                • Viele Links
+                <br />
+                • Wort „FREE“
+                <br />
+                • Unbekannter Absender
+                <br />
+                • Bekannter Kontakt
+                <br /><br />
+
                 Einige Spieler verbessern das Ergebnis, andere verschlechtern es.
-                <br />
-                Du kannst einzelne Spieler aus dem Team herausziehen und direkt 
-                sehen, wie sich das Gesamtergebnis verändert. Entfernst du zum 
-                Beispiel den Spieler „Viele Links“, sinkt die 
-                Spam-Wahrscheinlichkeit deutlich.
-                <br />
+                <br /><br />
+
+                Du kannst einzelne Spieler aus dem Team herausziehen und direkt
+                sehen, wie sich das Gesamtergebnis verändert.
+                <br /><br />
+
+                Entfernst du zum Beispiel den Spieler „Viele Links“,
+                sinkt die Spam-Wahrscheinlichkeit deutlich.
+                <br /><br />
+
                 So zeigt SHAP ganz anschaulich:
+                <br /><br />
+
+                • Wer hat stark beeinflusst?
                 <br />
-                Wer hat stark beeinflusst?
-                Wer hatte nur wenig Wirkung?
-                Welche Faktoren waren entscheidend?
+                • Wer hatte nur wenig Wirkung?
                 <br />
-                Dadurch verstehen wir nicht nur was das Modell entschieden hat, 
-                sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨                 
+                • Welche Faktoren waren entscheidend?
+                <br /><br />
+
+                Dadurch verstehen wir nicht nur was das Modell entschieden hat,
+                sondern auch welches Team diese Entscheidung erzeugt hat. 📊✨
+
               </div>
             </div>
           </div>
 
-          {/* CHARACTER*/}
+          {/* CHARACTER */}
           <div className="order-1 md:order-3">
-            <Character src="/pixel2L.png"/>
+            <Character src="/pixel2L.png" />
           </div>
+
         </div>
-        
-        {/* FOOTER MIT BUTTON */}
+
+        {/* FOOTER BUTTON */}
         <div className="mt-5 flex justify-end">
-          <a href="/tryPage_shap" className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors">
-            Try it out! ➔ 
+
+          <a
+            href="/tryPage_shap"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-300 text-white font-semibold shadow-lg hover:from-purple-600 hover:to-cyan-400 transition-colors"
+          >
+            Try it out! ➔
           </a>
+
         </div>
 
       </section>
@@ -354,7 +374,7 @@ export default function Home() {
 
         <div className="relative max-w-2xl items-center justify-center flex flex-col gap-1">
           <h2 className="text-4xl md:text-6xl font-bold text-center">
-            YOU DID IT!
+            DU HAST ES GESCHAFFT!
           </h2>
 
           <PixelAnimation
@@ -369,9 +389,9 @@ export default function Home() {
           />
         
           <p className="max-w-2xl text-lg text-white/70 text-center">
-            Congratulations! You've taken your first steps into the world of 
-            Explainable AI. Keep exploring, keep asking questions, 
-            and most importantly, have fun learning! 🚀✨
+            Glückwunsch! Du hast deine ersten Schritte in die Welt der 
+            Explainable AI gemacht. Bleib neugierig, stelle Fragen und vor allem: 
+            Hab Spaß beim Lernen! 🚀✨
           </p>
         </div>
 

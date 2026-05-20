@@ -7,7 +7,7 @@ export default function TryPage_shap() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold">
           Try{" "}
           <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
-            SAPE
+            SHAP
           </span>
         </h1>
       </div>
@@ -72,7 +72,7 @@ export default function TryPage_shap() {
           </p>
 
           <button className="mx-auto text-base sm:text-lg md:text-xl font-bold px-3 py-2 sm:px-4 w-[30%] bg-gradient-to-r from-purple-700 to-cyan-600 rounded-md hover:from-purple-600 hover:to-cyan-400">
-            SHAPE
+            SHAP
           </button>
 
         </div>
