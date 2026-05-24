@@ -34,4 +34,4 @@ shap.plots.beeswarm(shap_values[:, :, 0])
 
 # Lokal (funktioniert zuverlässig!)
 index = 0
-shap.plots.waterfall(shap_values[index, :, 0])
+# shap.plots.waterfall(shap_values[index, :, 0])

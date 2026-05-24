@@ -1,9 +1,33 @@
+"use client"
+import Image from "next/image";
+import { useState } from "react";
+import Character from "@/components/Character";
+
+
 export default function TryPage_shap() {
+
+  const [selectedDataset, setSelectedDataset] = useState<string | null>(null)
+  const [animationStep, setAnimationStep] = useState(0)
+  const [animationOver, setAnimationOver] = useState(false)
+  const [showShapImage, setShowShapImage] = useState(false)
+
+  const startAnimation = () => {
+    setAnimationOver(false)
+    setAnimationStep(1)
+
+    setTimeout(() => setAnimationStep(2), 1000)
+    setTimeout(() => setAnimationStep(3), 4500)
+    setTimeout(() => setAnimationStep(4), 7000)
+    setTimeout(() => {
+      setAnimationOver(true)
+    }, 7000)
+  }
+
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center px-4 py-6 sm:py-8 md:py-10">
       
       {/* HEADER */}
-      <div className="text-center mb-6 sm:mb-8 md:mb-12">
+      <div className="text-center sm:mb-4 md:mb-6">
         <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold">
           Try{" "}
           <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
@@ -18,60 +42,209 @@ export default function TryPage_shap() {
         {/* NAVIGATION */}
         <div className="w-full md:w-[45%] xl:w-[40%] flex flex-col rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-5 md:p-6 xl:p-8">
           
-          <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 text-center">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 text-center">
             NAVIGATION
-          </h3>
+          </h2>
 
           <p className="text-xs sm:text-sm text-white/70 text-center mb-4 sm:mb-6">
-            Select a dataset to explore its features.
+            Suche dir einen Datensatz aus, auf den du SHAP anwenden möchtest. 
           </p>
 
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <div className="relative group">
-              <button className="px-3 py-2 sm:px-4 bg-white/10 rounded-md hover:bg-white/20">
-              Dataset 1
-            </button>
-
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 
-                            opacity-0 group-hover:opacity-100 transition
-                            bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-              Customer dataset with 10k rows
-            </div>
-          </div>
-
-            <div className="relative group">
-              <button className="px-3 py-2 sm:px-4 bg-white/10 rounded-md hover:bg-white/20">
-                Dataset 2
+          <div className="grid grid-cols-3 gap-3 w-full mb-4 sm:mb-6">
+            <div className="relative group w-full">
+              <button
+                onClick={() => {
+                  setSelectedDataset("penguins")
+                  startAnimation()
+                }}
+                className={`w-full px-3 py-2 sm:px-4 rounded-md transition
+                  ${
+                    selectedDataset === "penguins"
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
+                      : "bg-violet-400/40 hover:bg-gray-500/40"
+                  }`}
+              >
+                Pinguine
               </button>
-              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 
-                              opacity-0 group-hover:opacity-100 transition
-                              bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                Sales dataset with 5k rows
+
+              <div
+                className="absolute top-full mt-2 left-1/2 -translate-x-1/2
+                          bg-gradient-to-r from-violet-600 to-cyan-600
+                          opacity-0 group-hover:opacity-100 transition
+                          bg-black text-white text-xs p-2 rounded-lg
+                          pointer-events-none z-50 w-44"
+              >
+                <h3 className="text-center font-bold mb-1 text-sm">Pinguine</h3>
+                <div className="relative w-32 h-20 mx-auto mb-2">
+                  <Image
+                    src="/penguins.png"
+                    alt="Pinguine"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <p className="text-center whitespace-normal">
+                  (334 Spalten, 7 Zeilen)
+                  <br /><br />
+                  Pinguin-Daten mit Körpermaßen und Art. 
+                  Das Modell lernt, anhand von Merkmalen wie Schnabellänge, 
+                  Flossenlänge und Gewicht die Pinguinart vorherzusagen.               
+                </p>
               </div>
             </div>
 
-            <div className="relative group">
-              <button className="px-3 py-2 sm:px-4 bg-white/10 rounded-md hover:bg-white/20">
-                Dataset 3
+            <div className="relative group w-full">
+              <button
+                onClick={() => {
+                  setSelectedDataset("mushrooms")
+                  startAnimation()
+                }}
+                className={`w-full px-3 py-2 sm:px-4 rounded-md transition
+                  ${
+                    selectedDataset === "mushrooms"
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
+                      : "bg-gradient-to-r from-violet-400/40 to-cyan-400/40 hover:from-gray-500/40 hover:to-gray-500/40"
+                  }`}
+              >
+                Pilze
               </button>
-              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 
-                              opacity-0 group-hover:opacity-100 transition
-                              bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                Product dataset with 8k rows
+
+              <div
+                className="absolute top-full mt-2 left-1/2 -translate-x-1/2
+                          bg-gradient-to-r from-violet-600 to-cyan-600
+                          opacity-0 group-hover:opacity-100 transition
+                          bg-black text-white text-xs p-2 rounded-lg
+                          pointer-events-none z-50 w-44"
+              >
+                <h3 className="text-center font-bold mb-1 text-sm">Pilze</h3>
+                <div className="relative w-32 h-20 mx-auto mb-2">
+                  <Image
+                    src="/mushrooms.png"
+                    alt="Dataset 2"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <p className="text-center whitespace-normal">
+                  (8124 Spalten, 22 Zeilen)
+                  <br /><br />
+                  Pilz-Daten mit äußeren Merkmalen wie Farbe, 
+                  Form und Geruch. Das Modell sagt voraus, 
+                  ob ein Pilz essbar oder giftig ist.               
+                </p>
+              </div>
+            </div>
+
+            <div className="relative group w-full">
+              <button
+                onClick={() => {
+                  setSelectedDataset("wine")
+                  startAnimation()
+                }}
+                className={`w-full px-3 py-2 sm:px-4 rounded-md transition
+                  ${
+                    selectedDataset === "wine"
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
+                      : "bg-cyan-400/40 hover:from-gray-500/40 hover:to-gray-500/40"
+                  }`}
+              >
+                Wein
+              </button>
+
+              <div
+                className="absolute top-full mt-2 left-1/2 -translate-x-1/2
+                          bg-gradient-to-r from-violet-600 to-cyan-600
+                          opacity-0 group-hover:opacity-100 transition
+                          bg-black text-white text-xs p-2 rounded-lg
+                          pointer-events-none z-50 w-44"
+              >
+                <h3 className="text-center font-bold mb-1 text-sm">Wein</h3>
+                <div className="relative w-32 h-20 mx-auto mb-2">
+                  <Image
+                    src="/wine.png"
+                    alt="Dataset 3"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <p className="text-center whitespace-normal">
+                  (178 Spalten, 13 Zeilen)
+                  <br /><br />
+                  Chemische Eigenschaften von Wein. Vorhersage: 
+                  Zu welcher Weinsorte oder Qualitätsklasse gehört er?              
+                </p>
               </div>
             </div>
           </div>
 
           {/* MODEL BOX */}
-          <div className="w-full min-h-[120px] sm:min-h-[160px] md:min-h-[220px] xl:min-h-[260px] rounded-md border border-white/10 mb-4 sm:mb-6 flex items-center justify-center">
-            MODEL
+          <div className="w-full min-h-[120px] sm:min-h-[160px] md:min-h-[220px] xl:min-h-[260px] rounded-md mb-4 sm:mb-6 flex items-center justify-center flex-col text-gray-300">
+              {animationStep >= 1 && animationStep < 4 && (
+              <div className="flex items-center items-end gap-3 mb-8 mt-5"> 
+                  <img src="tree1.png" alt="tree icon" className="w-20 h-20 animate-fadeInOut" />
+                {animationStep >= 2 && animationStep < 4 && (
+                  <img src="tree2.png" alt="tree icon" className="w-15 h-15 animate-fadeInOut delay-200" />
+                )}
+                {animationStep >= 3 && animationStep < 4 && (
+                  <img src="tree3.png" alt="tree icon" className="w-18 h-18 animate-fadeInOut delay-400" />
+                )}
+              </div>
+              )}
+
+              <div className="relative">
+                {animationStep === 1 && animationStep < 4 && (
+                <p className="animate-fadeIn">
+                  Datensatz wird geladen …
+                </p>
+                )}
+
+                {animationStep === 2 && animationStep < 4 && (
+                <p className="animate-fadeIn">
+                  Modell wird trainiert …
+                </p>
+                )}
+
+                {animationStep >= 3 && animationStep < 4 && (  
+                <p className="animate-fadeIn">
+                  Die Bäume wachsen …
+                </p>
+                )}
+              </div>
+              {animationStep >= 4 && (
+                <div className="flex items-center flex-col gap-3 mb-8 mt-5">
+                  <img 
+                    src="bigforest.png" 
+                    alt="tree icon" 
+                    className="w-85 h-40 animate-fadeInOut delay-400" />
+                  <p className="animate-fadeIn">
+                    Random Forest mit 100 Bäumen ist fertig!
+                  </p>
+                </div>
+              )}
+
           </div>
 
-          <p className="text-xs sm:text-sm text-white/70 text-center mb-3 sm:mb-4">
-            Click the button to use SAPE on the selected dataset and look at the feature importance.
-          </p>
+          <div>
+            {animationOver ? (
+              <p className="text-xs sm:text-sm text-white/70 text-center mb-3 sm:mb-4">
+                Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen.
+              </p>
+            ) : null}
+          </div>
 
-          <button className="mx-auto text-base sm:text-lg md:text-xl font-bold px-3 py-2 sm:px-4 w-[30%] bg-gradient-to-r from-purple-700 to-cyan-600 rounded-md hover:from-purple-600 hover:to-cyan-400">
+          <button 
+                disabled={!animationOver}
+                onClick={() => setShowShapImage(true)}
+                className={`mx-auto text-base sm:text-lg md:text-xl font-bold px-3 py-2 sm:px-4 w-[30%] rounded-md
+                ${
+                  animationOver
+                    ? "bg-gradient-to-r from-purple-700 to-cyan-600 hover:from-purple-600 hover:to-cyan-400"
+                    : "bg-gray-500/40 cursor-not-allowed opacity-50"
+                }`}
+              >
             SHAP
           </button>
 
@@ -79,7 +252,37 @@ export default function TryPage_shap() {
 
         {/* MODEL */}
         <div className="w-full md:w-[55%] xl:w-[60%] min-h-[200px] sm:min-h-[300px] md:min-h-[350px] xl:min-h-[450px] flex items-center justify-center rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-6">
-          MODEL
+          
+          {/* CHARACTER*/}
+          {!showShapImage && (
+          <div className="flex items-center gap-4">
+
+            <div
+              className="
+                relative mb-6 md:mb-20
+                max-w-[180px] md:max-w-[240px]
+                rounded-md bg-gray-200 text-black
+                px-4 py-3 text-sm shadow-xl
+              "
+            >
+              LETS TRY SHAP!
+              <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 bg-gray-200 rotate-45"></div>
+            </div>
+
+            <Character src="/pixel2L.png" />
+
+          </div>
+          )}
+          {showShapImage && (
+            <div className="flex justify-center items-center mt-5 animate-fadeIn">
+              <img
+                src="/global_shap_plot.png"
+                alt="Global SHAP Plot"
+                className="max-w-full max-h-[400px] object-contain rounded-lg shadow-lg"
+              />
+            </div>
+          )}
+
         </div>
 
       </div>
