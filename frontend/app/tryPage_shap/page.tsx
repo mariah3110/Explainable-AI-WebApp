@@ -6,10 +6,13 @@ import Character from "@/components/Character";
 
 export default function TryPage_shap() {
 
+  type ShapFeature = { feature: string; importance: number };
+
   const [selectedDataset, setSelectedDataset] = useState<string | null>(null)
   const [animationStep, setAnimationStep] = useState(0)
   const [animationOver, setAnimationOver] = useState(false)
   const [showShapImage, setShowShapImage] = useState(false)
+  const [shapData, setShapData] = useState<ShapFeature[] | null>(null);
 
   const startAnimation = () => {
     setAnimationOver(false)
@@ -237,7 +240,12 @@ export default function TryPage_shap() {
 
           <button 
                 disabled={!animationOver}
-                onClick={() => setShowShapImage(true)}
+                onClick={async () => {
+                  setShowShapImage(true);
+                  const res = await fetch(`/shap/${selectedDataset}.json`);
+                  const json = await res.json();
+                  setShapData(json.features);
+}}
                 className={`mx-auto text-base sm:text-lg md:text-xl font-bold px-3 py-2 sm:px-4 w-[30%] rounded-md
                 ${
                   animationOver
@@ -254,7 +262,48 @@ export default function TryPage_shap() {
         <div className="w-full md:w-[55%] xl:w-[60%] min-h-[200px] sm:min-h-[300px] md:min-h-[350px] xl:min-h-[450px] flex items-center justify-center rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-6">
           
           {/* CHARACTER*/}
-          {!showShapImage && (
+          {showShapImage ? (
+            <div className="w-full animate-fadeIn">
+              <h3 className="text-lg font-bold text-center mb-2 text-white">
+                Globale SHAP Feature-Importanz
+              </h3>
+
+              <p className="text-xs text-white/60 text-center mb-6">
+                Je länger der Balken, desto stärker beeinflusst das Merkmal die Vorhersage.
+              </p>
+
+              <div className="flex flex-col gap-4">
+                {shapData?.map((f, index) => {
+                  const max = shapData?.[0]?.importance || 1;
+                  const percent = (f.importance / max) * 100;
+
+                  return (
+                    <div key={f.feature} className="w-full">
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-white/80 font-medium">
+                          {index + 1}. {f.feature}
+                        </span>
+                        <span className="text-cyan-300 font-mono">
+                          {f.importance.toFixed(4)}
+                        </span>
+                      </div>
+
+                      <div className="h-7 w-full rounded-full bg-white/10 overflow-hidden border border-white/10">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-purple-500 via-violet-400 to-cyan-300 flex items-center justify-end pr-2 transition-all duration-700"
+                          style={{ width: `${percent}%` }}
+                        >
+                          <span className="text-[10px] font-bold text-slate-900">
+                            {percent.toFixed(0)}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
           <div className="flex items-center gap-4">
 
             <div
@@ -272,15 +321,6 @@ export default function TryPage_shap() {
             <Character src="/pixel2L.png" />
 
           </div>
-          )}
-          {showShapImage && (
-            <div className="flex justify-center items-center mt-5 animate-fadeIn">
-              <img
-                src="/global_shap_plot.png"
-                alt="Global SHAP Plot"
-                className="max-w-full max-h-[400px] object-contain rounded-lg shadow-lg"
-              />
-            </div>
           )}
 
         </div>
