@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Character from "@/components/Character";
+import {RotateCw} from "lucide-react";
 
 
 export default function TryPage_shap() {
@@ -13,6 +14,9 @@ export default function TryPage_shap() {
   const [animationOver, setAnimationOver] = useState(false)
   const [showShapImage, setShowShapImage] = useState(false)
   const [shapData, setShapData] = useState<ShapFeature[] | null>(null);
+  const datasetLocked = selectedDataset !== null;
+  const [characterText, setCharacterText] = useState(
+    "Suche dir einen Datensatz aus, auf den du SHAP anwenden möchtest.")
 
   const startAnimation = () => {
     setAnimationOver(false)
@@ -22,9 +26,23 @@ export default function TryPage_shap() {
     setTimeout(() => setAnimationStep(3), 4500)
     setTimeout(() => setAnimationStep(4), 7000)
     setTimeout(() => {
-      setAnimationOver(true)
+      setAnimationOver(true);
+      setCharacterText(
+        "Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen."
+      );
     }, 7000)
   }
+
+  const resetPage = () => {
+    setSelectedDataset(null);
+    setAnimationOver(false);
+    setShowShapImage(false);
+    setAnimationStep(0);
+
+    setCharacterText(
+      "Suche dir einen Datensatz aus, auf den du SHAP anwenden möchtest."
+    );
+  };
 
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center px-4 py-6 sm:py-8 md:py-10">
@@ -44,28 +62,38 @@ export default function TryPage_shap() {
 
         {/* NAVIGATION */}
         <div className="w-full md:w-[45%] xl:w-[40%] flex flex-col rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-5 md:p-6 xl:p-8">
-          
-          <h2 className="text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 text-center">
-            NAVIGATION
-          </h2>
-
-          <p className="text-xs sm:text-sm text-white/70 text-center mb-4 sm:mb-6">
-            Suche dir einen Datensatz aus, auf den du SHAP anwenden möchtest. 
-          </p>
+          <div className="relative flex items-center mb-6">
+            <button>
+              <RotateCw 
+                onClick={resetPage}
+                className="left-0 text-gray-500 hover:text-gray-300 mb-7" size={25}/>
+            </button>
+            
+            <h2 className="w-full text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 text-center">
+              NAVIGATION
+            </h2>
+          </div>
 
           <div className="grid grid-cols-3 gap-3 w-full mb-4 sm:mb-6">
             <div className="relative group w-full">
               <button
+                disabled={datasetLocked}
                 onClick={() => {
-                  setSelectedDataset("penguins")
-                  startAnimation()
+                  setSelectedDataset("penguins");
+                  startAnimation();
                 }}
                 className={`w-full px-3 py-2 sm:px-4 rounded-md transition
                   ${
-                    selectedDataset === "penguins"
-                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
+                    datasetLocked
+                      ? "opacity-50 border border-gray-500/50 cursor-not-allowed"
                       : "bg-violet-400/40 hover:bg-gray-500/40"
-                  }`}
+                  }
+                  ${
+                    selectedDataset === "penguins"
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50 opacity-100"
+                      : ""
+                  }
+                `}
               >
                 Pinguine
               </button>
@@ -99,16 +127,23 @@ export default function TryPage_shap() {
 
             <div className="relative group w-full">
               <button
+                disabled={datasetLocked}
                 onClick={() => {
-                  setSelectedDataset("mushrooms")
-                  startAnimation()
+                  setSelectedDataset("mushrooms");
+                  startAnimation();
                 }}
                 className={`w-full px-3 py-2 sm:px-4 rounded-md transition
                   ${
-                    selectedDataset === "mushrooms"
-                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
+                    datasetLocked
+                      ? "opacity-50 border border-gray-500/50 cursor-not-allowed"
                       : "bg-gradient-to-r from-violet-400/40 to-cyan-400/40 hover:from-gray-500/40 hover:to-gray-500/40"
-                  }`}
+                  }
+                  ${
+                    selectedDataset === "mushrooms"
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50 opacity-100"
+                      : ""
+                  }
+                `}
               >
                 Pilze
               </button>
@@ -142,16 +177,23 @@ export default function TryPage_shap() {
 
             <div className="relative group w-full">
               <button
+                disabled={datasetLocked}
                 onClick={() => {
-                  setSelectedDataset("wine")
-                  startAnimation()
+                  setSelectedDataset("wine");
+                  startAnimation();
                 }}
                 className={`w-full px-3 py-2 sm:px-4 rounded-md transition
                   ${
+                    datasetLocked
+                      ? "opacity-50 border border-gray-500/50 cursor-not-allowed"
+                      : "bg-cyan-400/40 hover:bg-gray-500/40"
+                  }
+                  ${
                     selectedDataset === "wine"
-                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50"
-                      : "bg-cyan-400/40 hover:from-gray-500/40 hover:to-gray-500/40"
-                  }`}
+                      ? "bg-gray-500/50 shadow-lg shadow-purple-500/50 opacity-100"
+                      : ""
+                  }
+                `}
               >
                 Wein
               </button>
@@ -184,7 +226,7 @@ export default function TryPage_shap() {
           </div>
 
           {/* MODEL BOX */}
-          <div className="w-full min-h-[120px] sm:min-h-[160px] md:min-h-[220px] xl:min-h-[260px] rounded-md mb-4 sm:mb-6 flex items-center justify-center flex-col text-gray-300">
+          <div className="w-full min-h-[130px] sm:min-h-[170px] md:min-h-[230px] xl:min-h-[270px] rounded-md mb-4 sm:mb-6 flex items-center justify-center flex-col text-gray-300">
               {animationStep >= 1 && animationStep < 4 && (
               <div className="flex items-center items-end gap-3 mb-8 mt-5"> 
                   <img src="tree1.png" alt="tree icon" className="w-20 h-20 animate-fadeInOut" />
@@ -228,14 +270,6 @@ export default function TryPage_shap() {
                 </div>
               )}
 
-          </div>
-
-          <div>
-            {animationOver ? (
-              <p className="text-xs sm:text-sm text-white/70 text-center mb-3 sm:mb-4">
-                Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen.
-              </p>
-            ) : null}
           </div>
 
           <button 
@@ -314,7 +348,7 @@ export default function TryPage_shap() {
                 px-4 py-3 text-sm shadow-xl
               "
             >
-              LETS TRY SHAP!
+              {characterText}
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-4 h-4 bg-gray-200 rotate-45"></div>
             </div>
 
