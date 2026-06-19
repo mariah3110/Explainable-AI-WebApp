@@ -4,6 +4,11 @@ import { useState } from "react";
 import Character from "@/components/Character";
 import {RotateCw} from "lucide-react";
 
+import penguinsData from "../../data/shap/penguins.json";
+import mushroomsData from "../../data/shap/mushrooms.json";
+import wineData from "../../data/shap/wine.json";
+import ShapImportancePlot from "@/components/CreatePlotShap";
+
 
 export default function TryPage_shap() {
 
@@ -22,6 +27,21 @@ export default function TryPage_shap() {
     setAnimationOver(false)
     setAnimationStep(1)
 
+    setTimeout(() => setAnimationStep(2), 1)
+    setTimeout(() => setAnimationStep(3), 2)
+    setTimeout(() => setAnimationStep(4), 3)
+    setTimeout(() => {
+      setAnimationOver(true);
+      setCharacterText(
+        "Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen."
+      );
+    }, 4)
+  }
+  {/* Alternative mit async/await:
+  const startAnimation = () => {
+    setAnimationOver(false)
+    setAnimationStep(1)
+
     setTimeout(() => setAnimationStep(2), 1000)
     setTimeout(() => setAnimationStep(3), 4500)
     setTimeout(() => setAnimationStep(4), 7000)
@@ -31,7 +51,7 @@ export default function TryPage_shap() {
         "Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen."
       );
     }, 7000)
-  }
+  }*/}
 
   const resetPage = () => {
     setSelectedDataset(null);
@@ -279,7 +299,8 @@ export default function TryPage_shap() {
                   const res = await fetch(`/shap/${selectedDataset}.json`);
                   const json = await res.json();
                   setShapData(json.features);
-}}
+                }}
+
                 className={`mx-auto text-base sm:text-lg md:text-xl font-bold px-3 py-2 sm:px-4 w-[30%] rounded-md
                 ${
                   animationOver
@@ -298,43 +319,16 @@ export default function TryPage_shap() {
           {/* CHARACTER*/}
           {showShapImage ? (
             <div className="w-full animate-fadeIn">
-              <h3 className="text-lg font-bold text-center mb-2 text-white">
-                Globale SHAP Feature-Importanz
-              </h3>
-
-              <p className="text-xs text-white/60 text-center mb-6">
-                Je länger der Balken, desto stärker beeinflusst das Merkmal die Vorhersage.
-              </p>
-
               <div className="flex flex-col gap-4">
-                {shapData?.map((f, index) => {
-                  const max = shapData?.[0]?.importance || 1;
-                  const percent = (f.importance / max) * 100;
-
-                  return (
-                    <div key={f.feature} className="w-full">
-                      <div className="flex justify-between text-xs mb-1">
-                        <span className="text-white/80 font-medium">
-                          {index + 1}. {f.feature}
-                        </span>
-                        <span className="text-cyan-300 font-mono">
-                          {f.importance.toFixed(4)}
-                        </span>
-                      </div>
-
-                      <div className="h-7 w-full rounded-full bg-white/10 overflow-hidden border border-white/10">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-purple-500 via-violet-400 to-cyan-300 flex items-center justify-end pr-2 transition-all duration-700"
-                          style={{ width: `${percent}%` }}
-                        >
-                          <span className="text-[10px] font-bold text-slate-900">
-                            {percent.toFixed(0)}%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                  {selectedDataset === "penguins"
+                      ? <ShapImportancePlot data={penguinsData} />
+                      : selectedDataset === "mushrooms"
+                      ? <ShapImportancePlot data={mushroomsData} />
+                      : selectedDataset === "wine"
+                      ? <ShapImportancePlot data={wineData} />
+                      : null
+                  }
+                
               </div>
             </div>
           ) : (

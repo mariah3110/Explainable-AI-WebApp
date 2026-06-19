@@ -1,0 +1,34 @@
+{
+  "dataset": "penguins",
+  "classes": [
+    "Adelie",
+    "Chinstrap",
+    "Gentoo"
+  ],
+  "features": [
+    {
+      "feature": "bill_length_mm",
+      "importance": 0.1649771439545984
+    },
+    {
+      "feature": "flipper_length_mm",
+      "importance": 0.12037259231726362
+    },
+    {
+      "feature": "bill_depth_mm",
+      "importance": 0.075313028434603
+    },
+    {
+      "feature": "island",
+      "importance": 0.06744229717993204
+    },
+    {
+      "feature": "body_mass_g",
+      "importance": 0.051384567987774396
+    },
+    {
+      "feature": "sex",
+      "importance": 0.007755446894463062
+    }
+  ]
+}

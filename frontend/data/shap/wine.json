@@ -1,0 +1,62 @@
+{
+  "dataset": "wine",
+  "classes": [
+    "class_0",
+    "class_1",
+    "class_2"
+  ],
+  "features": [
+    {
+      "feature": "flavanoids",
+      "importance": 0.09487966736879928
+    },
+    {
+      "feature": "color_intensity",
+      "importance": 0.08764984949581711
+    },
+    {
+      "feature": "proline",
+      "importance": 0.07576864136178024
+    },
+    {
+      "feature": "alcohol",
+      "importance": 0.0738652273393439
+    },
+    {
+      "feature": "od280/od315_of_diluted_wines",
+      "importance": 0.05368912759591178
+    },
+    {
+      "feature": "hue",
+      "importance": 0.04007897023540396
+    },
+    {
+      "feature": "total_phenols",
+      "importance": 0.017864164567984016
+    },
+    {
+      "feature": "malic_acid",
+      "importance": 0.014239314834723422
+    },
+    {
+      "feature": "magnesium",
+      "importance": 0.013437254998505569
+    },
+    {
+      "feature": "alcalinity_of_ash",
+      "importance": 0.012315947892812066
+    },
+    {
+      "feature": "proanthocyanins",
+      "importance": 0.00791493275407621
+    },
+    {
+      "feature": "ash",
+      "importance": 0.006191514965197359
+    },
+    {
+      "feature": "nonflavanoid_phenols",
+      "importance": 0.003255434839860437
+    }
+  ]
+}

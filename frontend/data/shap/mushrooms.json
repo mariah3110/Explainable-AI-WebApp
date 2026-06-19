@@ -1,0 +1,97 @@
+{
+  "dataset": "mushrooms",
+  "classes": [
+    "essbar",
+    "giftig"
+  ],
+  "features": [
+    {
+      "feature": "odor",
+      "importance": 0.08929067063184036
+    },
+    {
+      "feature": "gill-size",
+      "importance": 0.07487734259621219
+    },
+    {
+      "feature": "gill-color",
+      "importance": 0.06756041850922319
+    },
+    {
+      "feature": "spore-print-color",
+      "importance": 0.05088774634909647
+    },
+    {
+      "feature": "ring-type",
+      "importance": 0.045003874026777496
+    },
+    {
+      "feature": "stalk-surface-above-ring",
+      "importance": 0.03896005280217696
+    },
+    {
+      "feature": "stalk-root",
+      "importance": 0.03586951341864579
+    },
+    {
+      "feature": "bruises%3F",
+      "importance": 0.03116592071829613
+    },
+    {
+      "feature": "population",
+      "importance": 0.029027726018319926
+    },
+    {
+      "feature": "gill-spacing",
+      "importance": 0.02299266323718312
+    },
+    {
+      "feature": "stalk-surface-below-ring",
+      "importance": 0.016766450945326146
+    },
+    {
+      "feature": "habitat",
+      "importance": 0.013421085460901452
+    },
+    {
+      "feature": "stalk-shape",
+      "importance": 0.011513726596366099
+    },
+    {
+      "feature": "stalk-color-above-ring",
+      "importance": 0.010285830135113127
+    },
+    {
+      "feature": "cap-surface",
+      "importance": 0.007885767990272208
+    },
+    {
+      "feature": "ring-number",
+      "importance": 0.007717851397818187
+    },
+    {
+      "feature": "stalk-color-below-ring",
+      "importance": 0.006482259838495703
+    },
+    {
+      "feature": "cap-color",
+      "importance": 0.0046309099167275245
+    },
+    {
+      "feature": "cap-shape",
+      "importance": 0.00208259059457142
+    },
+    {
+      "feature": "veil-color",
+      "importance": 0.0020456659187515313
+    },
+    {
+      "feature": "gill-attachment",
+      "importance": 0.001911811247790076
+    },
+    {
+      "feature": "veil-type",
+      "importance": 0.0
+    }
+  ]
+}

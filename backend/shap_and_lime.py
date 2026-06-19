@@ -26,7 +26,7 @@ from sklearn.datasets import load_wine, fetch_openml
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OrdinalEncoder
 
-OUT_DIR = os.path.join("public", "shap")
+OUT_DIR = os.path.join("frontend", "data", "shap")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 
