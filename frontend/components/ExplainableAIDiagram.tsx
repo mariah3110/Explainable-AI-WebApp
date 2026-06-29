@@ -1,39 +1,50 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
 export function ExplainableAIDiagram() {
+  const ref = useRef(null);
+  const isInView = useInView(ref,{once: false, amount: 0.9})
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    let timers: NodeJS.Timeout[] = [];
+    if (!isInView) return;
 
     const runAnimation = () => {
       setStep(0);
 
-      timers = [
+      const timers = [
         setTimeout(() => setStep(1), 500),
         setTimeout(() => setStep(2), 1000),
         setTimeout(() => setStep(3), 2000),
         setTimeout(() => setStep(4), 6000),
         setTimeout(() => setStep(5), 7000),
-        setTimeout(() => setStep(6), 9000),
+        setTimeout(() => setStep(6), 8500),
       ];
+
+      return timers;
     };
 
-    runAnimation();
+    let timers = runAnimation();
 
-    const loop = setInterval(runAnimation, 60000);
+    const loop = setInterval(() => {
+      timers.forEach(clearTimeout);
+      timers = runAnimation();
+    }, 15000);
 
     return () => {
       timers.forEach(clearTimeout);
       clearInterval(loop);
     };
-  }, []);
+  }, [isInView]);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div
+      ref={ref} 
+      className="w-full flex flex-col items-center"
+    >
 
       <div className="relative w-full max-w-[420px] aspect-square">
 

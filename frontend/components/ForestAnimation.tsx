@@ -1,184 +1,218 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useCallback, useRef } from "react";
+import {RotateCcw} from "lucide-react"
+import { useInView } from "framer-motion";
 
-export function DecisionTreeAnimation() {
-  const [step, setStep] = useState(0);
+const TREE_CONFIGS = [
+  { root: "Größe > 5cm?",    left: "Farbe = rot?",   right: "🍊 Orange",    ll: "🍎 Apfel",     lr: "🍓 Erdbeere",  result: "🍎" },
+  { root: "Farbe = blau?",   left: "Form = rund?",   right: "🫐 Blaubeere", ll: "🍎 Apfel",     lr: "🍓 Erdbeere",  result: "🍎" },
+  { root: "Gewicht > 80g?",  left: "Stiel = lang?",  right: "🍎 Apfel",     ll: "🍓 Erdbeere",  lr: "🫐 Blaubeere", result: "🫐" },
+  { root: "Textur = glatt?", left: "Farbe = rot?",   right: "🍎 Apfel",     ll: "🫐 Blaubeere", lr: "🍓 Erdbeere",  result: "🍎" },
+  { root: "Größe < 3cm?",    left: "Farbe = blau?",  right: "🍎 Apfel",     ll: "🫐 Blaubeere", lr: "🍓 Erdbeere",  result: "🍓" },
+];
 
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setStep(1), 800),
-      setTimeout(() => setStep(2), 1600),
-      setTimeout(() => setStep(3), 2400),
-      setTimeout(() => setStep(4), 3200),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
+type TreeConfig = typeof TREE_CONFIGS[0];
+
+const PUR = "#4e2572";
+const LT  = "#9a8ad8";
+const LN  = "#64748b";
+
+function MiniDecisionTree({ cfg, step }: { cfg: TreeConfig; step: number }) {
+  const nW = 90, nH = 34;
+  const W = 200, cx = W / 2 + 60;
+  const rootX = cx - nW / 2;
+  const leftX = 60, rightX = W - nW + 60;
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <svg viewBox="100 100 600 400" className="w-full h-full">
+    <svg viewBox="0 0 260 215" className="w-full h-full">
+      {/* Root */}
+      <motion.g
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        style={{ transformOrigin: `${cx}px 23px` }}
+      >
+        <rect x={rootX} y={6} width={nW} height={nH} rx={9} fill={PUR} />
+        <text x={cx} y={24} textAnchor="middle" dominantBaseline="central" fill="white" fontSize={10.5}>
+          {cfg.root}
+        </text>
+      </motion.g>
 
-        {/* ROOT */}
-        <motion.g
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: step >= 0 ? 1 : 0, scale: step >= 0 ? 1 : 0 }}
-        >
-          <rect x={360} y={80} width={180} height={70} rx={12} fill="#4e2572" />
-          <text x={450} y={115} textAnchor="middle" fill="white">
-            Größe &gt; 5cm?
-          </text>
-        </motion.g>
+      {/* Level-1 lines */}
+      {step >= 1 && (
+        <>
+          <motion.line x1={cx} y1={40} x2={leftX + nW / 2} y2={95}
+            stroke={LN} strokeWidth={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+          <motion.line x1={cx} y1={40} x2={rightX + nW / 2} y2={95}
+            stroke={LN} strokeWidth={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+        </>
+      )}
 
-        {/* LINES */}
-        {step >= 1 && (
-          <>
-            <motion.line
-              x1={450}
-              y1={150}
-              x2={300}
-              y2={260}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-            <motion.line
-              x1={450}
-              y1={150}
-              x2={600}
-              y2={260}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-          </>
-        )}
-
-        {/* LEFT NODE */}
-        {step >= 2 && (
-          <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-            <rect x={210} y={260} width={180} height={70} rx={12} fill="#4e2572" />
-            <text x={300} y={295} textAnchor="middle" fill="white">
-              Farbe = blau?
+      {/* Level-1 nodes */}
+      {step >= 2 && (
+        <>
+          <motion.g initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+            style={{ transformOrigin: `${leftX + nW / 2}px 112px` }}>
+            <rect x={leftX} y={95} width={nW} height={nH} rx={9} fill={PUR} />
+            <text x={leftX + nW / 2} y={113} textAnchor="middle" dominantBaseline="central" fill="white" fontSize={10.5}>
+              {cfg.left}
             </text>
           </motion.g>
-        )}
-
-        {/* RIGHT LEAF */}
-        {step >= 2 && (
-          <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-            <rect x={510} y={260} width={180} height={70} rx={12} fill="#9a8ad8" />
-            <text x={600} y={295} textAnchor="middle" fill="white">
-              🍊 Orange
+          <motion.g initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+            style={{ transformOrigin: `${rightX + nW / 2}px 112px` }}>
+            <rect x={rightX} y={95} width={nW} height={nH} rx={9} fill={LT} />
+            <text x={rightX + nW / 2} y={113} textAnchor="middle" dominantBaseline="central" fill="white" fontSize={10.5}>
+              {cfg.right}
             </text>
           </motion.g>
-        )}
+        </>
+      )}
 
-        {/* SECOND LEVEL LINES */}
-        {step >= 3 && (
-          <>
-            <motion.line
-              x1={300}
-              y1={330}
-              x2={200}
-              y2={430}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-            <motion.line
-              x1={300}
-              y1={330}
-              x2={400}
-              y2={430}
-              stroke="#64748b"
-              strokeWidth={3}
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-            />
-          </>
-        )}
+      {/* Level-2 lines */}
+      {step >= 3 && (
+        <>
+          <motion.line x1={leftX + nW / 2} y1={129} x2={leftX + nW / 2 - 60} y2={175}
+            stroke={LN} strokeWidth={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+          <motion.line x1={leftX + nW / 2} y1={129} x2={leftX + nW / 2 + 60} y2={175}
+            stroke={LN} strokeWidth={2} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+        </>
+      )}
 
-        {/* LEAVES */}
-        {step >= 4 && (
-          <>
-            <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-              <rect x={110} y={430} width={180} height={70} rx={12} fill="#9a8ad8" />
-              <text x={200} y={465} textAnchor="middle" fill="white">
-                🫐 Blaubeere
-              </text>
-            </motion.g>
+      {/* Leaves */}
+      {step >= 4 && (
+        <>
+          <motion.g initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+            style={{ transformOrigin: `${leftX + nW / 2 - 60}px 192px` }}>
+            <rect x={leftX + nW / 2 - 60 - nW / 2} y={175} width={nW} height={nH} rx={9} fill={LT} />
+            <text x={leftX + nW / 2 - 60} y={193} textAnchor="middle" dominantBaseline="central" fill="white" fontSize={10.5}>
+              {cfg.ll}
+            </text>
+          </motion.g>
+          <motion.g initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+            style={{ transformOrigin: `${leftX + nW / 2 + 60}px 192px` }}>
+            <rect x={leftX + nW / 2 + 60 - nW / 2} y={175} width={nW} height={nH} rx={9} fill={LT} />
+            <text x={leftX + nW / 2 + 60} y={193} textAnchor="middle" dominantBaseline="central" fill="white" fontSize={10.5}>
+              {cfg.lr}
+            </text>
+          </motion.g>
+        </>
+      )}
+    </svg>
+  );
+}
 
-            <motion.g initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}>
-              <rect x={310} y={430} width={180} height={70} rx={12} fill="#9a8ad8" />
-              <text x={400} y={465} textAnchor="middle" fill="white">
-                🍓 Erdbeere
-              </text>
-            </motion.g>
-          </>
-        )}
-
-      </svg>
-    </div>
+function TreeCell({ cfg, index }: { cfg: TreeConfig; index: number }) {
+  return (
+    <motion.div
+      className="flex flex-col items-center gap-1"
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.15, duration: 0.35 }}
+    >
+      <div className="w-[150px] h-[145px]">
+        <MiniDecisionTree cfg={cfg} step={4} />
+      </div>
+      <span className="text-[10px] text-slate-500">
+        Baum {index + 1}: {cfg.result}
+      </span>
+    </motion.div>
   );
 }
 
 export function ForestAnimation() {
-  const [phase, setPhase] = useState(0);
- 
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setPhase(1), 1500),
-      setTimeout(() => setPhase(2), 2500),
-      setTimeout(() => setPhase(3), 3500),
-      setTimeout(() => setPhase(4), 4500),
-    ];
+  const ref = useRef(null);
+  const isInView = useInView(ref, {once: true, amount: 0.9});
 
-    return () => timers.forEach(clearTimeout);
+  const [phase, setPhase] = useState<"single" | "forest" | "vote">("single");
+  const [treeStep, setTreeStep] = useState(0);
+  const [key, setKey] = useState(0);
+
+  const startAnimation = useCallback(() => {
+    setPhase("single");
+    setTreeStep(0);
+    setKey(k => k + 1);
   }, []);
 
+  useEffect(() => {
+    if (!isInView) return;
+
+    const timers = [
+      setTimeout(() => setTreeStep(1), 700),
+      setTimeout(() => setTreeStep(2), 1400),
+      setTimeout(() => setTreeStep(3), 2100),
+      setTimeout(() => setTreeStep(4), 2800),
+      setTimeout(() => setPhase("forest"), 4500),
+      setTimeout(() => setPhase("vote"),   8000),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [key, isInView]);
+
   return (
-    <div className="flex flex-col items-center justify-center">
-
-
-      <motion.div
-        animate={{
-          scale: phase >= 2 ? 0.5 : 1,
-          opacity: phase >= 3 ? 0 : 1
-        }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+    <div 
+      ref={ref}
+      className="relative w-full flex flex-col items-center gap-3 bg-red"
+    >
+      {/* Replay Button */}
+      <button
+        onClick={startAnimation}
+        className="absolute top-0 left-0 flex items-center gap-1.5 text-xs text-slate-400 hover:text-white border border-slate-600 hover:border-slate-400 rounded-md px-2.5 py-1 transition-colors"
       >
-        <DecisionTreeAnimation />
-      </motion.div>
+        <RotateCcw width="12" height="12" />
+        Nochmal
+      </button>
 
+      <div className="relative w-[380px] h-[380px] flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          {phase === "single" && (
+            <motion.div
+              key={`single-${key}`}
+              className=""
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ x: -80,y: -85, opacity: 3, scale: 0.50 }}
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <MiniDecisionTree cfg={TREE_CONFIGS[0]} step={treeStep} />
+            </motion.div>
+          )}
 
-      {phase >= 3 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex gap-2 mt-4 scale-75"
-        >
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-          <DecisionTreeAnimation />
-        </motion.div>
-      )}
+          {(phase === "forest" || phase === "vote") && (
+            <motion.div
+              key={`forest-${key}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="flex gap-4">
+                {TREE_CONFIGS.slice(0, 2).map((cfg, i) => (
+                  <TreeCell key={i} cfg={cfg} index={i + 5} />
+                ))}
+              </div>
+              <div className="flex gap-4">
+                {TREE_CONFIGS.slice(2).map((cfg, i) => (
+                  <TreeCell key={i + 8} cfg={cfg} index={i + 8} />
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-
-      {phase >= 4 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4 text-lg"
-        >
-          🍎 🍎 🫐 🍎 🍓 → <b>🍎</b>
-        </motion.div>
-      )}
-
+      <div className="h-10 flex items-center justify-center">
+        <AnimatePresence>
+          {phase === "vote" && (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 text-sm text-slate-300 bottom-0"
+            >
+              <span className="text-slate-500 text-xs">Abstimmung:</span>
+              {TREE_CONFIGS.map((c, i) => <span key={i}>{c.result}</span>)}
+              <span className="text-slate-500">→</span>
+              <span className="font-semibold text-white">🍎 Apfel</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

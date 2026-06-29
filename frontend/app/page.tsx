@@ -160,7 +160,7 @@ export default function Home() {
           <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
 
             {/* MODEL */}
-            <div className="w-full md:w-[40%] flex justify-center">
+            <div className="w-full md:w-[40%] flex justify-center m-2">
               <ForestAnimation />
             </div>
 
