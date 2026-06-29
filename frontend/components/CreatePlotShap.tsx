@@ -131,8 +131,8 @@ export default function ShapImportancePlot({ data }: Props) {
               };
 
               return (
-                <div className="bg-white border rounded-lg p-3 shadow-lg">
-                  <p className="font-semibold text-gray-800">
+                <div className="bg-gray-800/90 border rounded-lg p-3 shadow-lg">
+                  <p className="font-semibold text-white">
                     {item.feature}
                   </p>
 
@@ -140,7 +140,7 @@ export default function ShapImportancePlot({ data }: Props) {
                     {item.originalFeature}
                   </p>
 
-                  <p className="mt-1">
+                  <p className="mt-1 text-gray-400">
                     Wichtigkeit:{" "}
                     <span className="font-semibold">
                       {item.importance.toFixed(3)}

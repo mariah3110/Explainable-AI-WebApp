@@ -65,10 +65,10 @@ export default function TryPage_shap() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center px-4 py-6 sm:py-8 md:py-10">
+    <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center py-2 py-3">
       
       {/* HEADER */}
-      <div className="text-center sm:mb-4 md:mb-6">
+      <div className="text-center sm:mb-2 md:mb-3">
         <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold">
           Try{" "}
           <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
@@ -81,7 +81,7 @@ export default function TryPage_shap() {
       <div className="w-full max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 xl:gap-10">
 
         {/* NAVIGATION */}
-        <div className="w-full md:w-[45%] xl:w-[40%] flex flex-col rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-5 md:p-6 xl:p-8">
+        <div className="w-full md:w-[45%] xl:w-[40%] flex flex-col rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-3 sm:p-4 md:p-5 xl:p-4">
           <div className="relative flex items-center mb-6">
             <button>
               <RotateCw 
