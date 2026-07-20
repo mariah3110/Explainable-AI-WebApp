@@ -91,13 +91,15 @@ export default function ShapImportancePlot({ data }: Props) {
       importance: Number(item.importance.toFixed(3)),
     }));
 
+  const chartHeight = Math.max(400, chartData.length * 19);
+
   return (
     <div className="w-full h-full flex flex-col">
       <h2 className="text-xl font-semibold text-center mb-4">
         SHAP Analyse – {data.dataset}
       </h2>
 
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={chartHeight}>
         <BarChart
           data={chartData}
           layout="vertical"
@@ -116,7 +118,8 @@ export default function ShapImportancePlot({ data }: Props) {
           <YAxis
             type="category"
             dataKey="feature"
-            width={120}
+            width={140}
+            interval={0}
             tick={{ fontSize: 12 }}
           />
 

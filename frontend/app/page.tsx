@@ -39,6 +39,7 @@ function useStickyBubble() {
       const vh = window.innerHeight;
       const isDesktop = window.innerWidth >= 768; // entspricht Tailwind "md"
       const overflow = bubble.scrollHeight - bubble.clientHeight;
+      const extraPadding = vh * 0.3; // 10% extra Platz, damit die Blase nicht direkt am Rand klebt
 
       // Kein Pinning: zu wenig Überlauf, Mobile oder reduzierte Bewegung
       if (reduceMotion || !isDesktop || overflow <= 4) {
@@ -51,8 +52,8 @@ function useStickyBubble() {
 
       // Aktiver Sticky-Modus
       bubble.style.overflowY = "hidden"; // versteckt den Scrollbalken
-      runway = overflow; // 1px Seiten-Scroll ≈ 1px Blasen-Scroll
-      section.style.height = `${vh + runway}px`;
+      runway = overflow * 1.5; // 1px Seiten-Scroll ≈ 1px Blasen-Scroll
+      section.style.height = `${vh + runway + extraPadding}px`;
     };
 
     const onScroll = () => {

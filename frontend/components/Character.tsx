@@ -26,6 +26,7 @@ export default function Character({
         sizes={sizes}
         className="object-contain"
         loading={loading}
+        draggable={false}
       />
     </div>
   );
