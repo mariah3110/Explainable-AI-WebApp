@@ -1,0 +1,332 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "island = Dream <= 0.00",
+        "weight": -0.2070044577953155,
+        "absWeight": 0.2070044577953155,
+        "direction": "negative"
+      },
+      {
+        "feature": "culmen = length = mm > 0.86",
+        "weight": 0.2030539869022688,
+        "absWeight": 0.2030539869022688,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < island = Biscoe <= 1.00",
+        "weight": -0.16149970633938,
+        "absWeight": 0.16149970633938,
+        "direction": "negative"
+      },
+      {
+        "feature": "island = Torgersen <= 0.00",
+        "weight": 0.0777273077276224,
+        "absWeight": 0.0777273077276224,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g > 0.68",
+        "weight": -0.042262671526003485,
+        "absWeight": 0.042262671526003485,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  =  <= 0.00",
+        "weight": -0.02580773131188139,
+        "absWeight": 0.02580773131188139,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < sex = MALE <= 1.00",
+        "weight": -0.014476773586639683,
+        "absWeight": 0.014476773586639683,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex = FEMALE <= 0.00",
+        "weight": -0.01013263478146882,
+        "absWeight": 0.01013263478146882,
+        "direction": "negative"
+      },
+      {
+        "feature": "flipper = length = mm > 0.88",
+        "weight": -0.00967154013434921,
+        "absWeight": 0.00967154013434921,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.76 < culmen = depth = mm <= 0.15",
+        "weight": 0.006880720676571251,
+        "absWeight": 0.006880720676571251,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "Chinstrap",
+    "features": [
+      {
+        "feature": "0.00 < island = Dream <= 1.00",
+        "weight": 0.21485211164912243,
+        "absWeight": 0.21485211164912243,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe <= 0.00",
+        "weight": 0.17757934284663388,
+        "absWeight": 0.17757934284663388,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.08 < culmen = length = mm <= 0.86",
+        "weight": 0.16660183236848997,
+        "absWeight": 0.16660183236848997,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen <= 0.00",
+        "weight": 0.08849454633967854,
+        "absWeight": 0.08849454633967854,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < sex = FEMALE <= 1.00",
+        "weight": 0.03070148764047124,
+        "absWeight": 0.03070148764047124,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.78 < body = mass = g <= -0.28",
+        "weight": 0.029970293019506242,
+        "absWeight": 0.029970293019506242,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE <= 0.00",
+        "weight": 0.019557775152706375,
+        "absWeight": 0.019557775152706375,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex =  =  <= 0.00",
+        "weight": -0.01815209224869031,
+        "absWeight": 0.01815209224869031,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.76 < culmen = depth = mm <= 0.15",
+        "weight": 0.00730386626877578,
+        "absWeight": 0.00730386626877578,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.81 < flipper = length = mm <= -0.31",
+        "weight": 0.0037217966373217855,
+        "absWeight": 0.0037217966373217855,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "Adelie",
+    "features": [
+      {
+        "feature": "0.00 < island = Dream <= 1.00",
+        "weight": 0.19949320998812362,
+        "absWeight": 0.19949320998812362,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe <= 0.00",
+        "weight": 0.1573741992236652,
+        "absWeight": 0.1573741992236652,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.89 < culmen = length = mm <= 0.08",
+        "weight": -0.13894826368308094,
+        "absWeight": 0.13894826368308094,
+        "direction": "negative"
+      },
+      {
+        "feature": "island = Torgersen <= 0.00",
+        "weight": 0.08415908333296106,
+        "absWeight": 0.08415908333296106,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.15 < culmen = depth = mm <= 0.78",
+        "weight": 0.03196138957640521,
+        "absWeight": 0.03196138957640521,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.28 < body = mass = g <= 0.68",
+        "weight": -0.027701107060962273,
+        "absWeight": 0.027701107060962273,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex = FEMALE <= 0.00",
+        "weight": -0.01896416560250289,
+        "absWeight": 0.01896416560250289,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < sex = MALE <= 1.00",
+        "weight": -0.017214529214563713,
+        "absWeight": 0.017214529214563713,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  =  <= 0.00",
+        "weight": 0.012900548116541982,
+        "absWeight": 0.012900548116541982,
+        "direction": "positive"
+      },
+      {
+        "feature": "flipper = length = mm <= -0.81",
+        "weight": 0.007980618528752842,
+        "absWeight": 0.007980618528752842,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "island = Dream <= 0.00",
+        "weight": -0.20597395343965774,
+        "absWeight": 0.20597395343965774,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < island = Biscoe <= 1.00",
+        "weight": -0.17487537939196332,
+        "absWeight": 0.17487537939196332,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.08 < culmen = length = mm <= 0.86",
+        "weight": 0.1580362963932766,
+        "absWeight": 0.1580362963932766,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen <= 0.00",
+        "weight": 0.07864609480849262,
+        "absWeight": 0.07864609480849262,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm <= -0.76",
+        "weight": -0.060824147475415376,
+        "absWeight": 0.060824147475415376,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  =  <= 0.00",
+        "weight": 0.04911736386044926,
+        "absWeight": 0.04911736386044926,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g > 0.68",
+        "weight": -0.03277691017584644,
+        "absWeight": 0.03277691017584644,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < sex = FEMALE <= 1.00",
+        "weight": 0.022542795167962183,
+        "absWeight": 0.022542795167962183,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE <= 0.00",
+        "weight": 0.014924634501910115,
+        "absWeight": 0.014924634501910115,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.31 < flipper = length = mm <= 0.88",
+        "weight": 0.005404469415478469,
+        "absWeight": 0.005404469415478469,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "island = Dream <= 0.00",
+        "weight": -0.20346255214959755,
+        "absWeight": 0.20346255214959755,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < island = Biscoe <= 1.00",
+        "weight": -0.1657732950797465,
+        "absWeight": 0.1657732950797465,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.08 < culmen = length = mm <= 0.86",
+        "weight": 0.16360434351431075,
+        "absWeight": 0.16360434351431075,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen <= 0.00",
+        "weight": 0.08060382530283439,
+        "absWeight": 0.08060382530283439,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm <= -0.76",
+        "weight": -0.05272018259343992,
+        "absWeight": 0.05272018259343992,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.28 < body = mass = g <= 0.68",
+        "weight": -0.02544313064923355,
+        "absWeight": 0.02544313064923355,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  =  <= 0.00",
+        "weight": -0.02402381728989091,
+        "absWeight": 0.02402381728989091,
+        "direction": "negative"
+      },
+      {
+        "feature": "flipper = length = mm > 0.88",
+        "weight": -0.021542222047140683,
+        "absWeight": 0.021542222047140683,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex = MALE <= 0.00",
+        "weight": 0.017744783888500096,
+        "absWeight": 0.017744783888500096,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < sex = FEMALE <= 1.00",
+        "weight": 0.017547957940247567,
+        "absWeight": 0.017547957940247567,
+        "direction": "positive"
+      }
+    ]
+  }
+]

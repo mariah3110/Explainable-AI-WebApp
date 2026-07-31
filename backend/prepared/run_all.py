@@ -9,7 +9,8 @@ from explainers.shap_export import export_shap
 from explainers.lime_export import export_lime
 
 
-OUTPUT_ROOT = Path("../../frontend/public/data")
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_ROOT = BASE_DIR.parent.parent / "frontend" / "public" / "data"
 
 
 def export_metadata(prepared, output_dir):
@@ -88,6 +89,7 @@ def main():
     with open(OUTPUT_ROOT / "datasets.json", "w", encoding="utf-8") as f:
         json.dump(datasets, f, ensure_ascii=False, indent=2)
 
+    print("Alle Datensätze exportiert nach:", OUTPUT_ROOT.resolve())
     print("Alle Exporte abgeschlossen.")
 
 

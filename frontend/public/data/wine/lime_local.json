@@ -1,0 +1,332 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "0",
+    "features": [
+      {
+        "feature": "-0.15 < color_intensity <= 0.51",
+        "weight": -0.14299842858561243,
+        "absWeight": 0.14299842858561243,
+        "direction": "negative"
+      },
+      {
+        "feature": "proline > 0.80",
+        "weight": -0.13735268578239634,
+        "absWeight": 0.13735268578239634,
+        "direction": "negative"
+      },
+      {
+        "feature": "alcohol > 0.74",
+        "weight": -0.11330567273713403,
+        "absWeight": 0.11330567273713403,
+        "direction": "negative"
+      },
+      {
+        "feature": "hue > 0.62",
+        "weight": 0.040241152053084386,
+        "absWeight": 0.040241152053084386,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.18 < magnesium <= 0.55",
+        "weight": -0.03943146213262252,
+        "absWeight": 0.03943146213262252,
+        "direction": "negative"
+      },
+      {
+        "feature": "flavanoids > 0.83",
+        "weight": 0.028471068310428317,
+        "absWeight": 0.028471068310428317,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines > 0.81",
+        "weight": 0.02102864496999729,
+        "absWeight": 0.02102864496999729,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols > 0.85",
+        "weight": -0.018820235210888915,
+        "absWeight": 0.018820235210888915,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.48 < malic_acid <= 0.76",
+        "weight": -0.014953196828000318,
+        "absWeight": 0.014953196828000318,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.72 < alcalinity_of_ash <= -0.04",
+        "weight": -0.013677749458247,
+        "absWeight": 0.013677749458247,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "2",
+    "features": [
+      {
+        "feature": "-0.15 < color_intensity <= 0.51",
+        "weight": -0.1427632355638422,
+        "absWeight": 0.1427632355638422,
+        "direction": "negative"
+      },
+      {
+        "feature": "flavanoids <= -0.80",
+        "weight": -0.13262229272122886,
+        "absWeight": 0.13262229272122886,
+        "direction": "negative"
+      },
+      {
+        "feature": "magnesium <= -0.78",
+        "weight": 0.08845104260433682,
+        "absWeight": 0.08845104260433682,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.81 < proline <= -0.22",
+        "weight": 0.07795142176938655,
+        "absWeight": 0.07795142176938655,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue <= -0.75",
+        "weight": -0.07429088946359087,
+        "absWeight": 0.07429088946359087,
+        "direction": "negative"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines <= -0.93",
+        "weight": -0.060296186139100684,
+        "absWeight": 0.060296186139100684,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.75 < alcohol <= 0.05",
+        "weight": 0.05168223600636001,
+        "absWeight": 0.05168223600636001,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid <= -0.67",
+        "weight": 0.050996708955358655,
+        "absWeight": 0.050996708955358655,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.92 < total_phenols <= 0.10",
+        "weight": 0.0209381835547569,
+        "absWeight": 0.0209381835547569,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.72 < alcalinity_of_ash <= -0.04",
+        "weight": -0.009735014331481254,
+        "absWeight": 0.009735014331481254,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "0",
+    "features": [
+      {
+        "feature": "alcohol > 0.74",
+        "weight": -0.12011407629464249,
+        "absWeight": 0.12011407629464249,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.22 < proline <= 0.80",
+        "weight": -0.05365842372732155,
+        "absWeight": 0.05365842372732155,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.18 < magnesium <= 0.55",
+        "weight": -0.03985451265550543,
+        "absWeight": 0.03985451265550543,
+        "direction": "negative"
+      },
+      {
+        "feature": "hue > 0.62",
+        "weight": 0.03827525215625373,
+        "absWeight": 0.03827525215625373,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.83 < color_intensity <= -0.15",
+        "weight": 0.03424545903657356,
+        "absWeight": 0.03424545903657356,
+        "direction": "positive"
+      },
+      {
+        "feature": "flavanoids > 0.83",
+        "weight": 0.03037598013208838,
+        "absWeight": 0.03037598013208838,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.48 < malic_acid <= 0.76",
+        "weight": -0.029094928460863527,
+        "absWeight": 0.029094928460863527,
+        "direction": "negative"
+      },
+      {
+        "feature": "ash > 0.73",
+        "weight": -0.024731525643105094,
+        "absWeight": 0.024731525643105094,
+        "direction": "negative"
+      },
+      {
+        "feature": "total_phenols > 0.85",
+        "weight": -0.017569820692235023,
+        "absWeight": 0.017569820692235023,
+        "direction": "negative"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines > 0.81",
+        "weight": 0.009315448353562692,
+        "absWeight": 0.009315448353562692,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "1",
+    "features": [
+      {
+        "feature": "-0.15 < color_intensity <= 0.51",
+        "weight": -0.1458469925706687,
+        "absWeight": 0.1458469925706687,
+        "direction": "negative"
+      },
+      {
+        "feature": "alcohol <= -0.75",
+        "weight": 0.13407859249517812,
+        "absWeight": 0.13407859249517812,
+        "direction": "positive"
+      },
+      {
+        "feature": "proline <= -0.81",
+        "weight": 0.10910935690025238,
+        "absWeight": 0.10910935690025238,
+        "direction": "positive"
+      },
+      {
+        "feature": "magnesium > 0.55",
+        "weight": -0.04276445712100749,
+        "absWeight": 0.04276445712100749,
+        "direction": "negative"
+      },
+      {
+        "feature": "flavanoids > 0.83",
+        "weight": 0.03867516418473764,
+        "absWeight": 0.03867516418473764,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols > 0.85",
+        "weight": -0.018828081253273853,
+        "absWeight": 0.018828081253273853,
+        "direction": "negative"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines > 0.81",
+        "weight": 0.016689785020671498,
+        "absWeight": 0.016689785020671498,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.48 < malic_acid <= 0.76",
+        "weight": -0.012042139139668347,
+        "absWeight": 0.012042139139668347,
+        "direction": "negative"
+      },
+      {
+        "feature": "nonflavanoid_phenols > 0.59",
+        "weight": -0.010278649779551287,
+        "absWeight": 0.010278649779551287,
+        "direction": "negative"
+      },
+      {
+        "feature": "ash > 0.73",
+        "weight": -0.009135635431812103,
+        "absWeight": 0.009135635431812103,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "1",
+    "features": [
+      {
+        "feature": "alcohol > 0.74",
+        "weight": -0.10738312943830058,
+        "absWeight": 0.10738312943830058,
+        "direction": "negative"
+      },
+      {
+        "feature": "-0.81 < proline <= -0.22",
+        "weight": 0.07738902966335769,
+        "absWeight": 0.07738902966335769,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue > 0.62",
+        "weight": 0.047861432926304376,
+        "absWeight": 0.047861432926304376,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid <= -0.67",
+        "weight": 0.045786163206394725,
+        "absWeight": 0.045786163206394725,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.80 < flavanoids <= 0.16",
+        "weight": 0.044774133638399986,
+        "absWeight": 0.044774133638399986,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.83 < color_intensity <= -0.15",
+        "weight": 0.044422175335498804,
+        "absWeight": 0.044422175335498804,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.92 < total_phenols <= 0.10",
+        "weight": 0.02949445650253096,
+        "absWeight": 0.02949445650253096,
+        "direction": "positive"
+      },
+      {
+        "feature": "ash <= -0.62",
+        "weight": 0.026250879191703443,
+        "absWeight": 0.026250879191703443,
+        "direction": "positive"
+      },
+      {
+        "feature": "-0.93 < od280/od315_of_diluted_wines <= 0.25",
+        "weight": 0.023327120842421736,
+        "absWeight": 0.023327120842421736,
+        "direction": "positive"
+      },
+      {
+        "feature": "proanthocyanins <= -0.61",
+        "weight": 0.01841294097713448,
+        "absWeight": 0.01841294097713448,
+        "direction": "positive"
+      }
+    ]
+  }
+]

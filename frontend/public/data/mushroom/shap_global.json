@@ -1,0 +1,470 @@
+[
+  {
+    "feature": "odor = n",
+    "importance": 0.09527707141648077
+  },
+  {
+    "feature": "gill-size = n",
+    "importance": 0.04436886680366557
+  },
+  {
+    "feature": "odor = f",
+    "importance": 0.04247931841944585
+  },
+  {
+    "feature": "gill-size = b",
+    "importance": 0.038334977627499545
+  },
+  {
+    "feature": "spore-print-color = h",
+    "importance": 0.02974803301762103
+  },
+  {
+    "feature": "stalk-surface-below-ring = k",
+    "importance": 0.028303355303136348
+  },
+  {
+    "feature": "gill-color = b",
+    "importance": 0.02541308122257404
+  },
+  {
+    "feature": "ring-type = p",
+    "importance": 0.024439494234344567
+  },
+  {
+    "feature": "stalk-surface-above-ring = k",
+    "importance": 0.024041016452698523
+  },
+  {
+    "feature": "bruises%3F = f",
+    "importance": 0.019765890192577677
+  },
+  {
+    "feature": "bruises%3F = t",
+    "importance": 0.01696122390709767
+  },
+  {
+    "feature": "population = v",
+    "importance": 0.016733878054898177
+  },
+  {
+    "feature": "spore-print-color = w",
+    "importance": 0.014806005799671382
+  },
+  {
+    "feature": "gill-spacing = w",
+    "importance": 0.013055485688204834
+  },
+  {
+    "feature": "stalk-surface-above-ring = s",
+    "importance": 0.013017566461922061
+  },
+  {
+    "feature": "gill-spacing = c",
+    "importance": 0.012835005205443017
+  },
+  {
+    "feature": "ring-type = l",
+    "importance": 0.011066667262170652
+  },
+  {
+    "feature": "stalk-surface-below-ring = s",
+    "importance": 0.010124377034933343
+  },
+  {
+    "feature": "odor = p",
+    "importance": 0.0100100036071567
+  },
+  {
+    "feature": "stalk-root = b",
+    "importance": 0.009136130730258577
+  },
+  {
+    "feature": "spore-print-color = n",
+    "importance": 0.006214630488024249
+  },
+  {
+    "feature": "ring-type = e",
+    "importance": 0.006194405565583639
+  },
+  {
+    "feature": "odor = c",
+    "importance": 0.005423848936604076
+  },
+  {
+    "feature": "odor = a",
+    "importance": 0.004859790608270672
+  },
+  {
+    "feature": "habitat = d",
+    "importance": 0.004662364195228497
+  },
+  {
+    "feature": "stalk-root = e",
+    "importance": 0.004497867122390022
+  },
+  {
+    "feature": "stalk-shape = t",
+    "importance": 0.00429876758654825
+  },
+  {
+    "feature": "odor = l",
+    "importance": 0.004060933187187525
+  },
+  {
+    "feature": "cap-surface = s",
+    "importance": 0.004031891699589761
+  },
+  {
+    "feature": "cap-surface = f",
+    "importance": 0.003794165035561111
+  },
+  {
+    "feature": "stalk-root = c",
+    "importance": 0.0037249850934896215
+  },
+  {
+    "feature": "stalk-shape = e",
+    "importance": 0.0036931424157154065
+  },
+  {
+    "feature": "population = y",
+    "importance": 0.003567102731192619
+  },
+  {
+    "feature": "habitat = u",
+    "importance": 0.0032165868657178264
+  },
+  {
+    "feature": "spore-print-color = r",
+    "importance": 0.003185916446950891
+  },
+  {
+    "feature": "spore-print-color = k",
+    "importance": 0.0030121638832729726
+  },
+  {
+    "feature": "stalk-root = nan",
+    "importance": 0.002914077180291592
+  },
+  {
+    "feature": "stalk-color-above-ring = w",
+    "importance": 0.002775647056769228
+  },
+  {
+    "feature": "stalk-color-below-ring = w",
+    "importance": 0.002638172426477034
+  },
+  {
+    "feature": "odor = s",
+    "importance": 0.0024709568277791042
+  },
+  {
+    "feature": "stalk-color-above-ring = g",
+    "importance": 0.0024582541267985925
+  },
+  {
+    "feature": "population = s",
+    "importance": 0.002441702786520674
+  },
+  {
+    "feature": "ring-number = t",
+    "importance": 0.0022435096430105917
+  },
+  {
+    "feature": "stalk-color-above-ring = p",
+    "importance": 0.002039475196506677
+  },
+  {
+    "feature": "habitat = g",
+    "importance": 0.001878086265995988
+  },
+  {
+    "feature": "cap-color = y",
+    "importance": 0.0018534775413926563
+  },
+  {
+    "feature": "ring-number = o",
+    "importance": 0.001674975800616816
+  },
+  {
+    "feature": "odor = y",
+    "importance": 0.0016626688240967478
+  },
+  {
+    "feature": "cap-color = n",
+    "importance": 0.0015920569053332768
+  },
+  {
+    "feature": "gill-color = h",
+    "importance": 0.001558232157795036
+  },
+  {
+    "feature": "stalk-root = r",
+    "importance": 0.0015514425779190593
+  },
+  {
+    "feature": "population = n",
+    "importance": 0.0015157890668480683
+  },
+  {
+    "feature": "cap-color = b",
+    "importance": 0.00148506673378686
+  },
+  {
+    "feature": "gill-color = w",
+    "importance": 0.0014181158525751873
+  },
+  {
+    "feature": "habitat = p",
+    "importance": 0.0013999414055417337
+  },
+  {
+    "feature": "stalk-surface-below-ring = f",
+    "importance": 0.0013951947725947486
+  },
+  {
+    "feature": "stalk-surface-above-ring = f",
+    "importance": 0.0013265648606475952
+  },
+  {
+    "feature": "cap-color = w",
+    "importance": 0.00127138046345681
+  },
+  {
+    "feature": "stalk-color-below-ring = g",
+    "importance": 0.0011575057809239632
+  },
+  {
+    "feature": "cap-color = p",
+    "importance": 0.0010967761522737885
+  },
+  {
+    "feature": "cap-shape = b",
+    "importance": 0.0010896911255662254
+  },
+  {
+    "feature": "population = a",
+    "importance": 0.0010550515274739525
+  },
+  {
+    "feature": "gill-color = n",
+    "importance": 0.0010484875642742073
+  },
+  {
+    "feature": "habitat = m",
+    "importance": 0.0009127875383311138
+  },
+  {
+    "feature": "habitat = w",
+    "importance": 0.0008727746077568925
+  },
+  {
+    "feature": "stalk-color-below-ring = b",
+    "importance": 0.0008085582865935767
+  },
+  {
+    "feature": "stalk-surface-below-ring = y",
+    "importance": 0.0008016282125515472
+  },
+  {
+    "feature": "ring-type = f",
+    "importance": 0.0007641210378103942
+  },
+  {
+    "feature": "habitat = l",
+    "importance": 0.0007032673785613825
+  },
+  {
+    "feature": "stalk-color-above-ring = b",
+    "importance": 0.0006979218216426547
+  },
+  {
+    "feature": "cap-surface = y",
+    "importance": 0.0006847360597116511
+  },
+  {
+    "feature": "cap-shape = f",
+    "importance": 0.0006571694974929318
+  },
+  {
+    "feature": "stalk-color-below-ring = y",
+    "importance": 0.0006111023257370924
+  },
+  {
+    "feature": "gill-color = r",
+    "importance": 0.0006090996924724493
+  },
+  {
+    "feature": "ring-number = n",
+    "importance": 0.0005923464628778004
+  },
+  {
+    "feature": "stalk-color-below-ring = p",
+    "importance": 0.0005843344278032242
+  },
+  {
+    "feature": "stalk-color-below-ring = n",
+    "importance": 0.0005716060728392664
+  },
+  {
+    "feature": "cap-shape = x",
+    "importance": 0.0005550249853402074
+  },
+  {
+    "feature": "population = c",
+    "importance": 0.0005431957920089861
+  },
+  {
+    "feature": "stalk-color-above-ring = c",
+    "importance": 0.0005395619287606392
+  },
+  {
+    "feature": "stalk-color-above-ring = n",
+    "importance": 0.0005149681621004592
+  },
+  {
+    "feature": "spore-print-color = u",
+    "importance": 0.0004926360619710859
+  },
+  {
+    "feature": "gill-color = g",
+    "importance": 0.00046405829950987306
+  },
+  {
+    "feature": "stalk-color-above-ring = o",
+    "importance": 0.0004086067515484541
+  },
+  {
+    "feature": "stalk-color-below-ring = c",
+    "importance": 0.00040813522165631506
+  },
+  {
+    "feature": "cap-color = e",
+    "importance": 0.0003560967846087985
+  },
+  {
+    "feature": "cap-shape = k",
+    "importance": 0.0003385923891476183
+  },
+  {
+    "feature": "gill-color = u",
+    "importance": 0.00031354351260597194
+  },
+  {
+    "feature": "cap-color = g",
+    "importance": 0.00026181833923014
+  },
+  {
+    "feature": "ring-type = n",
+    "importance": 0.00025810438976601015
+  },
+  {
+    "feature": "gill-attachment = f",
+    "importance": 0.00024933955787359325
+  },
+  {
+    "feature": "gill-color = k",
+    "importance": 0.00024872430257132436
+  },
+  {
+    "feature": "gill-color = p",
+    "importance": 0.0002466686193911102
+  },
+  {
+    "feature": "gill-color = e",
+    "importance": 0.0002378936695692509
+  },
+  {
+    "feature": "cap-color = c",
+    "importance": 0.0002342591448804988
+  },
+  {
+    "feature": "cap-shape = s",
+    "importance": 0.0002250937456302267
+  },
+  {
+    "feature": "stalk-color-above-ring = y",
+    "importance": 0.00022429870656343759
+  },
+  {
+    "feature": "stalk-color-above-ring = e",
+    "importance": 0.00020464305613322877
+  },
+  {
+    "feature": "gill-attachment = a",
+    "importance": 0.0001749742341528563
+  },
+  {
+    "feature": "veil-color = w",
+    "importance": 0.00016872806805884072
+  },
+  {
+    "feature": "cap-color = r",
+    "importance": 0.00015819166398733196
+  },
+  {
+    "feature": "stalk-surface-above-ring = y",
+    "importance": 0.00012958704206868807
+  },
+  {
+    "feature": "stalk-color-below-ring = e",
+    "importance": 0.00011479463545011816
+  },
+  {
+    "feature": "stalk-color-below-ring = o",
+    "importance": 8.74947484407755e-05
+  },
+  {
+    "feature": "odor = m",
+    "importance": 8.735847790218256e-05
+  },
+  {
+    "feature": "gill-color = o",
+    "importance": 7.750281893601301e-05
+  },
+  {
+    "feature": "veil-color = o",
+    "importance": 7.685525859023116e-05
+  },
+  {
+    "feature": "veil-color = n",
+    "importance": 6.310270654932016e-05
+  },
+  {
+    "feature": "spore-print-color = o",
+    "importance": 5.893263806240586e-05
+  },
+  {
+    "feature": "spore-print-color = y",
+    "importance": 5.3316242103397465e-05
+  },
+  {
+    "feature": "gill-color = y",
+    "importance": 4.9819962660642944e-05
+  },
+  {
+    "feature": "cap-shape = c",
+    "importance": 4.8799733758020474e-05
+  },
+  {
+    "feature": "cap-surface = g",
+    "importance": 4.345545909388886e-05
+  },
+  {
+    "feature": "veil-color = y",
+    "importance": 2.913541251695629e-05
+  },
+  {
+    "feature": "cap-color = u",
+    "importance": 2.736666923497341e-05
+  },
+  {
+    "feature": "veil-type = p",
+    "importance": 0.0
+  },
+  {
+    "feature": "spore-print-color = b",
+    "importance": 0.0
+  }
+]

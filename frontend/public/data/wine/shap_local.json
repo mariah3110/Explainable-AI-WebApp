@@ -1,0 +1,382 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "class_0",
+    "features": [
+      {
+        "feature": "proline",
+        "value": 2.564680503814236,
+        "impact": 0.14715000115767024,
+        "absImpact": 0.14715000115767024,
+        "direction": "positive"
+      },
+      {
+        "feature": "alcohol",
+        "value": 1.4111981872394148,
+        "impact": 0.09982547308493117,
+        "absImpact": 0.09982547308493117,
+        "direction": "positive"
+      },
+      {
+        "feature": "color_intensity",
+        "value": 0.32679269259203453,
+        "impact": 0.09833155253452647,
+        "absImpact": 0.09833155253452647,
+        "direction": "positive"
+      },
+      {
+        "feature": "flavanoids",
+        "value": 1.4069748881229602,
+        "impact": 0.09804753459997222,
+        "absImpact": 0.09804753459997222,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines",
+        "value": 0.8204145165110104,
+        "impact": 0.06478695263186168,
+        "absImpact": 0.06478695263186168,
+        "direction": "positive"
+      },
+      {
+        "feature": "magnesium",
+        "value": 0.36051623707460134,
+        "impact": 0.037742184201940664,
+        "absImpact": 0.037742184201940664,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue",
+        "value": 1.3328216756153315,
+        "impact": 0.03538478767088467,
+        "absImpact": 0.03538478767088467,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols",
+        "value": 1.0920541842032754,
+        "impact": 0.03411813455302243,
+        "absImpact": 0.03411813455302243,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid",
+        "value": -0.16402401845707604,
+        "impact": 0.013604534520997654,
+        "absImpact": 0.013604534520997654,
+        "direction": "positive"
+      },
+      {
+        "feature": "proanthocyanins",
+        "value": 1.349742023164342,
+        "impact": 0.012606233047823039,
+        "absImpact": 0.012606233047823039,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "class_2",
+    "features": [
+      {
+        "feature": "flavanoids",
+        "value": -1.4815107042729954,
+        "impact": 0.2086766580122856,
+        "absImpact": 0.2086766580122856,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines",
+        "value": -1.5951252016000992,
+        "impact": 0.12773241323563617,
+        "absImpact": 0.12773241323563617,
+        "direction": "positive"
+      },
+      {
+        "feature": "color_intensity",
+        "value": 0.19785531576992393,
+        "impact": 0.10363316929234953,
+        "absImpact": 0.10363316929234953,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue",
+        "value": -0.8810642257670521,
+        "impact": 0.09626897905103318,
+        "absImpact": 0.09626897905103318,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid",
+        "value": -1.002369001682133,
+        "impact": -0.05413579463622503,
+        "absImpact": 0.05413579463622503,
+        "direction": "negative"
+      },
+      {
+        "feature": "alcalinity_of_ash",
+        "value": -0.6308699884537599,
+        "impact": -0.0429844954267448,
+        "absImpact": 0.0429844954267448,
+        "direction": "negative"
+      },
+      {
+        "feature": "proline",
+        "value": -0.2978305379701291,
+        "impact": 0.04278186644553045,
+        "absImpact": 0.04278186644553045,
+        "direction": "positive"
+      },
+      {
+        "feature": "proanthocyanins",
+        "value": -0.6061832458408987,
+        "impact": 0.01698695776342156,
+        "absImpact": 0.01698695776342156,
+        "direction": "positive"
+      },
+      {
+        "feature": "alcohol",
+        "value": -0.5770721822764348,
+        "impact": -0.016318142915321944,
+        "absImpact": 0.016318142915321944,
+        "direction": "negative"
+      },
+      {
+        "feature": "total_phenols",
+        "value": -0.44203005456608707,
+        "impact": 0.014450487006599106,
+        "absImpact": 0.014450487006599106,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "class_0",
+    "features": [
+      {
+        "feature": "alcohol",
+        "value": 1.1235867501396373,
+        "impact": 0.10512155221274148,
+        "absImpact": 0.10512155221274148,
+        "direction": "positive"
+      },
+      {
+        "feature": "color_intensity",
+        "value": -0.21044637750009332,
+        "impact": 0.1023623908947662,
+        "absImpact": 0.1023623908947662,
+        "direction": "positive"
+      },
+      {
+        "feature": "proline",
+        "value": 0.5842222830448207,
+        "impact": 0.09959989530244547,
+        "absImpact": 0.09959989530244547,
+        "direction": "positive"
+      },
+      {
+        "feature": "flavanoids",
+        "value": 1.0380077504081486,
+        "impact": 0.09736496601436112,
+        "absImpact": 0.09736496601436112,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines",
+        "value": 1.155097730466164,
+        "impact": 0.07030773236611433,
+        "absImpact": 0.07030773236611433,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue",
+        "value": 1.3328216756153315,
+        "impact": 0.04063743012257574,
+        "absImpact": 0.04063743012257574,
+        "direction": "positive"
+      },
+      {
+        "feature": "magnesium",
+        "value": 0.49488186874020074,
+        "impact": 0.03746938295399924,
+        "absImpact": 0.03746938295399924,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols",
+        "value": 1.0920541842032754,
+        "impact": 0.035114869320155,
+        "absImpact": 0.035114869320155,
+        "direction": "positive"
+      },
+      {
+        "feature": "proanthocyanins",
+        "value": 0.27657948618801537,
+        "impact": 0.017717946241558116,
+        "absImpact": 0.017717946241558116,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid",
+        "value": -0.4009476006728531,
+        "impact": 0.011697033640512156,
+        "absImpact": 0.011697033640512156,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "class_1",
+    "features": [
+      {
+        "feature": "alcohol",
+        "value": -1.7650324659494259,
+        "impact": 0.16717431392126955,
+        "absImpact": 0.16717431392126955,
+        "direction": "positive"
+      },
+      {
+        "feature": "color_intensity",
+        "value": 0.43424050661046015,
+        "impact": -0.15409212477874426,
+        "absImpact": 0.15409212477874426,
+        "direction": "negative"
+      },
+      {
+        "feature": "proline",
+        "value": -0.9136032620749053,
+        "impact": 0.1351162915802207,
+        "absImpact": 0.1351162915802207,
+        "direction": "positive"
+      },
+      {
+        "feature": "magnesium",
+        "value": 1.3010756587337973,
+        "impact": -0.04437159191455356,
+        "absImpact": 0.04437159191455356,
+        "direction": "negative"
+      },
+      {
+        "feature": "ash",
+        "value": 3.234973830831921,
+        "impact": -0.032194268378299654,
+        "absImpact": 0.032194268378299654,
+        "direction": "negative"
+      },
+      {
+        "feature": "flavanoids",
+        "value": 3.2623524949174425,
+        "impact": 0.02658527059978276,
+        "absImpact": 0.02658527059978276,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue",
+        "value": -0.0840653012693938,
+        "impact": 0.019627042469957803,
+        "absImpact": 0.019627042469957803,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines",
+        "value": 1.577089608931358,
+        "impact": 0.019440039841045673,
+        "absImpact": 0.019440039841045673,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols",
+        "value": 1.4634640525369105,
+        "impact": -0.017868958160662224,
+        "absImpact": 0.017868958160662224,
+        "direction": "negative"
+      },
+      {
+        "feature": "alcalinity_of_ash",
+        "value": 2.6342689179901555,
+        "impact": 0.013394525237356325,
+        "absImpact": 0.013394525237356325,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "class_1",
+    "features": [
+      {
+        "feature": "flavanoids",
+        "value": -0.20593859960178845,
+        "impact": 0.11820044181362066,
+        "absImpact": 0.11820044181362066,
+        "direction": "positive"
+      },
+      {
+        "feature": "alcohol",
+        "value": 0.8734898483137451,
+        "impact": -0.11114199434406476,
+        "absImpact": 0.11114199434406476,
+        "direction": "negative"
+      },
+      {
+        "feature": "proline",
+        "value": -0.3644005621976725,
+        "impact": 0.11093827777101291,
+        "absImpact": 0.11093827777101291,
+        "direction": "positive"
+      },
+      {
+        "feature": "malic_acid",
+        "value": -0.9932565562122952,
+        "impact": 0.06152867947273795,
+        "absImpact": 0.06152867947273795,
+        "direction": "positive"
+      },
+      {
+        "feature": "hue",
+        "value": 1.2442662395600361,
+        "impact": 0.05382820062111865,
+        "absImpact": 0.05382820062111865,
+        "direction": "positive"
+      },
+      {
+        "feature": "od280/od315_of_diluted_wines",
+        "value": -0.21273801352446423,
+        "impact": 0.03745004970230624,
+        "absImpact": 0.03745004970230624,
+        "direction": "positive"
+      },
+      {
+        "feature": "color_intensity",
+        "value": -0.511300256751685,
+        "impact": 0.03446463141624001,
+        "absImpact": 0.03446463141624001,
+        "direction": "positive"
+      },
+      {
+        "feature": "total_phenols",
+        "value": -0.28054750311668036,
+        "impact": 0.029372345589401987,
+        "absImpact": 0.029372345589401987,
+        "direction": "positive"
+      },
+      {
+        "feature": "ash",
+        "value": -1.663437500151835,
+        "impact": 0.025120813405250315,
+        "absImpact": 0.025120813405250315,
+        "direction": "positive"
+      },
+      {
+        "feature": "magnesium",
+        "value": -0.3784947370861956,
+        "impact": -0.010648969696453625,
+        "absImpact": 0.010648969696453625,
+        "direction": "negative"
+      }
+    ]
+  }
+]

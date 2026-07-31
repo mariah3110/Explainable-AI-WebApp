@@ -1,0 +1,382 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "flipper = length = mm",
+        "value": 1.9974603738196002,
+        "impact": 0.2104631670453044,
+        "absImpact": 0.2104631670453044,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = length = mm",
+        "value": 1.0661996556076032,
+        "impact": 0.10761590311453527,
+        "absImpact": 0.10761590311453527,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe",
+        "value": 1.0,
+        "impact": 0.10125340429809983,
+        "absImpact": 0.10125340429809983,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g",
+        "value": 2.141094255884762,
+        "impact": 0.08956729286356767,
+        "absImpact": 0.08956729286356767,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm",
+        "value": -0.6609846741855284,
+        "impact": 0.08701588434150602,
+        "absImpact": 0.08701588434150602,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Dream",
+        "value": 0.0,
+        "impact": 0.03947846890865775,
+        "absImpact": 0.03947846890865775,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen",
+        "value": 0.0,
+        "impact": 0.00426517364804639,
+        "absImpact": 0.00426517364804639,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = FEMALE",
+        "value": 0.0,
+        "impact": 0.003217971798260337,
+        "absImpact": 0.003217971798260337,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE",
+        "value": 1.0,
+        "impact": 0.0001938950307115516,
+        "absImpact": 0.0001938950307115516,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex =  = ",
+        "value": 0.0,
+        "impact": 0.0,
+        "absImpact": 0.0,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "Chinstrap",
+    "features": [
+      {
+        "feature": "culmen = length = mm",
+        "value": 0.3150291298039985,
+        "impact": 0.2921067157888475,
+        "absImpact": 0.2921067157888475,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Dream",
+        "value": 1.0,
+        "impact": 0.12969478449125743,
+        "absImpact": 0.12969478449125743,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe",
+        "value": 0.0,
+        "impact": 0.11856396137550107,
+        "absImpact": 0.11856396137550107,
+        "direction": "positive"
+      },
+      {
+        "feature": "flipper = length = mm",
+        "value": -0.45062188263164044,
+        "impact": 0.0629213047994415,
+        "absImpact": 0.0629213047994415,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g",
+        "value": -0.7143180521424537,
+        "impact": 0.0562711299657473,
+        "absImpact": 0.0562711299657473,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm",
+        "value": -0.10537162665178525,
+        "impact": 0.04934945013368947,
+        "absImpact": 0.04934945013368947,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen",
+        "value": 0.0,
+        "impact": 0.030513277119533336,
+        "absImpact": 0.030513277119533336,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = FEMALE",
+        "value": 1.0,
+        "impact": 0.02311667043647882,
+        "absImpact": 0.02311667043647882,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE",
+        "value": 0.0,
+        "impact": 0.01922300551497195,
+        "absImpact": 0.01922300551497195,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex =  = ",
+        "value": 0.0,
+        "impact": 0.0,
+        "absImpact": 0.0,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "Adelie",
+    "features": [
+      {
+        "feature": "culmen = length = mm",
+        "value": -0.8025660427330736,
+        "impact": 0.3190249394149367,
+        "absImpact": 0.3190249394149367,
+        "direction": "positive"
+      },
+      {
+        "feature": "flipper = length = mm",
+        "value": -1.0986436563981452,
+        "impact": 0.11784611813439907,
+        "absImpact": 0.11784611813439907,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm",
+        "value": 0.45024142088195884,
+        "impact": 0.07970295101726774,
+        "absImpact": 0.07970295101726774,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Dream",
+        "value": 1.0,
+        "impact": -0.023501922114569578,
+        "absImpact": 0.023501922114569578,
+        "direction": "negative"
+      },
+      {
+        "feature": "island = Biscoe",
+        "value": 0.0,
+        "impact": 0.0202053006326321,
+        "absImpact": 0.0202053006326321,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g",
+        "value": 0.27886883760614306,
+        "impact": 0.01126618585510528,
+        "absImpact": 0.01126618585510528,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen",
+        "value": 0.0,
+        "impact": -0.010445837943796282,
+        "absImpact": 0.010445837943796282,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex = MALE",
+        "value": 1.0,
+        "impact": 0.006274005768172487,
+        "absImpact": 0.006274005768172487,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = FEMALE",
+        "value": 0.0,
+        "impact": 0.004796798561695003,
+        "absImpact": 0.004796798561695003,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex =  = ",
+        "value": 0.0,
+        "impact": 0.0,
+        "absImpact": 0.0,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "flipper = length = mm",
+        "value": 0.7734192455939799,
+        "impact": 0.2004955175907964,
+        "absImpact": 0.2004955175907964,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm",
+        "value": -1.6206799381074488,
+        "impact": 0.15078130384210117,
+        "absImpact": 0.15078130384210117,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe",
+        "value": 1.0,
+        "impact": 0.09897622058198294,
+        "absImpact": 0.09897622058198294,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = length = mm",
+        "value": 0.6448113118641176,
+        "impact": 0.08473830197621013,
+        "absImpact": 0.08473830197621013,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g",
+        "value": 0.8064993727850851,
+        "impact": 0.06443617850837174,
+        "absImpact": 0.06443617850837174,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Dream",
+        "value": 0.0,
+        "impact": 0.03823535222220698,
+        "absImpact": 0.03823535222220698,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen",
+        "value": 0.0,
+        "impact": 0.004167919118611197,
+        "absImpact": 0.004167919118611197,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE",
+        "value": 0.0,
+        "impact": 0.0017627211753581229,
+        "absImpact": 0.0017627211753581229,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = FEMALE",
+        "value": 1.0,
+        "impact": -0.0005223539669496052,
+        "absImpact": 0.0005223539669496052,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  = ",
+        "value": 0.0,
+        "impact": 0.0,
+        "absImpact": 0.0,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "Gentoo",
+    "features": [
+      {
+        "feature": "flipper = length = mm",
+        "value": 1.0614289228235376,
+        "impact": 0.20534125019776503,
+        "absImpact": 0.20534125019776503,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = depth = mm",
+        "value": -1.1155771676222277,
+        "impact": 0.14310590519268565,
+        "absImpact": 0.14310590519268565,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Biscoe",
+        "value": 1.0,
+        "impact": 0.09790685416500416,
+        "absImpact": 0.09790685416500416,
+        "direction": "positive"
+      },
+      {
+        "feature": "culmen = length = mm",
+        "value": 0.6814537765374646,
+        "impact": 0.09070997091276671,
+        "absImpact": 0.09070997091276671,
+        "direction": "positive"
+      },
+      {
+        "feature": "body = mass = g",
+        "value": 0.6513139212618668,
+        "impact": 0.06284441820874628,
+        "absImpact": 0.06284441820874628,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Dream",
+        "value": 0.0,
+        "impact": 0.03823535222220698,
+        "absImpact": 0.03823535222220698,
+        "direction": "positive"
+      },
+      {
+        "feature": "island = Torgersen",
+        "value": 0.0,
+        "impact": 0.004167919118611197,
+        "absImpact": 0.004167919118611197,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = MALE",
+        "value": 0.0,
+        "impact": 0.0017627211753581229,
+        "absImpact": 0.0017627211753581229,
+        "direction": "positive"
+      },
+      {
+        "feature": "sex = FEMALE",
+        "value": 1.0,
+        "impact": -0.001003230144454996,
+        "absImpact": 0.001003230144454996,
+        "direction": "negative"
+      },
+      {
+        "feature": "sex =  = ",
+        "value": 0.0,
+        "impact": 0.0,
+        "absImpact": 0.0,
+        "direction": "positive"
+      }
+    ]
+  }
+]

@@ -8,8 +8,8 @@ const TREE_CONFIGS = [
 
 type TreeConfig = typeof TREE_CONFIGS[0];
 
-const PUR = "#4e2572";
-const LT  = "#9a8ad8";
+const PUR = "#6781D9";
+const LT  = "#8AD9B9";
 const LN  = "#64748b";
 
 function MiniDecisionTree({ cfg, step }: { cfg: TreeConfig; step: number }) {

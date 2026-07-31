@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+
 from lime.lime_tabular import LimeTabularExplainer
 
 
@@ -7,31 +8,34 @@ def export_lime(prepared, output_dir):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    model = prepared["model"]
-    X_train = prepared["X_train"]
-    X_test = prepared["X_test"]
+    classifier = prepared["classifier"]
+    X_train = prepared["X_train_encoded"]
+    X_test = prepared["X_test_encoded"]
+    feature_names = prepared["feature_names_encoded"]
+
     sample_ids = prepared["sample_ids"]
     class_names = prepared["class_names"]
 
     explainer = LimeTabularExplainer(
-        training_data=X_train.values,
-        feature_names=list(X_train.columns),
+        training_data=X_train,
+        feature_names=feature_names,
         class_names=class_names,
-        mode="classification"
+        mode="classification",
+        discretize_continuous=True
     )
 
     lime_local = []
 
     for sample_id in sample_ids:
-        sample = X_test.iloc[sample_id]
+        sample = X_test[sample_id]
 
         explanation = explainer.explain_instance(
-            data_row=sample.values,
-            predict_fn=model.predict_proba,
+            data_row=sample,
+            predict_fn=classifier.predict_proba,
             num_features=10
         )
 
-        prediction = model.predict(sample.to_frame().T)[0]
+        prediction = classifier.predict(sample.reshape(1, -1))[0]
 
         features = []
 

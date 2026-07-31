@@ -1,0 +1,10 @@
+{
+  "id": "mushroom",
+  "name": "Pilze",
+  "description": "Vorhersage, ob ein Pilz essbar oder giftig ist.",
+  "icon": "🍄",
+  "classes": [
+    "e",
+    "p"
+  ]
+}

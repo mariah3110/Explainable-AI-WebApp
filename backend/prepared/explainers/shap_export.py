@@ -1,7 +1,8 @@
 import json
 from pathlib import Path
-import shap
+
 import numpy as np
+import shap
 
 
 def export_shap(prepared, output_dir):
@@ -10,12 +11,15 @@ def export_shap(prepared, output_dir):
 
     classifier = prepared["classifier"]
     X_encoded = prepared["X_test_encoded"]
+    feature_names = prepared["feature_names_encoded"]
+
     sample_ids = prepared["sample_ids"]
     class_names = prepared["class_names"]
 
     explainer = shap.TreeExplainer(classifier)
     shap_values = explainer(X_encoded)
 
+    # Globale SHAP-Werte
     global_values = np.abs(shap_values.values).mean(axis=(0, 2))
 
     shap_global = [
@@ -23,22 +27,23 @@ def export_shap(prepared, output_dir):
             "feature": feature,
             "importance": float(value)
         }
-        for feature, value in zip(X_encoded.columns, global_values)
+        for feature, value in zip(feature_names, global_values)
     ]
 
-    shap_global = sorted(
-        shap_global,
-        key=lambda item: item["importance"],
-        reverse=True
-    )
+    shap_global.sort(key=lambda x: x["importance"], reverse=True)
 
     with open(output_dir / "shap_global.json", "w", encoding="utf-8") as f:
         json.dump(shap_global, f, ensure_ascii=False, indent=2)
 
+    # Lokale SHAP-Werte
     shap_local = []
 
     for sample_id in sample_ids:
-        prediction_index = int(classifier.predict(X_encoded.iloc[[sample_id]])[0])
+        sample = X_encoded[sample_id].reshape(1, -1)
+
+        prediction = classifier.predict(sample)[0]
+
+        prediction_index = list(classifier.classes_).index(prediction)
         prediction_label = class_names[prediction_index]
 
         values = shap_values.values[sample_id, :, prediction_index]
@@ -46,8 +51,8 @@ def export_shap(prepared, output_dir):
         features = []
 
         for feature, feature_value, shap_value in zip(
-            X_encoded.columns,
-            X_encoded.iloc[sample_id].values,
+            feature_names,
+            X_encoded[sample_id],
             values
         ):
             features.append({
@@ -58,16 +63,12 @@ def export_shap(prepared, output_dir):
                 "direction": "positive" if shap_value >= 0 else "negative"
             })
 
-        features = sorted(
-            features,
-            key=lambda item: item["absImpact"],
-            reverse=True
-        )[:10]
+        features.sort(key=lambda x: x["absImpact"], reverse=True)
 
         shap_local.append({
             "sampleId": sample_id,
             "prediction": prediction_label,
-            "features": features
+            "features": features[:10]
         })
 
     with open(output_dir / "shap_local.json", "w", encoding="utf-8") as f:

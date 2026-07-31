@@ -1,10 +1,9 @@
-import pandas as pd
-from sklearn.datasets import fetch_openml
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
+from sklearn.datasets import fetch_openml
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 def prepare_dataset():
@@ -36,15 +35,15 @@ def prepare_dataset():
 
     model.fit(X_train, y_train)
 
+    X_train_encoded = model.named_steps["preprocessor"].transform(X_train)
     X_test_encoded = model.named_steps["preprocessor"].transform(X_test)
+
     feature_names = model.named_steps["preprocessor"].get_feature_names_out()
 
     clean_feature_names = [
         name.replace("num__", "").replace("cat__", "").replace("_", " = ")
         for name in feature_names
     ]
-
-    X_test_encoded_df = pd.DataFrame(X_test_encoded, columns=clean_feature_names)
 
     return {
         "dataset_id": "penguins",
@@ -55,7 +54,9 @@ def prepare_dataset():
         "classifier": model.named_steps["classifier"],
         "X_train": X_train,
         "X_test": X_test,
-        "X_test_encoded": X_test_encoded_df,
+        "X_train_encoded": X_train_encoded,
+        "X_test_encoded": X_test_encoded,
+        "feature_names_encoded": clean_feature_names,
         "y_test": y_test.reset_index(drop=True),
         "class_names": class_names,
         "sample_ids": list(range(5))

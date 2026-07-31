@@ -8,9 +8,9 @@ import Character from "@/components/Character";
 import ShapImportancePlot from "@/components/CreatePlotShap";
 import { ForestAnimationForModul } from "@/components/ForestAnimationForModul";
 
-import penguinsData from "../../data/shap/penguins.json";
-import mushroomsData from "../../data/shap/mushrooms.json";
-import wineData from "../../data/shap/wine.json";
+import penguinsData from "../../public/data/penguins/shap_global.json";
+import mushroomsData from "../../public/data/mushroom/shap_global.json";
+import wineData from "../../public/data/wine/shap_global.json";
 import { motion } from "framer-motion";
 
 /* -------------------------------------------------------------------------- */
@@ -67,11 +67,20 @@ const SHAP_DATA_BY_DATASET = {
   wine: wineData,
 };
 
+const COLORES = {
+  titel: "from-blue-500 to-green-300",
+  tooltip: "from-blue-500 to-green-300",
+  ShapButton: "from-blue-500 to-green-400 hover:from-blue-700 hover:to-green-500",
+  DataButton1: "bg-blue-500/40 hover:bg-gray-500/40",
+  DataButton2: "bg-gradient-to-r from-blue-500/40 to-green-300/40 hover:from-gray-500/40 hover:to-gray-500/40",
+  DataButton3: "bg-green-300/40 hover:bg-gray-500/40",
+};
+
 const DATASETS: DatasetOption[] = [
   {
     id: "penguins",
     label: "Pinguine",
-    idleClassName: "bg-violet-400/40 hover:bg-gray-500/40",
+    idleClassName: `${COLORES.DataButton1}`,
     tooltipAlignmentClassName: "left-0",
     tooltip: {
       imageSrc: "/penguins.png",
@@ -85,7 +94,7 @@ const DATASETS: DatasetOption[] = [
     id: "mushrooms",
     label: "Pilze",
     idleClassName:
-      "bg-gradient-to-r from-violet-400/40 to-cyan-400/40 hover:from-gray-500/40 hover:to-gray-500/40",
+      `${COLORES.DataButton2}`,
     tooltipAlignmentClassName: "left-1/2 -translate-x-1/2",
     tooltip: {
       imageSrc: "/mushrooms.png",
@@ -98,14 +107,14 @@ const DATASETS: DatasetOption[] = [
   {
     id: "wine",
     label: "Wein",
-    idleClassName: "bg-cyan-400/40 hover:bg-gray-500/40",
+    idleClassName: `${COLORES.DataButton3}`,
     tooltipAlignmentClassName: "right-0",
     tooltip: {
       imageSrc: "/wine.png",
       imageAlt: "Wein",
       stats: "(178 Spalten, 13 Zeilen)",
       description:
-        "Chemische Eigenschaften von Wein. Vorhersage: Zu welcher Weinsorte oder Qualitätsklasse gehört er?",
+        "Chemische Eigenschaften von Wein. Vorhersage: Zu welcher von drei Weinsorten gehört er?",
     },
   },
 ];
@@ -154,7 +163,7 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
     : dataset.idleClassName;
 
   const selectedClassName = isSelected
-    ? "bg-gray-500/50 opacity-100 shadow-lg shadow-purple-500/50"
+    ? "bg-gray-500/50 opacity-100 shadow-lg shadow-teal-300/50"
     : "";
 
   return (
@@ -170,7 +179,7 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
 
       {/* Tooltip mit Vorschaubild und Kurzbeschreibung, sichtbar bei Hover */}
       <div
-        className={`pointer-events-none absolute top-full z-60 mt-2 w-44 rounded-lg bg-gradient-to-r from-violet-600 to-cyan-600 p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
+        className={`pointer-events-none absolute top-full z-60 mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
       >
         <h3 className="mb-1 text-center text-sm font-bold">{dataset.label}</h3>
         <div className="relative mx-auto mb-2 h-20 w-32">
@@ -194,7 +203,7 @@ function PageTitle({ className = "" }: { className?: string }) {
   return (
     <h1 className={`font-bold ${className}`}>
       Try{" "}
-      <span className="bg-gradient-to-r from-purple-500 to-cyan-300 bg-clip-text text-transparent">
+      <span className={`bg-gradient-to-r ${COLORES.titel} bg-clip-text text-transparent`}>
         SHAP
       </span>
     </h1>
@@ -387,7 +396,7 @@ export default function TryShapPage() {
           onClick={handleShapClick}
           className={`w-full rounded-md px-4 py-2.5 text-base font-bold transition sm:text-lg ${FOCUS_RING_CLASSES} ${
             canRunShap
-              ? "bg-gradient-to-r from-purple-700 to-cyan-600 hover:from-purple-600 hover:to-cyan-400"
+              ? "bg-gradient-to-r " + COLORES.ShapButton
               : "cursor-not-allowed bg-gray-500/40 opacity-50"
           }`}
         >

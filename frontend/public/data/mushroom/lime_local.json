@@ -1,0 +1,332 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n <= 0.00",
+        "weight": 0.19898869823603538,
+        "absWeight": 0.19898869823603538,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < odor = f <= 1.00",
+        "weight": 0.13702009315707256,
+        "absWeight": 0.13702009315707256,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h > 0.00",
+        "weight": 0.0826800205924002,
+        "absWeight": 0.0826800205924002,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = r <= 0.00",
+        "weight": -0.07684568762223203,
+        "absWeight": 0.07684568762223203,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-color = b <= 0.00",
+        "weight": -0.07074537707160501,
+        "absWeight": 0.07074537707160501,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < gill-size = b <= 1.00",
+        "weight": -0.0652496007957133,
+        "absWeight": 0.0652496007957133,
+        "direction": "negative"
+      },
+      {
+        "feature": "odor = p <= 0.00",
+        "weight": -0.06193543437145119,
+        "absWeight": 0.06193543437145119,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-size = n <= 0.00",
+        "weight": -0.06154974559476769,
+        "absWeight": 0.06154974559476769,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < stalk-surface-above-ring = k <= 1.00",
+        "weight": 0.05846386150945913,
+        "absWeight": 0.05846386150945913,
+        "direction": "positive"
+      },
+      {
+        "feature": "cap-color = r <= 0.00",
+        "weight": 0.04419046138451992,
+        "absWeight": 0.04419046138451992,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n <= 0.00",
+        "weight": 0.19824104678102217,
+        "absWeight": 0.19824104678102217,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = f <= 0.00",
+        "weight": -0.14091259195297004,
+        "absWeight": 0.14091259195297004,
+        "direction": "negative"
+      },
+      {
+        "feature": "spore-print-color = h <= 0.00",
+        "weight": -0.08073733606741745,
+        "absWeight": 0.08073733606741745,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-color = b <= 0.00",
+        "weight": -0.0770333137273011,
+        "absWeight": 0.0770333137273011,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-size = b <= 0.00",
+        "weight": 0.06790982597477817,
+        "absWeight": 0.06790982597477817,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = p <= 0.00",
+        "weight": -0.06306740520144101,
+        "absWeight": 0.06306740520144101,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < gill-size = n <= 1.00",
+        "weight": 0.06271369566379781,
+        "absWeight": 0.06271369566379781,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-above-ring = k <= 0.00",
+        "weight": -0.060701044740965625,
+        "absWeight": 0.060701044740965625,
+        "direction": "negative"
+      },
+      {
+        "feature": "spore-print-color = r <= 0.00",
+        "weight": -0.05120478190827837,
+        "absWeight": 0.05120478190827837,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-spacing = w <= 0.00",
+        "weight": 0.044033366804417905,
+        "absWeight": 0.044033366804417905,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "e",
+    "features": [
+      {
+        "feature": "0.00 < odor = n <= 1.00",
+        "weight": -0.19677270858510185,
+        "absWeight": 0.19677270858510185,
+        "direction": "negative"
+      },
+      {
+        "feature": "odor = f <= 0.00",
+        "weight": -0.1388084859470984,
+        "absWeight": 0.1388084859470984,
+        "direction": "negative"
+      },
+      {
+        "feature": "spore-print-color = h <= 0.00",
+        "weight": -0.08200061101250243,
+        "absWeight": 0.08200061101250243,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-color = b <= 0.00",
+        "weight": -0.07206899227586641,
+        "absWeight": 0.07206899227586641,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-size = n <= 0.00",
+        "weight": -0.06768497491382204,
+        "absWeight": 0.06768497491382204,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < gill-size = b <= 1.00",
+        "weight": -0.0628017377258738,
+        "absWeight": 0.0628017377258738,
+        "direction": "negative"
+      },
+      {
+        "feature": "odor = p <= 0.00",
+        "weight": -0.05980017491852764,
+        "absWeight": 0.05980017491852764,
+        "direction": "negative"
+      },
+      {
+        "feature": "stalk-surface-above-ring = k <= 0.00",
+        "weight": -0.05622259662332112,
+        "absWeight": 0.05622259662332112,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-spacing = w > 0.00",
+        "weight": -0.05157397085212995,
+        "absWeight": 0.05157397085212995,
+        "direction": "negative"
+      },
+      {
+        "feature": "spore-print-color = r <= 0.00",
+        "weight": -0.039264174001063544,
+        "absWeight": 0.039264174001063544,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n <= 0.00",
+        "weight": 0.20149307982275866,
+        "absWeight": 0.20149307982275866,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < odor = f <= 1.00",
+        "weight": 0.14403607930703113,
+        "absWeight": 0.14403607930703113,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h <= 0.00",
+        "weight": -0.08323088689292399,
+        "absWeight": 0.08323088689292399,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-color = b > 0.00",
+        "weight": 0.0785224564410325,
+        "absWeight": 0.0785224564410325,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = b <= 0.00",
+        "weight": 0.0704663790412485,
+        "absWeight": 0.0704663790412485,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < gill-size = n <= 1.00",
+        "weight": 0.06445131732348724,
+        "absWeight": 0.06445131732348724,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = p <= 0.00",
+        "weight": -0.06282126702189751,
+        "absWeight": 0.06282126702189751,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < stalk-surface-above-ring = k <= 1.00",
+        "weight": 0.05805886698949601,
+        "absWeight": 0.05805886698949601,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-spacing = w <= 0.00",
+        "weight": 0.05461374560849272,
+        "absWeight": 0.05461374560849272,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = k <= 0.00",
+        "weight": -0.04474323186043582,
+        "absWeight": 0.04474323186043582,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n <= 0.00",
+        "weight": 0.19460817029156965,
+        "absWeight": 0.19460817029156965,
+        "direction": "positive"
+      },
+      {
+        "feature": "0.00 < odor = f <= 1.00",
+        "weight": 0.1440896654197371,
+        "absWeight": 0.1440896654197371,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h > 0.00",
+        "weight": 0.08568465932513723,
+        "absWeight": 0.08568465932513723,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-color = b <= 0.00",
+        "weight": -0.07432260673682403,
+        "absWeight": 0.07432260673682403,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < gill-size = b <= 1.00",
+        "weight": -0.0668225782242106,
+        "absWeight": 0.0668225782242106,
+        "direction": "negative"
+      },
+      {
+        "feature": "gill-size = n <= 0.00",
+        "weight": -0.061936817964613484,
+        "absWeight": 0.061936817964613484,
+        "direction": "negative"
+      },
+      {
+        "feature": "0.00 < stalk-surface-above-ring = k <= 1.00",
+        "weight": 0.06066470321811558,
+        "absWeight": 0.06066470321811558,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-spacing = w <= 0.00",
+        "weight": 0.05730806858089808,
+        "absWeight": 0.05730806858089808,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = p <= 0.00",
+        "weight": -0.057050524734470295,
+        "absWeight": 0.057050524734470295,
+        "direction": "negative"
+      },
+      {
+        "feature": "spore-print-color = r <= 0.00",
+        "weight": -0.05592616025658339,
+        "absWeight": 0.05592616025658339,
+        "direction": "negative"
+      }
+    ]
+  }
+]

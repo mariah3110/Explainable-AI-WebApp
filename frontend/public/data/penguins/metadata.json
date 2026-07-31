@@ -1,0 +1,11 @@
+{
+  "id": "penguins",
+  "name": "Pinguine",
+  "description": "Vorhersage der Pinguinart anhand von Körpermaßen.",
+  "icon": "🐧",
+  "classes": [
+    "Adelie",
+    "Chinstrap",
+    "Gentoo"
+  ]
+}

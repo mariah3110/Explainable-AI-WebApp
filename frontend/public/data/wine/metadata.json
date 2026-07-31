@@ -1,0 +1,11 @@
+{
+  "id": "wine",
+  "name": "Wein",
+  "description": "Vorhersage der Weinsorte anhand chemischer Eigenschaften.",
+  "icon": "🍷",
+  "classes": [
+    "class_0",
+    "class_1",
+    "class_2"
+  ]
+}

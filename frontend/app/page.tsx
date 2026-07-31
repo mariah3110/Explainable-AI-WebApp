@@ -178,7 +178,7 @@ export default function Home() {
                 "></div>
 
                 {/* SCROLLER */}
-                <div ref={ml.bubbleRef} className="max-h-[400px] overflow-y-auto">
+                <div ref={ml.bubbleRef} className="max-h-[350px] overflow-y-auto">
                   <b>Machine Learning</b> ist ein Teilgebiet der Künstlichen Intelligenz, 
                   bei dem Computer aus Daten lernen, anstatt explizit programmiert zu werden.
                   Die Algorithmen enthalten flexible Regeln, die sich anpassen, wärend sie mit 

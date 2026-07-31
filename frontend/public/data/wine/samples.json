@@ -1,0 +1,112 @@
+[
+  {
+    "sampleId": 0,
+    "title": "Beispiel 1",
+    "trueClass": "0",
+    "predictedClass": "0",
+    "probability": 0.98,
+    "features": {
+      "alcohol": "14.1",
+      "malic_acid": "2.16",
+      "ash": "2.3",
+      "alcalinity_of_ash": "18.0",
+      "magnesium": "105.0",
+      "total_phenols": "2.95",
+      "flavanoids": "3.32",
+      "nonflavanoid_phenols": "0.22",
+      "proanthocyanins": "2.38",
+      "color_intensity": "5.75",
+      "hue": "1.25",
+      "od280/od315_of_diluted_wines": "3.17",
+      "proline": "1510.0"
+    }
+  },
+  {
+    "sampleId": 1,
+    "title": "Beispiel 2",
+    "trueClass": "2",
+    "predictedClass": "2",
+    "probability": 0.77,
+    "features": {
+      "alcohol": "12.51",
+      "malic_acid": "1.24",
+      "ash": "2.25",
+      "alcalinity_of_ash": "17.5",
+      "magnesium": "85.0",
+      "total_phenols": "2.0",
+      "flavanoids": "0.58",
+      "nonflavanoid_phenols": "0.6",
+      "proanthocyanins": "1.25",
+      "color_intensity": "5.45",
+      "hue": "0.75",
+      "od280/od315_of_diluted_wines": "1.51",
+      "proline": "650.0"
+    }
+  },
+  {
+    "sampleId": 2,
+    "title": "Beispiel 3",
+    "trueClass": "0",
+    "predictedClass": "0",
+    "probability": 0.96,
+    "features": {
+      "alcohol": "13.87",
+      "malic_acid": "1.9",
+      "ash": "2.8",
+      "alcalinity_of_ash": "19.4",
+      "magnesium": "107.0",
+      "total_phenols": "2.95",
+      "flavanoids": "2.97",
+      "nonflavanoid_phenols": "0.37",
+      "proanthocyanins": "1.76",
+      "color_intensity": "4.5",
+      "hue": "1.25",
+      "od280/od315_of_diluted_wines": "3.4",
+      "proline": "915.0"
+    }
+  },
+  {
+    "sampleId": 3,
+    "title": "Beispiel 4",
+    "trueClass": "1",
+    "predictedClass": "1",
+    "probability": 0.54,
+    "features": {
+      "alcohol": "11.56",
+      "malic_acid": "2.05",
+      "ash": "3.23",
+      "alcalinity_of_ash": "28.5",
+      "magnesium": "119.0",
+      "total_phenols": "3.18",
+      "flavanoids": "5.08",
+      "nonflavanoid_phenols": "0.47",
+      "proanthocyanins": "1.87",
+      "color_intensity": "6.0",
+      "hue": "0.93",
+      "od280/od315_of_diluted_wines": "3.69",
+      "proline": "465.0"
+    }
+  },
+  {
+    "sampleId": 4,
+    "title": "Beispiel 5",
+    "trueClass": "1",
+    "predictedClass": "1",
+    "probability": 0.77,
+    "features": {
+      "alcohol": "13.67",
+      "malic_acid": "1.25",
+      "ash": "1.92",
+      "alcalinity_of_ash": "18.0",
+      "magnesium": "94.0",
+      "total_phenols": "2.1",
+      "flavanoids": "1.79",
+      "nonflavanoid_phenols": "0.32",
+      "proanthocyanins": "0.73",
+      "color_intensity": "3.8",
+      "hue": "1.23",
+      "od280/od315_of_diluted_wines": "2.46",
+      "proline": "630.0"
+    }
+  }
+]

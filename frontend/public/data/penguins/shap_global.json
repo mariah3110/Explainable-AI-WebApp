@@ -1,0 +1,42 @@
+[
+  {
+    "feature": "culmen = length = mm",
+    "importance": 0.16060726257323174
+  },
+  {
+    "feature": "flipper = length = mm",
+    "importance": 0.10168110998882257
+  },
+  {
+    "feature": "culmen = depth = mm",
+    "importance": 0.06780925803186452
+  },
+  {
+    "feature": "island = Biscoe",
+    "importance": 0.058647066997063325
+  },
+  {
+    "feature": "island = Dream",
+    "importance": 0.055932106690930544
+  },
+  {
+    "feature": "body = mass = g",
+    "importance": 0.037214249500742536
+  },
+  {
+    "feature": "island = Torgersen",
+    "importance": 0.015036885601391773
+  },
+  {
+    "feature": "sex = MALE",
+    "importance": 0.005302438186213712
+  },
+  {
+    "feature": "sex = FEMALE",
+    "importance": 0.004594395821112328
+  },
+  {
+    "feature": "sex =  = ",
+    "importance": 0.0
+  }
+]

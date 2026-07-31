@@ -25,12 +25,8 @@ def prepare_dataset():
 
     model.fit(X_train, y_train)
 
+    X_train_encoded = model.named_steps["scaler"].transform(X_train)
     X_test_encoded = model.named_steps["scaler"].transform(X_test)
-
-    X_test_encoded_df = pd.DataFrame(
-        X_test_encoded,
-        columns=X.columns
-    )
 
     return {
         "dataset_id": "wine",
@@ -41,7 +37,9 @@ def prepare_dataset():
         "classifier": model.named_steps["classifier"],
         "X_train": X_train,
         "X_test": X_test,
-        "X_test_encoded": X_test_encoded_df,
+        "X_train_encoded": X_train_encoded,
+        "X_test_encoded": X_test_encoded,
+        "feature_names_encoded": list(X.columns),
         "y_test": y_test.reset_index(drop=True),
         "class_names": class_names,
         "sample_ids": list(range(5))

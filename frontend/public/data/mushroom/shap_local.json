@@ -1,0 +1,382 @@
+[
+  {
+    "sampleId": 0,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n",
+        "value": 0.0,
+        "impact": 0.09260448924234832,
+        "absImpact": 0.09260448924234832,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = f",
+        "value": 1.0,
+        "impact": 0.08632021593131681,
+        "absImpact": 0.08632021593131681,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h",
+        "value": 1.0,
+        "impact": 0.0761309817909041,
+        "absImpact": 0.0761309817909041,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = k",
+        "value": 1.0,
+        "impact": 0.050880106583951076,
+        "absImpact": 0.050880106583951076,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-above-ring = k",
+        "value": 1.0,
+        "impact": 0.04823715455428344,
+        "absImpact": 0.04823715455428344,
+        "direction": "positive"
+      },
+      {
+        "feature": "ring-type = p",
+        "value": 0.0,
+        "impact": 0.0325010425885018,
+        "absImpact": 0.0325010425885018,
+        "direction": "positive"
+      },
+      {
+        "feature": "ring-type = l",
+        "value": 1.0,
+        "impact": 0.02568309558760889,
+        "absImpact": 0.02568309558760889,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-above-ring = s",
+        "value": 0.0,
+        "impact": 0.023386724417785852,
+        "absImpact": 0.023386724417785852,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = f",
+        "value": 1.0,
+        "impact": 0.02170252461913399,
+        "absImpact": 0.02170252461913399,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = s",
+        "value": 0.0,
+        "impact": 0.01853778496747846,
+        "absImpact": 0.01853778496747846,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 1,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "gill-size = n",
+        "value": 1.0,
+        "impact": 0.11974555019546569,
+        "absImpact": 0.11974555019546569,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = b",
+        "value": 0.0,
+        "impact": 0.11018937488775131,
+        "absImpact": 0.11018937488775131,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = n",
+        "value": 0.0,
+        "impact": 0.10251555745495092,
+        "absImpact": 0.10251555745495092,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = c",
+        "value": 1.0,
+        "impact": 0.060525195931046855,
+        "absImpact": 0.060525195931046855,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = f",
+        "value": 1.0,
+        "impact": 0.03368458464718156,
+        "absImpact": 0.03368458464718156,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = t",
+        "value": 0.0,
+        "impact": 0.026008929349967964,
+        "absImpact": 0.026008929349967964,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-root = b",
+        "value": 1.0,
+        "impact": 0.021230124731047774,
+        "absImpact": 0.021230124731047774,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = f",
+        "value": 0.0,
+        "impact": -0.01795240601597425,
+        "absImpact": 0.01795240601597425,
+        "direction": "negative"
+      },
+      {
+        "feature": "habitat = d",
+        "value": 1.0,
+        "impact": 0.013582431739393963,
+        "absImpact": 0.013582431739393963,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-color = b",
+        "value": 0.0,
+        "impact": -0.01346200151327095,
+        "absImpact": 0.01346200151327095,
+        "direction": "negative"
+      }
+    ]
+  },
+  {
+    "sampleId": 2,
+    "prediction": "e",
+    "features": [
+      {
+        "feature": "odor = n",
+        "value": 1.0,
+        "impact": 0.12066802624728996,
+        "absImpact": 0.12066802624728996,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = f",
+        "value": 0.0,
+        "impact": 0.03537693134008036,
+        "absImpact": 0.03537693134008036,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-spacing = c",
+        "value": 0.0,
+        "impact": 0.032839028358212764,
+        "absImpact": 0.032839028358212764,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-spacing = w",
+        "value": 1.0,
+        "impact": 0.03195621656013715,
+        "absImpact": 0.03195621656013715,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = n",
+        "value": 0.0,
+        "impact": 0.03132255304036564,
+        "absImpact": 0.03132255304036564,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = b",
+        "value": 1.0,
+        "impact": 0.02972194154691787,
+        "absImpact": 0.02972194154691787,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = k",
+        "value": 0.0,
+        "impact": 0.025875191031108833,
+        "absImpact": 0.025875191031108833,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h",
+        "value": 0.0,
+        "impact": 0.02487993339971763,
+        "absImpact": 0.02487993339971763,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-color = b",
+        "value": 0.0,
+        "impact": 0.022489176025111964,
+        "absImpact": 0.022489176025111964,
+        "direction": "positive"
+      },
+      {
+        "feature": "population = v",
+        "value": 0.0,
+        "impact": 0.020838041717817397,
+        "absImpact": 0.020838041717817397,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 3,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = n",
+        "value": 0.0,
+        "impact": 0.08400719224318069,
+        "absImpact": 0.08400719224318069,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = n",
+        "value": 1.0,
+        "impact": 0.06088249847770168,
+        "absImpact": 0.06088249847770168,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-size = b",
+        "value": 0.0,
+        "impact": 0.06004897371437248,
+        "absImpact": 0.06004897371437248,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = f",
+        "value": 1.0,
+        "impact": 0.05638939552853233,
+        "absImpact": 0.05638939552853233,
+        "direction": "positive"
+      },
+      {
+        "feature": "gill-color = b",
+        "value": 1.0,
+        "impact": 0.044405526527179405,
+        "absImpact": 0.044405526527179405,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-above-ring = k",
+        "value": 1.0,
+        "impact": 0.030247201278841594,
+        "absImpact": 0.030247201278841594,
+        "direction": "positive"
+      },
+      {
+        "feature": "ring-type = p",
+        "value": 0.0,
+        "impact": 0.026984375867636225,
+        "absImpact": 0.026984375867636225,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = w",
+        "value": 1.0,
+        "impact": 0.026557820329865138,
+        "absImpact": 0.026557820329865138,
+        "direction": "positive"
+      },
+      {
+        "feature": "population = v",
+        "value": 1.0,
+        "impact": 0.01947143253183567,
+        "absImpact": 0.01947143253183567,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = f",
+        "value": 1.0,
+        "impact": 0.018301963303199602,
+        "absImpact": 0.018301963303199602,
+        "direction": "positive"
+      }
+    ]
+  },
+  {
+    "sampleId": 4,
+    "prediction": "p",
+    "features": [
+      {
+        "feature": "odor = f",
+        "value": 1.0,
+        "impact": 0.08788585331608521,
+        "absImpact": 0.08788585331608521,
+        "direction": "positive"
+      },
+      {
+        "feature": "odor = n",
+        "value": 0.0,
+        "impact": 0.08378812294458104,
+        "absImpact": 0.08378812294458104,
+        "direction": "positive"
+      },
+      {
+        "feature": "spore-print-color = h",
+        "value": 1.0,
+        "impact": 0.07328221171539882,
+        "absImpact": 0.07328221171539882,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = k",
+        "value": 1.0,
+        "impact": 0.054685222580248036,
+        "absImpact": 0.054685222580248036,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-above-ring = k",
+        "value": 1.0,
+        "impact": 0.045498259814185336,
+        "absImpact": 0.045498259814185336,
+        "direction": "positive"
+      },
+      {
+        "feature": "ring-type = p",
+        "value": 0.0,
+        "impact": 0.03016705604747388,
+        "absImpact": 0.03016705604747388,
+        "direction": "positive"
+      },
+      {
+        "feature": "ring-type = l",
+        "value": 1.0,
+        "impact": 0.026506977351383514,
+        "absImpact": 0.026506977351383514,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = f",
+        "value": 1.0,
+        "impact": 0.020987009171801355,
+        "absImpact": 0.020987009171801355,
+        "direction": "positive"
+      },
+      {
+        "feature": "stalk-surface-below-ring = s",
+        "value": 0.0,
+        "impact": 0.02074057018185088,
+        "absImpact": 0.02074057018185088,
+        "direction": "positive"
+      },
+      {
+        "feature": "bruises%3F = t",
+        "value": 0.0,
+        "impact": 0.01809020687119771,
+        "absImpact": 0.01809020687119771,
+        "direction": "positive"
+      }
+    ]
+  }
+]

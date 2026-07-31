@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mushroom",
+    "name": "Pilze",
+    "description": "Vorhersage, ob ein Pilz essbar oder giftig ist.",
+    "icon": "🍄"
+  },
+  {
+    "id": "penguins",
+    "name": "Pinguine",
+    "description": "Vorhersage der Pinguinart anhand von Körpermaßen.",
+    "icon": "🐧"
+  },
+  {
+    "id": "wine",
+    "name": "Wein",
+    "description": "Vorhersage der Weinsorte anhand chemischer Eigenschaften.",
+    "icon": "🍷"
+  }
+]

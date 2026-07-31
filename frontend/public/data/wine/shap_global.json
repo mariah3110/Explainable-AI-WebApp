@@ -1,0 +1,54 @@
+[
+  {
+    "feature": "color_intensity",
+    "importance": 0.0918973027024558
+  },
+  {
+    "feature": "flavanoids",
+    "importance": 0.07710606539337773
+  },
+  {
+    "feature": "proline",
+    "importance": 0.07657267344910412
+  },
+  {
+    "feature": "alcohol",
+    "importance": 0.06644681313897086
+  },
+  {
+    "feature": "od280/od315_of_diluted_wines",
+    "importance": 0.052555132368928704
+  },
+  {
+    "feature": "hue",
+    "importance": 0.044406318433039535
+  },
+  {
+    "feature": "total_phenols",
+    "importance": 0.019443495000801534
+  },
+  {
+    "feature": "magnesium",
+    "importance": 0.01864222470783679
+  },
+  {
+    "feature": "malic_acid",
+    "importance": 0.018013833472045413
+  },
+  {
+    "feature": "alcalinity_of_ash",
+    "importance": 0.010824758775165632
+  },
+  {
+    "feature": "proanthocyanins",
+    "importance": 0.008762377623348317
+  },
+  {
+    "feature": "ash",
+    "importance": 0.006355263191702817
+  },
+  {
+    "feature": "nonflavanoid_phenols",
+    "importance": 0.00247478543836615
+  }
+]
