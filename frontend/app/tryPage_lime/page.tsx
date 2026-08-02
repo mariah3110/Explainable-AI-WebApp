@@ -315,7 +315,7 @@ export default function TryLimePage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-900 text-white">
+    <div className="flex min-h-[100vh] bg-slate-900 text-white">
       {/* Abdunkelnder Hintergrund hinter dem mobilen Drawer */}
       {isSidebarOpen && (
         <div

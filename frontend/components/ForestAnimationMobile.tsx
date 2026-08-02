@@ -108,17 +108,17 @@ function TreeCell({ cfg, index }: { cfg: TreeConfig; index: number }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.15, duration: 0.35 }}
     >
-      <div className="w-[150px] h-[145px]">
+      <div className="w-[110px] h-[100px]">
         <MiniDecisionTree cfg={cfg} step={4} />
       </div>
-      <span className="text-[10px] text-slate-500">
+      <span className="text-[8px] text-slate-500">
         Baum {index + 1}: {cfg.result}
       </span>
     </motion.div>
   );
 }
 
-export function ForestAnimation() {
+export function ForestAnimationMobile() {
   const ref = useRef(null);
   const isInView = useInView(ref, {once: true, amount: 0.9});
 
@@ -152,7 +152,7 @@ export function ForestAnimation() {
       className="relative w-full flex flex-col items-center gap-3 bg-red"
     >
 
-      <div className="relative w-[450px] h-[380px] flex items-center justify-center">
+      <div className="relative w-[380px] h-[270px] flex items-center justify-center">
         {/* Replay Button */}
         <button
           onClick={startAnimation}

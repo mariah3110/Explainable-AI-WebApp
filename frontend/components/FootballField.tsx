@@ -162,11 +162,9 @@ const lineColorBorder = "border-white/40"
       </div>
 
       {/* FIELD + BENCHES */}
-      <div className="flex items-center justify-center gap-3">
+      <div className="relative flex justify-center">
         {/* LEFT BENCH */}
-        <div
-          className={`w-14 h-[350px] rounded-2xl ${benchColor} border border-white/10 flex flex-col items-center py-3 gap-3`}
-        >
+        <div className={`absolute left-0 top-0 bottom-0 w-9 sm:w-14 rounded-2xl ${benchColor} border border-white/10 flex flex-col items-center justify-evenly py-2`}>
           {players.map(([id, player]) => (
             <FootballPlayer
               key={id}
@@ -190,7 +188,7 @@ const lineColorBorder = "border-white/40"
               : "0 0 0 0px rgba(74, 222, 128, 0)",
           }}
           transition={{ duration: 0.15 }}
-          className={`relative w-full max-w-[260px] aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 ${fieldColor}`}
+          className={`relative w-full max-w-[260px] aspect-[3/4] mx-9 rounded-3xl overflow-hidden border border-white/10 ${fieldColor}`}
         >
           <div className={`absolute top-1/2 w-full h-[2px] ${lineColorBg40} -translate-y-1/2`} />
 
@@ -229,9 +227,7 @@ const lineColorBorder = "border-white/40"
         </motion.div>
 
         {/* RIGHT BENCH */}
-        <div
-          className={`w-14 h-[350px] rounded-2xl ${benchColor} border border-white/10 flex flex-col items-center py-3 gap-3`}
-        >
+          <div className={`absolute right-0 top-0 bottom-0 w-9 sm:w-14 rounded-2xl ${benchColor} border border-white/10 flex flex-col items-center justify-evenly py-2`}>
           <FootballPlayer color={oponentColors} />
           <FootballPlayer color={oponentColors} />
         </div>
