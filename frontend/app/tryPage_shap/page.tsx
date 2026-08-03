@@ -1,56 +1,123 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState} from "react";
-import { Menu, RotateCw, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, RotateCw, X, Lightbulb, PartyPopper, ChevronLeft } from "lucide-react";
 
 import Character from "@/components/Character";
-import ShapImportancePlot from "@/components/CreatePlotShap";
+import SpeechBubble from "@/components/SpeechBubble";
+
+import ShapPlotBeeswarm from "@/components/CreatePlotShapBeeswarm";
+import ShapPlotWaterfall from "@/components/CreatePlotShapWaterfall";
 import { ForestAnimationForModul } from "@/components/ForestAnimationForModul";
 
-import penguinsData from "../../public/data/penguins/shap_global.json";
-import mushroomsData from "../../public/data/mushroom/shap_global.json";
-import wineData from "../../public/data/wine/shap_global.json";
+import penguinsLocalData from "../../public/data/penguins/shap_local.json";
+import mushroomsLocalData from "../../public/data/mushroom/shap_local.json";
+import wineLocalData from "../../public/data/wine/shap_local.json";
+
+import { classLabels } from "@/components/featureLabels";
 import { motion } from "framer-motion";
+import router from "next/dist/shared/lib/router/router";
 
-/* -------------------------------------------------------------------------- */
-/* Konstanten und Typen                                                       */
-/* -------------------------------------------------------------------------- */
-
-/** Dauer eines Durchlaufs der ForestAnimationForModul in ms. */
+// Dauer eines Durchlaufs der ForestAnimationForModul in ms. */
 const ANIMATION_CYCLE_MS = 5500;
+const TESTING = true; // true = keine Trainings-Animation, sofort SHAP-Plot anzeigen
 
-/** Die Anzahl der Trainings-Durchläufe wird zufällig aus diesem Bereich gewählt (inklusive). */
-const MIN_TRAINING_RUNS = 1;
-const MAX_TRAINING_RUNS = 3;
+// Die Anzahl der Trainings-Durchläufe wird zufällig aus diesem Bereich gewählt (inklusive).
+let MIN_TRAINING_RUNS: number;
+let MAX_TRAINING_RUNS: number;
 
-/** Bilder des Begleiter-Charakters für die verschiedenen Zustände. */
+if (TESTING === true) {
+  MIN_TRAINING_RUNS = 0;
+  MAX_TRAINING_RUNS = 0;
+} else {
+  MIN_TRAINING_RUNS = 1;
+  MAX_TRAINING_RUNS = 3;
+}
+
+// Bilder des Begleiter-Charakters für die verschiedenen Zustände.
 const CHARACTER_IMAGES = {
   idle: "/pixel2L.png",
   training: "/pixel1L.png",
   explaining: "/pixel5R.png",
 } as const;
 
-/** Alle Texte, die der Charakter im Verlauf anzeigt. */
+// Hinweis in der Sprechblase, dass der Charakter verschiebbar ist.
+const DRAG_HINT = (
+  <span
+    className="mt-2 inline-flex items-center gap-1 text-gray-700"
+    style={{ fontSize: "10px" }}
+  >
+    <Lightbulb size={10} />
+    Verschiebe mich, wenn ich im Weg bin!
+  </span>
+);
+
+// Alle Texte, die der Charakter im Verlauf anzeigt.
 const MESSAGES = {
   selectDataset: "Suche dir einen Datensatz aus, auf den du SHAP anwenden möchtest.",
   training: "Der Random Forest wird trainiert …",
   shapReady:
-    "Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanz anzusehen.",
-  featureImportance:
-    "Das ist die Feature-Importanz! Je länger der Balken, desto stärker beeinflusst dieses Merkmal die Vorhersage des Modells.",
+    "Klicke auf den Button, um SHAP zu verwenden und die Feature-Importanzen anzusehen.",
+  beeswarm: [
+    <>
+      <div className="inline-flex gap-2">
+        <PartyPopper size={12} /><b> YEY! </b><PartyPopper size={12} />
+      </div>
+      <br />
+      Dein erster SHAP-Plot auf echten Daten!
+      <br />
+      Hier siehst du einen <b>Beeswarm-Plot</b>, der <b>globalen Feature-Importanzen</b> zeigt.
+      Jeder Punkt ist ein Sample. Schauen wir mal genauer hin ...
+      <br />
+      {DRAG_HINT}
+    </>,
+    <>
+      Die Features sind nach ihrem durchschnittlichen Einfluss auf die Vorhersage sortiert.
+      Merkmale oben sind insgesamt wichtiger als Merkmale weiter unten.
+      Rote Punkte bedeuten einen hohen Feature-Wert, blaue Punkte einen niedrigen.
+      Punkte rechts erhöhen die Modellvorhersage, Punkte links verringern sie.
+    </>,
+    <>
+        Schau dir den Plot in Ruhe an. Danach machen wir mit dem <b>Waterfall-Plot</b> weiter.
+        <br />
+        Wechsle oben einfach zur Ansicht "<b>Waterfall (lokal)</b>", wenn du bereit bist.
+    </>,
+  ],
+  waterfall: [
+    <>
+      Nun schauen wir uns eine weitere Funktion von SHAP an: die <b>lokale Feature-Analyse</b>.
+      Im <b>Waterfall-Plot</b> betrachten wir ein einzelnes Sample und sehen, wie jedes Merkmal die Vorhersage beeinflusst.
+      Jedes Feature kann die Vorhersage erhöhen (grün) oder verringern (blau).
+      <br />
+      {DRAG_HINT}
+    </>,
+    <>
+      Alle Beiträge zusammen ergeben <strong>exakt</strong> die Vorhersage.
+      Du kannst nachrechnen: 
+      <br />
+      Basiswert + alle Balken = Vorhersage.
+    </>,
+    <>
+      Probiere verschiedene Samples aus!
+      Die wichtigsten Merkmale können sich von Vorhersage zu Vorhersage unterscheiden.
+    </>,
+    <>
+      Probiere verschiedene Datensätze aus und schaue dir die Plots in Ruhe an.
+      Wenn du soweit bist, kehre zur Hauptseite zurück. Dann machen wir mit dem nächsten Modell weiter.    </>
+  ],
 } as const;
 
 type DatasetId = "penguins" | "mushrooms" | "wine";
-
-type ShapFeature = { feature: string; importance: number };
+type PlotView = "beeswarm" | "waterfall";
 
 type DatasetOption = {
   id: DatasetId;
   label: string;
-  /** Hintergrund des Buttons im aktiven (nicht gesperrten) Zustand. */
+  // Hintergrund des Buttons im aktiven (nicht gesperrten) Zustand.
   idleClassName: string;
-  /** Horizontale Ausrichtung des Tooltips, damit er die Sidebar nicht verlässt. */
+  // Horizontale Ausrichtung des Tooltips, damit er die Sidebar nicht verlässt.
   tooltipAlignmentClassName: string;
   tooltip: {
     imageSrc: string;
@@ -60,11 +127,12 @@ type DatasetOption = {
   };
 };
 
-/** Statisch importierte SHAP-Daten je Datensatz (Datenquelle des Plots). */
-const SHAP_DATA_BY_DATASET = {
-  penguins: penguinsData,
-  mushrooms: mushroomsData,
-  wine: wineData,
+/** Statisch importierte lokale SHAP-Daten je Datensatz
+    (Datenquelle für Beeswarm und Waterfall). */
+const SHAP_LOCAL_DATA_BY_DATASET = {
+  penguins: penguinsLocalData,
+  mushrooms: mushroomsLocalData,
+  wine: wineLocalData,
 };
 
 const COLORES = {
@@ -72,7 +140,8 @@ const COLORES = {
   tooltip: "from-blue-500 to-green-300",
   ShapButton: "from-blue-500 to-green-400 hover:from-blue-700 hover:to-green-500",
   DataButton1: "bg-blue-500/40 hover:bg-gray-500/40",
-  DataButton2: "bg-gradient-to-r from-blue-500/40 to-green-300/40 hover:from-gray-500/40 hover:to-gray-500/40",
+  DataButton2:
+    "bg-gradient-to-r from-blue-500/40 to-green-300/40 hover:from-gray-500/40 hover:to-gray-500/40",
   DataButton3: "bg-green-300/40 hover:bg-gray-500/40",
 };
 
@@ -85,7 +154,7 @@ const DATASETS: DatasetOption[] = [
     tooltip: {
       imageSrc: "/penguins.png",
       imageAlt: "Pinguine",
-      stats: "(334 Spalten, 7 Zeilen)",
+      stats: "(334 Zeilen, 7 Spalten)",
       description:
         "Pinguin-Daten mit Körpermaßen und Art. Das Modell lernt, anhand von Merkmalen wie Schnabellänge, Flossenlänge und Gewicht die Pinguinart vorherzusagen.",
     },
@@ -93,13 +162,12 @@ const DATASETS: DatasetOption[] = [
   {
     id: "mushrooms",
     label: "Pilze",
-    idleClassName:
-      `${COLORES.DataButton2}`,
+    idleClassName: `${COLORES.DataButton2}`,
     tooltipAlignmentClassName: "left-1/2 -translate-x-1/2",
     tooltip: {
       imageSrc: "/mushrooms.png",
       imageAlt: "Pilze",
-      stats: "(8124 Spalten, 22 Zeilen)",
+      stats: "(8124 Zeilen, 22 Spalten)",
       description:
         "Pilz-Daten mit äußeren Merkmalen wie Farbe, Form und Geruch. Das Modell sagt voraus, ob ein Pilz essbar oder giftig ist.",
     },
@@ -112,39 +180,53 @@ const DATASETS: DatasetOption[] = [
     tooltip: {
       imageSrc: "/wine.png",
       imageAlt: "Wein",
-      stats: "(178 Spalten, 13 Zeilen)",
+      stats: "(178 Zeilen, 13 Spalten)",
       description:
         "Chemische Eigenschaften von Wein. Vorhersage: Zu welcher von drei Weinsorten gehört er?",
     },
   },
 ];
 
-/** Gemeinsamer Fokus-Stil für alle interaktiven Elemente (Tastatur-Bedienung). */
+// Gemeinsamer Fokus-Stil für alle interaktiven Elemente (Tastatur-Bedienung).
 const FOCUS_RING_CLASSES =
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70";
 
-/* -------------------------------------------------------------------------- */
-/* UI-Bausteine                                                               */
-/* -------------------------------------------------------------------------- */
-
-type SpeechBubbleProps = {
-  text: string;
-  /** Seite, auf der die Sprechblasen-Spitze sitzt (zeigt zum Charakter). */
-  tail: "left" | "right";
-  className?: string;
+type PlotViewToggleProps = {
+  view: PlotView;
+  onChange: (view: PlotView) => void;
 };
 
-/** Sprechblase des Begleiter-Charakters. */
-function SpeechBubble({ text, tail, className = "" }: SpeechBubbleProps) {
+/** Segment-Umschalter zwischen den beiden Plot-Typen. */
+function PlotViewToggle({ view, onChange }: PlotViewToggleProps) {
+  const options: { id: PlotView; label: string }[] = [
+    { id: "beeswarm", label: "Beeswarm (global)" },
+    { id: "waterfall", label: "Waterfall (lokal)" },
+  ];
+
   return (
-    <div className={`relative rounded-md bg-gray-200 px-3 py-2 text-black shadow-xl ${className}`}>
-      {text}
-      <span
-        aria-hidden="true"
-        className={`absolute top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 bg-gray-200 ${
-          tail === "left" ? "-left-1" : "-right-1"
-        }`}
-      />
+    <div
+      role="group"
+      aria-label="Plot-Typ wählen"
+      className="inline-flex rounded-lg bg-white/[0.06] p-1"
+    >
+      {options.map((option) => {
+        const isActive = view === option.id;
+        return (
+          <button
+            key={option.id}
+            type="button"
+            aria-pressed={isActive}
+            onClick={() => onChange(option.id)}
+            className={`rounded-md px-3 py-1.5 text-xs font-semibold transition sm:text-sm ${FOCUS_RING_CLASSES} ${
+              isActive
+                ? "bg-gradient-to-r from-blue-500 to-green-400 text-white shadow"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -179,7 +261,7 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
 
       {/* Tooltip mit Vorschaubild und Kurzbeschreibung, sichtbar bei Hover */}
       <div
-        className={`pointer-events-none absolute top-full z-60 mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
+        className={`pointer-events-none absolute top-full z-[60] mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
       >
         <h3 className="mb-1 text-center text-sm font-bold">{dataset.label}</h3>
         <div className="relative mx-auto mb-2 h-20 w-32">
@@ -203,42 +285,55 @@ function PageTitle({ className = "" }: { className?: string }) {
   return (
     <h1 className={`font-bold ${className}`}>
       Try{" "}
-      <span className={`bg-gradient-to-r ${COLORES.titel} bg-clip-text text-transparent`}>
+      <span
+        className={`bg-gradient-to-r ${COLORES.titel} bg-clip-text text-transparent`}
+      >
         SHAP
       </span>
     </h1>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Seite                                                                      */
-/* -------------------------------------------------------------------------- */
-
+//Seite
 export default function TryShapPage() {
   const [selectedDataset, setSelectedDataset] = useState<DatasetId | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const [animationOver, setAnimationOver] = useState(false);
   const [showShapPlot, setShowShapPlot] = useState(false);
-  const [shapData, setShapData] = useState<ShapFeature[] | null>(null);
-  const [characterText, setCharacterText] = useState<string>(MESSAGES.selectDataset);
-  const [characterPicture, setCharacterPicture] = useState<string>(CHARACTER_IMAGES.idle);
+  const [plotView, setPlotView] = useState<PlotView>("beeswarm");
+  const [selectedSampleId, setSelectedSampleId] = useState(0);
+  const [characterText, setCharacterText] = useState<React.ReactNode>(
+    MESSAGES.selectDataset
+  );
+  const [characterPicture, setCharacterPicture] = useState<string>(
+    CHARACTER_IMAGES.idle
+  );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const datasetLocked = selectedDataset !== null;
   const canRunShap = animationOver && !showShapPlot;
 
   const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
 
-        check();
-        window.addEventListener("resize", check);
+    check();
+    window.addEventListener("resize", check);
 
-        return () => window.removeEventListener("resize", check);
-    }, []);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /** Lokale SHAP-Daten des aktuell gewählten Datensatzes. */
+  const localSamples = selectedDataset
+    ? SHAP_LOCAL_DATA_BY_DATASET[selectedDataset]
+    : null;
+
+  /** Sample für den Waterfall (Fallback: erstes Sample). */
+  const currentSample =
+    localSamples?.find((sample) => sample.sampleId === selectedSampleId) ??
+    localSamples?.[0] ??
+    null;
 
   /** Ref für den Trainings-Timer, damit er bei Reset und Unmount sicher aufgeräumt wird. */
   const loopIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -259,7 +354,6 @@ export default function TryShapPage() {
   const startAnimation = () => {
     clearTimers();
     setAnimationOver(false);
-    setIsAnimating(true);
     setAnimationKey(0);
     setCharacterText(MESSAGES.training);
     setCharacterPicture(CHARACTER_IMAGES.training);
@@ -272,7 +366,6 @@ export default function TryShapPage() {
     loopIntervalRef.current = setInterval(() => {
       if (currentRun >= totalRuns) {
         clearTimers();
-        setIsAnimating(false);
         setAnimationOver(true);
         setCharacterText(MESSAGES.shapReady);
         setCharacterPicture(CHARACTER_IMAGES.idle);
@@ -286,30 +379,35 @@ export default function TryShapPage() {
 
   const handleDatasetSelect = (datasetId: DatasetId) => {
     setSelectedDataset(datasetId);
+    setSelectedSampleId(0);
     startAnimation();
   };
 
-  /**
-   * Lädt die SHAP-Daten des gewählten Datensatzes und blendet den Plot ein.
-   * Der Plot selbst rendert die statisch importierten Daten, daher wird er
-   * auch dann angezeigt, wenn der Request fehlschlägt.
-   */
-  const handleShapClick = async () => {
-      setShowShapPlot(true);
-      setCharacterText(MESSAGES.featureImportance);
-      // Mobilen Drawer schließen, damit der Plot direkt sichtbar ist.
-      setIsSidebarOpen(false);
+  /** Blendet die Plots ein und lässt den Charakter den aktiven Plot erklären. */
+  const handleShapClick = () => {
+    setShowShapPlot(true);
+    setCharacterText(MESSAGES[plotView]);
+    setCharacterPicture(CHARACTER_IMAGES.explaining);
+    // Mobilen Drawer schließen, damit der Plot direkt sichtbar ist.
+    setIsSidebarOpen(false);
   };
 
-  /** Setzt die Seite auf den Ausgangszustand zurück. */
+  /** Wechselt zwischen Beeswarm und Waterfall und passt den Charakter-Text an. */
+  const handlePlotViewChange = (view: PlotView) => {
+    setPlotView(view);
+    setCharacterText(MESSAGES[view]);
+  };
+
+  const router = useRouter();
+  // Setzt die Seite auf den Ausgangszustand zurück.
   const resetPage = () => {
     clearTimers();
     setSelectedDataset(null);
-    setIsAnimating(false);
     setAnimationOver(false);
     setShowShapPlot(false);
     setAnimationKey(0);
-    setShapData(null);
+    setPlotView("beeswarm");
+    setSelectedSampleId(0);
     setCharacterText(MESSAGES.selectDataset);
     setCharacterPicture(CHARACTER_IMAGES.idle);
   };
@@ -341,6 +439,15 @@ export default function TryShapPage() {
           <PageTitle className="text-xl lg:text-2xl" />
 
           <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => router.push("/#lime")}
+              title="Zur Homepage"
+              aria-label="Zur Homepage"
+              className={`rounded-lg p-2 text-gray-400 transition hover:bg-white/10 hover:text-white ${FOCUS_RING_CLASSES}`}
+            >
+              <ChevronLeft size={20} />
+            </button>
             <button
               type="button"
               onClick={resetPage}
@@ -379,9 +486,10 @@ export default function TryShapPage() {
         </div>
 
         {/* Modell-Bühne: Trainings-Animation bzw. erklärender Charakter */}
-        <div 
-        className="mb-5 flex min-h-[250px] w-full flex-col items-center justify-center 
-        overflow-hidden rounded-xl bg-white/[0.03] sm:min-h-[230px] md:min-h-[250px]">
+        <div
+          className="mb-5 flex min-h-[250px] w-full flex-col items-center justify-center 
+        overflow-hidden rounded-xl bg-white/[0.03] sm:min-h-[230px] md:min-h-[250px]"
+        >
           {selectedDataset ? (
             /* Während des Trainings wird die Animation nach jedem Durchlauf neu
                gemountet. Nach dem letzten Durchlauf bleibt das Bild stehen. */
@@ -420,38 +528,74 @@ export default function TryShapPage() {
         </header>
 
         <main className="flex flex-1 flex-col p-4 sm:p-3 lg:p-8">
-            {showShapPlot && (
-                <motion.div
-                    drag
-                    dragMomentum={false}
-                    className="fixed z-55 cursor-grab"
-                    style={{
-                        left: isMobile ? 10 : 20,
-                        top: isMobile ? 700 : 200,
-                    }}
-                >
-                    <div className="flex justify-between items-center">
-                        <Character
-                            src={CHARACTER_IMAGES.explaining}
-                            className="w-40 h-40"
-                        />
-                        <SpeechBubble
-                            text={characterText}
-                            tail="left"
-                            className="max-w-[180px] text-xs sm:text-sm md:max-w-[200px]"
-                        />
-                    </div>
-                </motion.div>
-            )}
-          {showShapPlot && selectedDataset ? (
-            
+          {/* Verschiebbarer Charakter mit Erklärung zum aktiven Plot */}
+          {showShapPlot && (
+            <motion.div
+              drag
+              dragMomentum={false}
+              className="fixed z-[55] cursor-grab"
+              style={isMobile ? { left: 10, bottom: 10 } : { left: 20, top: 200 }}
+            >
+              <div className="flex items-center justify-between">
+                <Character
+                  src={CHARACTER_IMAGES.explaining}
+                  className="w-40 h-40"
+                />
+                <SpeechBubble
+                  text={characterText}
+                  tail="left"
+                  className="max-w-[180px] text-xs sm:text-sm md:max-w-[200px]"
+                />
+              </div>
+            </motion.div>
+          )}
+
+          {showShapPlot && selectedDataset && localSamples ? (
             /* SHAP-Ergebnis: Der Plot erhält die volle verfügbare Breite. Bei
                sehr breiten Diagrammen (viele oder lange Achsen-Beschriftungen)
                verhindert overflow-x-auto, dass die Seite horizontal scrollt. */
             <section className="m-auto w-full max-w-4xl animate-fadeIn">
+              {/* Steuerleiste: Plot-Umschalter + Sample-Auswahl (nur Waterfall) */}
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <PlotViewToggle view={plotView} onChange={handlePlotViewChange} />
+
+                {plotView === "waterfall" && (
+                  <label className="flex items-center gap-2 text-sm text-gray-400">
+                    Sample:
+                    <select
+                      value={currentSample?.sampleId ?? 0}
+                      onChange={(event) =>
+                        setSelectedSampleId(Number(event.target.value))
+                      }
+                      className={`rounded-md border border-white/10 bg-slate-800 px-2 py-1.5 text-sm text-white ${FOCUS_RING_CLASSES}`}
+                    >
+                      {localSamples.map((sample) => (
+                        <option key={sample.sampleId} value={sample.sampleId}>
+                          Beispiel {sample.sampleId + 1} ({classLabels[selectedDataset === "mushrooms" ? "mushroom" : selectedDataset]?.[sample.prediction] ?? sample.prediction})
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+              </div>
+
               <div className="rounded-2xl bg-white/[0.03] py-3 sm:py-3">
                 <div className="w-full overflow-x-auto">
-                  <ShapImportancePlot data={SHAP_DATA_BY_DATASET[selectedDataset]} />
+                  {plotView === "beeswarm" ? (
+                    <ShapPlotBeeswarm
+                      data={localSamples}
+                      title="Globale Feature-Wirkung"
+                    />
+                  ) : currentSample ? (
+                    <ShapPlotWaterfall
+                      sample={currentSample}
+                      predictionLabel={
+                        classLabels[selectedDataset === "mushrooms" ? "mushroom" : selectedDataset]
+                        ?.[currentSample.prediction] ?? currentSample.prediction
+                      }
+                      title="Warum diese Vorhersage?"
+                    />
+                  ) : null}
                 </div>
               </div>
             </section>

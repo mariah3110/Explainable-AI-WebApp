@@ -109,7 +109,7 @@ function SpeechBubble({
 function ModelBox({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div className={`w-full md:w-[40%] flex justify-center ${className}`}>
-      <div className="relative w-full max-w-[420px] h-[280px] md:h-auto md:aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6" style={{ width: "clamp(100%, 30vw, 420px)", height: "clamp(200px, 65vh, 400px)" }}>
+      <div className="relative w-full max-w-[420px] md:aspect-square rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6" style={{ width: "clamp(100%, 30vw, 420px)", height: "clamp(200px, 63vh, 400px)" }}>
         <div className="absolute inset-0 flex items-center justify-center">
           {children}
         </div>
@@ -287,6 +287,10 @@ export default function Home() {
               einzelne Merkmal zur Entscheidung leistet. Das macht das Modell 
               indem es verschiedene Kombinationen von Merkmalen durchspielt und 
               schaut, wie sich die Vorhersage verändert, wenn ein Merkmal weggelassen wird.
+              <br /><br />
+              Das kann SHAP, sowohl lokal als auch global. 
+              Global bedeutet, dass wir uns das gesamte Modell mit allen Samples anschauen. 
+              Lokal bedeutet, dass wir uns nur ein einzelnes Sample anschauen.
               <br /><br />
               Stell dir das wie ein Team aus Spielern vor. ⚽
               Jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.

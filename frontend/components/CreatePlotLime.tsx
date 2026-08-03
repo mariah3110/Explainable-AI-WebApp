@@ -1,14 +1,7 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-  ReferenceLine,
-} from "recharts";
+import {BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine} from "recharts";
+import { formatFeatureName } from "./featureLabels";
 
+// Typen (Format: lime_local.json)
 interface LimeFeature {
   feature: string;
   weight: number;
@@ -25,12 +18,15 @@ interface LimeExplanation {
 interface Props {
   data: LimeExplanation;
   title?: string;
+  predictionLabel?: string;
 }
 
 export default function CreatePlotLime({
   data,
   title = "Lokale LIME-Erklärung",
+  predictionLabel,
 }: Props) {
+  const pred = predictionLabel ?? data.prediction;
   const chartData = [...data.features]
     .sort((a, b) => b.absWeight - a.absWeight)
     .map((item) => ({
@@ -39,86 +35,19 @@ export default function CreatePlotLime({
         weight: Number(item.weight.toFixed(3)),
     }));
 
-function formatFeatureName(feature: string): string {
-  const replacements: Record<string, string> = {
-    // ---------- Penguins ----------
-    "bill = length = mm": "Schnabellänge",
-    "bill = depth = mm": "Schnabeltiefe",
-    "culmen = length = mm": "Schnabellänge",
-    "culmen = depth = mm": "Schnabeltiefe",
-    "flipper = length = mm": "Flügellänge",
-    "body = mass = g": "Körpergewicht",
-    "sex = MALE": "Geschlecht: Männlich",
-    "sex = FEMALE": "Geschlecht: Weiblich",
-    "island = Biscoe": "Insel: Biscoe",
-    "island = Dream": "Insel: Dream",
-    "island = Torgersen": "Insel: Torgersen",
-
-    // ---------- Mushroom ----------
-    "cap-shape": "Hutform",
-    "cap-surface": "Hutoberfläche",
-    "cap-color": "Hutfarbe",
-    "bruises": "Druckstellen",
-    "odor": "Geruch",
-    "gill-attachment": "Lamellenansatz",
-    "gill-spacing": "Lamellenabstand",
-    "gill-size": "Lamellengröße",
-    "gill-color": "Lamellenfarbe",
-    "stalk-shape": "Stielform",
-    "stalk-root": "Stielwurzel",
-    "stalk-surface-above-ring": "Stieloberfläche oberhalb Ring",
-    "stalk-surface-below-ring": "Stieloberfläche unterhalb Ring",
-    "stalk-color-above-ring": "Stielfarbe oberhalb Ring",
-    "stalk-color-below-ring": "Stielfarbe unterhalb Ring",
-    "veil-type": "Schleiertyp",
-    "veil-color": "Schleierfarbe",
-    "ring-number": "Anzahl Ringe",
-    "ring-type": "Ringtyp",
-    "spore-print-color": "Sporenfarbe",
-    "population": "Population",
-    "habitat": "Lebensraum",
-
-    // ---------- Wine ----------
-    "alcohol": "Alkoholgehalt",
-    "malic_acid": "Apfelsäure",
-    "ash": "Aschegehalt",
-    "alcalinity_of_ash": "Alkalität der Asche",
-    "magnesium": "Magnesium",
-    "total_phenols": "Gesamtphenole",
-    "flavanoids": "Flavonoide",
-    "nonflavanoid_phenols": "Nicht-Flavonoid-Phenole",
-    "proanthocyanins": "Proanthocyanidine",
-    "color_intensity": "Farbintensität",
-    "hue": "Farbton",
-    "od280/od315_of_diluted_wines": "OD280 / OD315",
-    "proline": "Prolin",
-  };
-
-  let label = replacements[feature] ?? feature;
-
-  // One-Hot-Features schöner darstellen
-  label = label.replace(/ = /g, ": ");
-
-  // LIME-Schwellen entfernen
-  label = label.replace(/<=\s*-?\d+(\.\d+)?/g, "");
-  label = label.replace(/>\s*-?\d+(\.\d+)?/g, "");
-
-  // Mehrfache Leerzeichen entfernen
-  label = label.replace(/\s+/g, " ").trim();
-
-  return label;
-}
-
 const chartHeight = Math.max(400, chartData.length * 35);
 
   return (
     <div className="w-full">
       <h2 className="text-xl font-semibold text-center mb-1">
-        {title}
+        LIME Analyse – {title}
       </h2>
 
-      <p className="text-center text-gray-500 mb-4">
-        Vorhersage: <strong>{data.prediction}</strong>
+      <p className="text-center text-sm text-gray-400 mb-4">
+        Beispiel {data.sampleId + 1} - Vorhersage: {" "}
+        <strong className="font-semibold text-gray-200">
+          {pred}
+        </strong>
       </p>
 
       <ResponsiveContainer width="100%" height={chartHeight}>
@@ -184,8 +113,8 @@ const chartHeight = Math.max(400, chartData.length * 35);
                 key={index}
                 fill={
                   entry.weight >= 0
-                    ? "#3bf69f"
-                    : "#cf2c7e"
+                    ? "#75da82"
+                    : "#5a83f9"
                 }
               />
             ))}

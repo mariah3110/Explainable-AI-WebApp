@@ -1,56 +1,101 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState} from "react";
-import { Menu, RotateCw, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, RotateCw, X, Lightbulb, PartyPopper, ChevronLeft } from "lucide-react";
 
 import Character from "@/components/Character";
+import SpeechBubble from "@/components/SpeechBubble";
 import LimeImportancePlot from "@/components/CreatePlotLime";
 import { ForestAnimationForModul } from "@/components/ForestAnimationForModul";
 
 import penguinsData from "../../public/data/penguins/lime_local.json";
 import mushroomsData from "../../public/data/mushroom/lime_local.json";
 import wineData from "../../public/data/wine/lime_local.json";
+
+import { classLabels} from "@/components/featureLabels";
 import { motion } from "framer-motion";
 
-/* -------------------------------------------------------------------------- */
-/* Konstanten und Typen                                                       */
-/* -------------------------------------------------------------------------- */
 
-/** Dauer eines Durchlaufs der ForestAnimationForModul in ms. */
+// Konstanten, Typen, und Komponenten für die Seite
 const ANIMATION_CYCLE_MS = 5500;
+const TESTING = true;
 
-/** Die Anzahl der Trainings-Durchläufe wird zufällig aus diesem Bereich gewählt (inklusive). */
-const MIN_TRAINING_RUNS = 1;
-const MAX_TRAINING_RUNS = 3;
+let MIN_TRAINING_RUNS: number;
+let MAX_TRAINING_RUNS: number;
 
-/** Bilder des Begleiter-Charakters für die verschiedenen Zustände. */
+if (TESTING) {
+  MIN_TRAINING_RUNS = 0;
+  MAX_TRAINING_RUNS = 0;
+} else {
+  MIN_TRAINING_RUNS = 1;
+  MAX_TRAINING_RUNS = 3;
+}
+
 const CHARACTER_IMAGES = {
   idle: "/pixel2L.png",
   training: "/pixel1L.png",
   explaining: "/pixel5R.png",
 } as const;
 
-/** Alle Texte, die der Charakter im Verlauf anzeigt. */
+const DRAG_HINT = (
+  <span
+    className="mt-2 inline-flex items-center gap-1 text-gray-700"
+    style={{ fontSize: "10px" }}
+  >
+    <Lightbulb size={10} />
+    Verschiebe mich, wenn ich im Weg bin!
+  </span>
+);
+
 const MESSAGES = {
-  selectDataset: "Suche dir einen Datensatz aus, auf den du LIME anwenden möchtest.",
+  selectDataset:
+    "Suche dir einen Datensatz aus, auf den du LIME anwenden möchtest.",
   training: "Der Random Forest wird trainiert …",
   limeReady:
     "Klicke auf den Button, um LIME zu verwenden und die Feature-Importanz anzusehen.",
-  featureImportance:
-    "Dieser Plot zeigt, welche Merkmale die Vorhersage für genau dieses Beispiel beeinflusst haben. Balken nach rechts sprechen für die vorhergesagte Klasse, Balken nach links dagegen. Je länger ein Balken ist, desto stärker war sein Einfluss.",
+  featureImportance: [
+    <>
+      <div className="inline-flex gap-2">
+        <PartyPopper size={12} /><b> YEY! </b><PartyPopper size={12} />
+      </div>
+      <br />
+      Dein Erster LIME-Plot auf echten Daten!
+      <br />
+      Hier siehst du einen dir schon bekannten Plot: den <b>Waterfall-Plot</b>. 
+      Er zeigt die <b>lokale Feature-Importanz</b> für ein einzelnes Sample. 
+      <br />
+      {DRAG_HINT}
+    </>,
+    <>
+      Vielleicht fragst du dich:
+      Was ist eigentlich der Unterschied zwischen LIME und SHAP?
+      Schließlich kann SHAP ebenfalls lokale Feature-Analysen durchführen.
+    </>,
+    <>
+      Beide Methoden erklären einzelne Vorhersagen, verfolgen dabei aber unterschiedliche Ansätze.
+      SHAP berechnet für jedes Feature einen <em>mathematisch fundierten Beitrag</em> zur Vorhersage.
+      LIME erstellt in der Umgebung des ausgewählten Samples ein einfaches <em>Ersatzmodell</em> und erklärt dessen Verhalten.
+    </>,
+    <>
+      Beide Methoden haben Vor- und Nachteile.
+      SHAP liefert konsistente und theoretisch fundierte Erklärungen, benötigt dafür aber meist mehr Rechenzeit.
+      LIME ist oft schneller und einfacher, die Ergebnisse können jedoch stärker von der erzeugten Nachbarschaft abhängen. 
+    </>,
+    <>
+    Probiere verschiedene Samples und Datensätze aus und schaue dir die Plots in Ruhe an.
+    Wenn du soweit bist, kehre zur Hauptseite zurück.
+    </>
+  ],
 } as const;
 
 type DatasetId = "penguins" | "mushrooms" | "wine";
 
-type LimeFeature = { feature: string; importance: number };
-
 type DatasetOption = {
   id: DatasetId;
   label: string;
-  /** Hintergrund des Buttons im aktiven (nicht gesperrten) Zustand. */
   idleClassName: string;
-  /** Horizontale Ausrichtung des Tooltips, damit er die Sidebar nicht verlässt. */
   tooltipAlignmentClassName: string;
   tooltip: {
     imageSrc: string;
@@ -60,7 +105,6 @@ type DatasetOption = {
   };
 };
 
-/** Statisch importierte LIME-Daten je Datensatz (Datenquelle des Plots). */
 const LIME_DATA_BY_DATASET = {
   penguins: penguinsData,
   mushrooms: mushroomsData,
@@ -70,9 +114,11 @@ const LIME_DATA_BY_DATASET = {
 const COLORES = {
   titel: "from-blue-500 to-green-300",
   tooltip: "from-blue-500 to-green-300",
-  LimeButton: "from-blue-500 to-green-400 hover:from-blue-700 hover:to-green-500",
+  LimeButton:
+    "from-blue-500 to-green-400 hover:from-blue-700 hover:to-green-500",
   DataButton1: "bg-blue-500/40 hover:bg-gray-500/40",
-  DataButton2: "bg-gradient-to-r from-blue-500/40 to-green-300/40 hover:from-gray-500/40 hover:to-gray-500/40",
+  DataButton2:
+    "bg-gradient-to-r from-blue-500/40 to-green-300/40 hover:from-gray-500/40 hover:to-gray-500/40",
   DataButton3: "bg-green-300/40 hover:bg-gray-500/40",
 };
 
@@ -85,7 +131,7 @@ const DATASETS: DatasetOption[] = [
     tooltip: {
       imageSrc: "/penguins.png",
       imageAlt: "Pinguine",
-      stats: "(334 Spalten, 7 Zeilen)",
+      stats: "(334 Zeilen, 7 Spalten)",
       description:
         "Pinguin-Daten mit Körpermaßen und Art. Das Modell lernt, anhand von Merkmalen wie Schnabellänge, Flossenlänge und Gewicht die Pinguinart vorherzusagen.",
     },
@@ -93,13 +139,12 @@ const DATASETS: DatasetOption[] = [
   {
     id: "mushrooms",
     label: "Pilze",
-    idleClassName:
-      `${COLORES.DataButton2}`,
+    idleClassName: `${COLORES.DataButton2}`,
     tooltipAlignmentClassName: "left-1/2 -translate-x-1/2",
     tooltip: {
       imageSrc: "/mushrooms.png",
       imageAlt: "Pilze",
-      stats: "(8124 Spalten, 22 Zeilen)",
+      stats: "(8124 Zeilen, 22 Spalten)",
       description:
         "Pilz-Daten mit äußeren Merkmalen wie Farbe, Form und Geruch. Das Modell sagt voraus, ob ein Pilz essbar oder giftig ist.",
     },
@@ -112,42 +157,15 @@ const DATASETS: DatasetOption[] = [
     tooltip: {
       imageSrc: "/wine.png",
       imageAlt: "Wein",
-      stats: "(178 Spalten, 13 Zeilen)",
+      stats: "(178 Zeilen, 13 Spalten)",
       description:
-        "Chemische Eigenschaften von Wein. Vorhersage: Zu welcher Weinsorte oder Qualitätsklasse gehört er?",
+        "Chemische Eigenschaften von Wein. Vorhersage: Zu welcher von drei Weinsorten gehört er?",
     },
   },
 ];
 
-/** Gemeinsamer Fokus-Stil für alle interaktiven Elemente (Tastatur-Bedienung). */
 const FOCUS_RING_CLASSES =
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70";
-
-/* -------------------------------------------------------------------------- */
-/* UI-Bausteine                                                               */
-/* -------------------------------------------------------------------------- */
-
-type SpeechBubbleProps = {
-  text: string;
-  /** Seite, auf der die Sprechblasen-Spitze sitzt (zeigt zum Charakter). */
-  tail: "left" | "right";
-  className?: string;
-};
-
-/** Sprechblase des Begleiter-Charakters. */
-function SpeechBubble({ text, tail, className = "" }: SpeechBubbleProps) {
-  return (
-    <div className={`relative rounded-md bg-gray-200 px-3 py-2 text-black shadow-xl ${className}`}>
-      {text}
-      <span
-        aria-hidden="true"
-        className={`absolute top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 bg-gray-200 ${
-          tail === "left" ? "-left-1" : "-right-1"
-        }`}
-      />
-    </div>
-  );
-}
 
 type DatasetButtonProps = {
   dataset: DatasetOption;
@@ -156,8 +174,12 @@ type DatasetButtonProps = {
   onSelect: (datasetId: DatasetId) => void;
 };
 
-/** Auswahl-Button für einen Datensatz inklusive Hover-Tooltip mit Details. */
-function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButtonProps) {
+function DatasetButton({
+  dataset,
+  isSelected,
+  isLocked,
+  onSelect,
+}: DatasetButtonProps) {
   const stateClassName = isLocked
     ? "cursor-not-allowed border border-gray-500/50 opacity-50"
     : dataset.idleClassName;
@@ -177,9 +199,8 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
         {dataset.label}
       </button>
 
-      {/* Tooltip mit Vorschaubild und Kurzbeschreibung, sichtbar bei Hover */}
       <div
-        className={`pointer-events-none absolute top-full z-60 mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
+        className={`pointer-events-none absolute top-full z-[60] mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
       >
         <h3 className="mb-1 text-center text-sm font-bold">{dataset.label}</h3>
         <div className="relative mx-auto mb-2 h-20 w-32">
@@ -198,49 +219,57 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
   );
 }
 
-/** Seitentitel, wird in der Sidebar und in der mobilen Kopfzeile verwendet. */
 function PageTitle({ className = "" }: { className?: string }) {
   return (
     <h1 className={`font-bold ${className}`}>
       Try{" "}
-      <span className={`bg-gradient-to-r ${COLORES.titel} bg-clip-text text-transparent`}>
+      <span
+        className={`bg-gradient-to-r ${COLORES.titel} bg-clip-text text-transparent`}
+      >
         LIME
       </span>
     </h1>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Seite                                                                      */
-/* -------------------------------------------------------------------------- */
 
 export default function TryLimePage() {
   const [selectedDataset, setSelectedDataset] = useState<DatasetId | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const [animationOver, setAnimationOver] = useState(false);
   const [showLimePlot, setShowLimePlot] = useState(false);
-  const [limeData, setLimeData] = useState<LimeFeature[] | null>(null);
-  const [characterText, setCharacterText] = useState<string>(MESSAGES.selectDataset);
-  const [characterPicture, setCharacterPicture] = useState<string>(CHARACTER_IMAGES.idle);
+  const [selectedSampleId, setSelectedSampleId] = useState(0);
+  const [characterText, setCharacterText] = useState<React.ReactNode>(
+    MESSAGES.selectDataset
+  );
+  const [characterPicture, setCharacterPicture] = useState<string>(
+    CHARACTER_IMAGES.idle
+  );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const datasetLocked = selectedDataset !== null;
   const canRunLime = animationOver && !showLimePlot;
 
   const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
-        check();
-        window.addEventListener("resize", check);
+  /** Alle LIME-Samples des aktuell gewählten Datensatzes. */
+  const localSamples = selectedDataset
+    ? LIME_DATA_BY_DATASET[selectedDataset]
+    : null;
 
-        return () => window.removeEventListener("resize", check);
-    }, []);
+  /** Das aktuell ausgewählte Sample (Fallback: erstes). */
+  const currentSample =
+    localSamples?.find((s) => s.sampleId === selectedSampleId) ??
+    localSamples?.[0] ??
+    null;
 
-  /** Ref für den Trainings-Timer, damit er bei Reset und Unmount sicher aufgeräumt wird. */
   const loopIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const clearTimers = () => {
@@ -250,16 +279,13 @@ export default function TryLimePage() {
     }
   };
 
-  // Timer aufräumen, falls die Seite verlassen wird, während die Animation läuft.
   useEffect(() => {
     return () => clearTimers();
   }, []);
 
-  /** Startet die Trainings-Animation und steuert die zufällige Anzahl an Durchläufen. */
   const startAnimation = () => {
     clearTimers();
     setAnimationOver(false);
-    setIsAnimating(true);
     setAnimationKey(0);
     setCharacterText(MESSAGES.training);
     setCharacterPicture(CHARACTER_IMAGES.training);
@@ -272,13 +298,11 @@ export default function TryLimePage() {
     loopIntervalRef.current = setInterval(() => {
       if (currentRun >= totalRuns) {
         clearTimers();
-        setIsAnimating(false);
         setAnimationOver(true);
         setCharacterText(MESSAGES.limeReady);
         setCharacterPicture(CHARACTER_IMAGES.idle);
         return;
       }
-
       currentRun += 1;
       setAnimationKey((key) => key + 1);
     }, ANIMATION_CYCLE_MS);
@@ -286,37 +310,32 @@ export default function TryLimePage() {
 
   const handleDatasetSelect = (datasetId: DatasetId) => {
     setSelectedDataset(datasetId);
+    setSelectedSampleId(0);
     startAnimation();
   };
 
-  /**
-   * Lädt die LIME-Daten des gewählten Datensatzes und blendet den Plot ein.
-   * Der Plot selbst rendert die statisch importierten Daten, daher wird er
-   * auch dann angezeigt, wenn der Request fehlschlägt.
-   */
-  const handleLimeClick = async () => {
-      setShowLimePlot(true);
-      setCharacterText(MESSAGES.featureImportance);
-      // Mobilen Drawer schließen, damit der Plot direkt sichtbar ist.
-      setIsSidebarOpen(false);
+  const handleLimeClick = () => {
+    setShowLimePlot(true);
+    setCharacterText(MESSAGES.featureImportance);
+    setCharacterPicture(CHARACTER_IMAGES.explaining);
+    setIsSidebarOpen(false);
   };
 
-  /** Setzt die Seite auf den Ausgangszustand zurück. */
+  const router = useRouter();
+  // Setzt die Seite auf den Ausgangszustand zurück.
   const resetPage = () => {
     clearTimers();
     setSelectedDataset(null);
-    setIsAnimating(false);
     setAnimationOver(false);
     setShowLimePlot(false);
     setAnimationKey(0);
-    setLimeData(null);
+    setSelectedSampleId(0);
     setCharacterText(MESSAGES.selectDataset);
     setCharacterPicture(CHARACTER_IMAGES.idle);
   };
 
   return (
-    <div className="flex min-h-[100vh] bg-slate-900 text-white">
-      {/* Abdunkelnder Hintergrund hinter dem mobilen Drawer */}
+    <div className="flex min-h-screen bg-slate-900 text-white">
       {isSidebarOpen && (
         <div
           aria-hidden="true"
@@ -325,22 +344,24 @@ export default function TryLimePage() {
         />
       )}
 
-      {/*
-        SIDEBAR
-        Ab md fest in das Layout integriert (sticky, volle Höhe), auf kleineren
-        Bildschirmen als einklappbarer Drawer von links.
-      */}
       <aside
         aria-label="Navigation"
         className={`fixed inset-y-0 left-0 z-50 flex w-[85vw] max-w-xs shrink-0 flex-col overflow-y-auto border-r border-white/10 bg-slate-900 p-4 transition-transform duration-300 ease-in-out sm:p-5 md:sticky md:top-0 md:z-auto md:h-screen md:w-80 md:max-w-none md:translate-x-0 md:bg-slate-950/40 md:transition-none lg:w-96 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Kopfbereich: Titel, Reset und Schließen-Button (nur mobil) */}
         <div className="mb-6 flex items-center justify-between gap-2">
           <PageTitle className="text-xl lg:text-2xl" />
-
           <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => router.push("/#lime")}
+              title="Zur Homepage"
+              aria-label="Zur Homepage"
+              className={`rounded-lg p-2 text-gray-400 transition hover:bg-white/10 hover:text-white ${FOCUS_RING_CLASSES}`}
+            >
+              <ChevronLeft size={20} />
+            </button>
             <button
               type="button"
               onClick={resetPage}
@@ -365,7 +386,6 @@ export default function TryLimePage() {
           Navigation
         </h2>
 
-        {/* Datensatz-Auswahl */}
         <div className="mb-5 grid grid-cols-3 gap-2 sm:gap-3">
           {DATASETS.map((dataset) => (
             <DatasetButton
@@ -378,18 +398,12 @@ export default function TryLimePage() {
           ))}
         </div>
 
-        {/* Modell-Bühne: Trainings-Animation bzw. erklärender Charakter */}
-        <div 
-        className="mb-5 flex min-h-[250px] w-full flex-col items-center justify-center 
-        overflow-hidden rounded-xl bg-white/[0.03] sm:min-h-[230px] md:min-h-[250px]">
+        <div className="mb-5 flex min-h-[250px] w-full flex-col items-center justify-center overflow-hidden rounded-xl bg-white/[0.03] sm:min-h-[230px] md:min-h-[250px]">
           {selectedDataset ? (
-            /* Während des Trainings wird die Animation nach jedem Durchlauf neu
-               gemountet. Nach dem letzten Durchlauf bleibt das Bild stehen. */
             <ForestAnimationForModul key={animationKey} />
           ) : null}
         </div>
 
-        {/* Startet die LIME-Auswertung, sobald das Training abgeschlossen ist */}
         <button
           type="button"
           disabled={!canRunLime}
@@ -406,7 +420,6 @@ export default function TryLimePage() {
 
       {/* HAUPTBEREICH */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Mobile Kopfzeile mit Menü-Button */}
         <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-white/10 bg-slate-900/95 p-3 backdrop-blur md:hidden">
           <button
             type="button"
@@ -420,43 +433,63 @@ export default function TryLimePage() {
         </header>
 
         <main className="flex flex-1 flex-col p-4 sm:p-3 lg:p-8">
-            {showLimePlot && (
-                <motion.div
-                    drag
-                    dragMomentum={false}
-                    className="fixed z-55 cursor-grab"
-                    style={{
-                        left: isMobile ? 10 : 20,
-                        top: isMobile ? 700 : 200,
-                    }}
-                >
-                    <div className="flex justify-between items-center">
-                        <Character
-                            src={CHARACTER_IMAGES.explaining}
-                            className="w-40 h-40"
-                        />
-                        <SpeechBubble
-                            text={characterText}
-                            tail="left"
-                            className="max-w-[180px] text-xs sm:text-sm md:max-w-[200px]"
-                        />
-                    </div>
-                </motion.div>
-            )}
-          {showLimePlot && selectedDataset ? (
-            
-            /* LIME-Ergebnis: Der Plot erhält die volle verfügbare Breite. Bei
-               sehr breiten Diagrammen (viele oder lange Achsen-Beschriftungen)
-               verhindert overflow-x-auto, dass die Seite horizontal scrollt. */
+          {/* Verschiebbarer Charakter */}
+          {showLimePlot && (
+            <motion.div
+              drag
+              dragMomentum={false}
+              className="fixed z-[55] cursor-grab"
+              style={isMobile ? { left: 10, bottom: 10 } : { left: 20, top: 200 }}
+            >
+              <div className="flex items-center justify-between">
+                <Character
+                  src={CHARACTER_IMAGES.explaining}
+                  className="w-40 h-40"
+                />
+                <SpeechBubble
+                  text={characterText}
+                  tail="left"
+                  className="max-w-[180px] text-xs sm:text-sm md:max-w-[200px]"
+                />
+              </div>
+            </motion.div>
+          )}
+
+          {showLimePlot && selectedDataset && localSamples && currentSample ? (
             <section className="m-auto w-full max-w-4xl animate-fadeIn">
+              {/* Sample-Auswahl */}
+              <div className="mb-4">
+                <label className="flex items-center gap-2 text-sm text-gray-400">
+                  Sample:
+                  <select
+                    value={currentSample.sampleId}
+                    onChange={(e) =>
+                      setSelectedSampleId(Number(e.target.value))
+                    }
+                    className={`rounded-md border border-white/10 bg-slate-800 px-2 py-1.5 text-sm text-white ${FOCUS_RING_CLASSES}`}
+                  >
+                    {localSamples.map((sample) => (
+                      <option key={sample.sampleId} value={sample.sampleId}>
+                        Beispiel {sample.sampleId + 1} ({classLabels[selectedDataset === "mushrooms" ? "mushroom" : selectedDataset]?.[sample.prediction] ?? sample.prediction})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
               <div className="rounded-2xl bg-white/[0.03] py-3 sm:py-3">
                 <div className="w-full overflow-x-auto">
-                  <LimeImportancePlot data={LIME_DATA_BY_DATASET[selectedDataset][0]} />
+                  <LimeImportancePlot 
+                    data={currentSample} 
+                    predictionLabel={
+                      classLabels[selectedDataset === "mushrooms" ? "mushroom" : selectedDataset]
+                        ?.[currentSample.prediction] ?? currentSample.prediction
+                    }
+                  />
                 </div>
               </div>
             </section>
           ) : (
-            /* Begrüßung bzw. Statushinweise des Charakters */
             <div className="m-auto flex flex-col items-center gap-6">
               <div className="flex items-center gap-4">
                 <SpeechBubble
@@ -467,7 +500,6 @@ export default function TryLimePage() {
                 <Character src={characterPicture} className="w-50 h-50" />
               </div>
 
-              {/* Mobiler Einstieg: öffnet den Drawer mit der Datensatz-Auswahl */}
               {!selectedDataset && (
                 <button
                   type="button"
