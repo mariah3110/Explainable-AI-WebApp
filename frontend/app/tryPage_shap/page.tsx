@@ -63,7 +63,7 @@ const MESSAGES = {
   beeswarm: [
     <>
       <div className="inline-flex gap-2">
-        <PartyPopper size={12} /><b> YEY! </b><PartyPopper size={12} />
+        <PartyPopper size={12} /><b> JUHU! </b><PartyPopper size={12} />
       </div>
       <br />
       Dein erster SHAP-Plot auf echten Daten!
@@ -77,7 +77,8 @@ const MESSAGES = {
       Die Features sind nach ihrem durchschnittlichen Einfluss auf die Vorhersage sortiert.
       Merkmale oben sind insgesamt wichtiger als Merkmale weiter unten.
       Rote Punkte bedeuten einen hohen Feature-Wert, blaue Punkte einen niedrigen.
-      Punkte rechts erhöhen die Modellvorhersage, Punkte links verringern sie.
+      Punkte rechts erhöhen die Wahrscheinlichkeit für die aktuell ausgewählte Klasse, 
+      Punkte links verringern sie.
     </>,
     <>
         Schau dir den Plot in Ruhe an. Danach machen wir mit dem <b>Waterfall-Plot</b> weiter.
@@ -94,7 +95,7 @@ const MESSAGES = {
       {DRAG_HINT}
     </>,
     <>
-      Alle Beiträge zusammen ergeben <strong>exakt</strong> die Vorhersage.
+      Basiswert plus alle Beiträge ergeben exakt die Vorhersage. Du kannst nachrechnen.
       Du kannst nachrechnen: 
       <br />
       Basiswert + alle Balken = Vorhersage.
@@ -105,7 +106,8 @@ const MESSAGES = {
     </>,
     <>
       Probiere verschiedene Datensätze aus und schaue dir die Plots in Ruhe an.
-      Wenn du soweit bist, kehre zur Hauptseite zurück. Dann machen wir mit dem nächsten Modell weiter.    </>
+      Wenn du so weit bist, kehre zur Hauptseite zurück. Dann machen wir mit dem nächsten Modell weiter.
+    </>
   ],
 } as const;
 

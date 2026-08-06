@@ -16,15 +16,15 @@ const playerEffects = {
     number: "2",
     name: "Verteidiger",
     description: "verhindert ein Gegentor",
-    ownGoals: 0,
-    opponentGoals: -1,
+    ownGoals: -1,
+    opponentGoals: 0,
   },
   weakPlayer: {
     number: "3",
     name: "Unsicherer Spieler",
     description: "verschlechtert das Ergebnis",
-    ownGoals: -1,
-    opponentGoals: 0,
+    ownGoals: 0,
+    opponentGoals: 1,
   },
   neutral: {
     number: "4",
@@ -38,7 +38,7 @@ const playerEffects = {
     name: "Gegnerdruck",
     description: "führt zu einem Gegentor",
     ownGoals: 0,
-    opponentGoals: 1,
+    opponentGoals: -1,
   },
 };
 

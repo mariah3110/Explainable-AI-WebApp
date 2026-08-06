@@ -58,10 +58,10 @@ const MESSAGES = {
   featureImportance: [
     <>
       <div className="inline-flex gap-2">
-        <PartyPopper size={12} /><b> YEY! </b><PartyPopper size={12} />
+        <PartyPopper size={12} /><b> JUHU! </b><PartyPopper size={12} />
       </div>
       <br />
-      Dein Erster LIME-Plot auf echten Daten!
+      Dein erster LIME-Plot auf echten Daten!
       <br />
       Hier siehst du einen dir schon bekannten Plot: den <b>Waterfall-Plot</b>. 
       Er zeigt die <b>lokale Feature-Importanz</b> für ein einzelnes Sample. 
@@ -85,7 +85,7 @@ const MESSAGES = {
     </>,
     <>
     Probiere verschiedene Samples und Datensätze aus und schaue dir die Plots in Ruhe an.
-    Wenn du soweit bist, kehre zur Hauptseite zurück.
+    Wenn du so weit bist, kehre zur Hauptseite zurück.
     </>
   ],
 } as const;

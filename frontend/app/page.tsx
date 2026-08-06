@@ -193,7 +193,7 @@ export default function Home() {
             <SpeechBubble scrollRef={ml.bubbleRef} arrowSide="right" className="order-2">
               <b>Machine Learning</b> ist ein Teilgebiet der Künstlichen Intelligenz, 
               bei dem Computer aus Daten lernen, anstatt explizit programmiert zu werden.
-              Die Algorithmen enthalten flexible Regeln, die sich anpassen, wärend sie mit 
+              Die Algorithmen enthalten flexible Regeln, die sich anpassen, während sie mit 
               mehr Daten trainiert werden. So können sie Muster erkennen und Vorhersagen treffen.
               <br /><br />
               Wir konzentrieren uns heute auf eine bestimmte ML-Methode: <b>Random Forest</b>. 
@@ -204,12 +204,12 @@ export default function Home() {
               Jeder Baum trifft eine eigene Vorhersage, und am Ende entscheidet die Mehrheit 
               der Bäume über das Gesamtergebnis.
               <br /><br />
-              Im Beispiel siehst du, wie ein Random Forest aufgebaut wird und entscheidet ob 
-              es sich um einen <b>Apfel</b>, eine <b>Erdbeere</b> oder eiene <b>Blaubeere</b> handelt.
+              Im Beispiel siehst du, wie ein Random Forest aufgebaut wird und entscheidet, ob 
+              es sich um einen <b>Apfel</b>, eine <b>Erdbeere</b> oder eine <b>Blaubeere</b> handelt.
               <br /><br />
-              Heute wollen wir einen Random Forest erstellen und verstehen, 
-              wie er Entscheidungen trifft mithilfe von Explainable AI Methoden.  
-              Was ist eigendlich <b>Explainable AI</b>? Das schauen wir uns im nächsten Abschnitt an!
+              Heute wollen wir einen Random-Forest erstellen und verstehen, 
+              wie er mithilfe von Explainable-AI-Methoden Entscheidungen trifft.  
+              Was ist eigentlich <b>Explainable AI</b>? Das schauen wir uns im nächsten Abschnitt an!
             </SpeechBubble>
 
             <div className="order-1 md:order-3">
@@ -243,7 +243,7 @@ export default function Home() {
               können wir sichtbar machen, welche Merkmale besonders wichtig 
               waren – zum Beispiel Farbe oder Größe.
               <br /><br />
-              Das ist hilfreich, weil es ein teil dessen ist, <b>KI besser zu verstehen</b>, 
+              Das ist hilfreich, weil es ein Teil dessen ist, <b>KI besser zu verstehen</b>, 
               Fehler zu erkennen und Vertrauen aufzubauen.
               <br /><br />
               Es gibt viele verschiedene Methoden, um KI-Entscheidungen erklärbar zu machen.
@@ -254,7 +254,7 @@ export default function Home() {
               Random Forest verständlicher zu machen – nur auf unterschiedliche 
               Weise. 
               <br /><br />
-              <b>Fangen wir an!!</b>
+              <b>Fangen wir an!</b>
             </SpeechBubble>
 
             <ModelBox>
@@ -284,11 +284,11 @@ export default function Home() {
               <br /><br />
               SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis
               vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes
-              einzelne Merkmal zur Entscheidung leistet. Das macht das Modell 
-              indem es verschiedene Kombinationen von Merkmalen durchspielt und 
-              schaut, wie sich die Vorhersage verändert, wenn ein Merkmal weggelassen wird.
+              einzelne Merkmal zur Entscheidung leistet. Dafür spielt SHAP verschiedene 
+              Kombinationen von Merkmalen durch und beobachtet, wie sich die Vorhersage verändert, 
+              wenn ein Merkmal fehlt.
               <br /><br />
-              Das kann SHAP, sowohl lokal als auch global. 
+              Das kann SHAP sowohl lokal als auch global. 
               Global bedeutet, dass wir uns das gesamte Modell mit allen Samples anschauen. 
               Lokal bedeutet, dass wir uns nur ein einzelnes Sample anschauen.
               <br /><br />
@@ -297,9 +297,9 @@ export default function Home() {
               <br /><br />
               <b>Jetzt bist du dran!</b>
               <br />
-              Du bist jetzt Shap und versuchst herauszufinden, 
-              welcher Spieler/ welche Spielerin, welchen beitrag geleistet hat.
-              Ziehe die SpielerInnen auf das Feld oder zurück auf die Bank und beobachte, 
+              Du bist jetzt SHAP und versuchst herauszufinden, 
+              welcher Spieler/ welche Spielerinwelchen Beitrag geleistet hat.
+              Ziehe die Spielenden auf das Feld oder zurück auf die Bank und beobachte, 
               wie sich die Vorhersage verändert.
               <br /><br />
               <b>Wie bekommen wir das beste Ergebnis?</b> (2:0)
@@ -309,11 +309,11 @@ export default function Home() {
               Einige SpielerInnen verbessern das Ergebnis, andere verschlechtern es, 
               andere wiederum haben keinen Einfluss.
               <br />
-              In unserer Visualisierung steht jeder Spieler für ein Merkmal/Feature
-              und auf eine ähnliche art und weiße findet Shap heraus welchen beitrag 
-              sie zum ergebnis leisten. Der Wert wird berechnet und du kannst sie dir direkt anschauen.
+              In unserer Visualisierung steht jede Spielerin und jeder Spieler für ein Merkmal. 
+              Auf eine ähnliche Weise findet SHAP heraus, welchen Beitrag die einzelnen Merkmale zur Vorhersage leisten. 
+              Der Wert wird berechnet und du kannst sie dir direkt anschauen.
               <br /><br />
-              <b>Probiere shap an einem Echten Datensatz aus</b> und schau dir die Werte an!
+              <b>Probiere SHAP an einem echten Datensatz aus</b> und schau dir die Werte an!
               Klicke auf den Button "Try it out!" und entdecke es selbst! 🚀
             </SpeechBubble>
 
@@ -347,23 +347,43 @@ export default function Home() {
               Modell erklärt, sondern nur die Entscheidung für diesen einen 
               konkreten Fall.
               <br />
-              Stell dir vor, wir untersuchen einen Bild analyse tool für <b>Katzenbilder</b>.
-              LIME schaut sich an, welche Merkmale des Bildes besonders wichtig waren, um zu entscheiden, ob es sich um eine Katze handelt oder nicht. 
+              Stell dir vor, wir untersuchen einen Bildanalyse-Tool für <b>Katzenbilder</b>.
+              LIME schaut sich an, welche Merkmale des Bildes besonders wichtig waren, 
+              um zu entscheiden, ob es sich um eine Katze handelt oder nicht. 
               <br /><br />
-              Auch LIME schaut sich an, wie sich die Vorhersage verändert, wenn man bestimmte Merkmale weglässt oder verändert. Aber im Gegensatz zu SHAP konzentriert sich LIME nur auf die Umgebung eines einzelnen Beispiels und erklärt genau diese lokale Entscheidung.
+              LIME erzeugt viele leicht veränderte Varianten deines Beispiels, 
+              lässt das Modell diese bewerten und baut daraus ein einfaches Ersatzmodell, 
+              das nur in der direkten Umgebung dieses einen Beispiels gilt. 
               <br /><br />
               <b>Jetzt bist du dran!</b>
               <br />
               In der interaktiven Ansicht kannst du die Merkmale einer Katze verändern und beobachten,
-              was das für die Vorhersage bedeutet. Du kannst zum Beispiel:
-              <PawPrint size={17} /> die Ohren verändern
-              <PawPrint size={17} /> den Schwanz verändern
-              <PawPrint size={17} /> die Füße verändern
+              was das für die Vorhersage bedeutet. 
+              <br /><br />
+              Du kannst zum Beispiel:
+              <br />
+              <span
+                className="gap-1 inline-flex items-center">
+                  <PawPrint size={17} /> 
+                  die Ohren verändern
+              </span>
+              <br />
+              <span
+                className="mt-2 inline-flex items-center">
+                  <PawPrint size={17} /> 
+                  den Schwanz verändern
+              </span>
+              <br />
+              <span
+                className="mt-2 inline-flex items-center">
+                  <PawPrint size={17} /> 
+                  die Füße verändern
+              </span>
               <br /><br />
               Sobald du etwas änderst, siehst du direkt, wie sich die Vorhersage 
               verändert.
               <br /><br />
-              Welche veränderung hat das Ergebnis wie beeinflusst? 
+              Welche Veränderung hat das Ergebnis wie beeinflusst? 
               <br />
               Welche Merkmale waren besonders wichtig für die Entscheidung?
               <br /><br />
@@ -371,7 +391,7 @@ export default function Home() {
               Es schaut sich nur die Umgebung eines Beispiels an und erklärt 
               genau diese lokale Entscheidung einfach und nachvollziehbar. 
               <br /><br /> 
-              <b>Probiere LIME an einem Echten Datensatz aus</b> und schau dir die Werte an!
+              <b>Probiere LIME an einem echten Datensatz aus</b> und schau dir die Werte an!
               Klicke auf den Button <b>"Try it out!"</b> und entdecke es selbst! 🚀
             </SpeechBubble>
 
