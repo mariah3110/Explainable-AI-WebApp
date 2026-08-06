@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PawPrint } from "lucide-react";
 import PixelAnimation from "@/components/PixelAnimation";
 import Character from "@/components/Character";
@@ -78,6 +78,10 @@ function useStickyBubble() {
 
 /* ── Wiederverwendbare Bausteine ───────────────────────────────────── */
 
+// Gemeinsamer Fokus-Stil für alle interaktiven Elemente (Tastatur-Bedienung).
+const FOCUS_RING_CLASSES =
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70";
+
 function SpeechBubble({
   scrollRef,
   arrowSide = "left",
@@ -134,6 +138,8 @@ function TryButton({ href }: { href: string }) {
 /* ── Hauptseite ────────────────────────────────────────────────────── */
 
 export default function Home() {
+  const [showSurvey, setShowSurvey] = useState(true);
+  const [showAfterSurvey, setShowAfterSurvey] = useState(false);
   const ml   = useStickyBubble();
   const xai  = useStickyBubble();
   const shap = useStickyBubble();
@@ -141,6 +147,49 @@ export default function Home() {
 
   return (
     <main>
+      {/* Umfrage-Popup beim ersten Laden */}
+      {showSurvey && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4">
+          <div className="w-full max-w-md rounded-2xl border border-white/10 bg-orange-200 p-6 shadow-2xl sm:p-8">
+            <h2 className="mb-3 text-center text-lg font-bold text-black sm:text-xl">
+              Kurze Umfrage
+            </h2>
+            <p className="mb-6 text-center text-sm text-gray-700 sm:text-base">
+              Bevor du loslegst, bitte ich dich eine kurze Umfrage auszufüllen.
+              Das dauert nur wenige Minuten.
+            </p>
+            <div className="mb-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <div>
+                <img src="/qr_code_vorher.png" alt="QR Code" className="mx-auto mb-4 w-32 h-32" />
+              </div>
+              <div className="order-1 md:order-3">
+                <Character 
+                  src="/pixel5L.png" 
+                  alt="Pixel" loading="eager" 
+                  className = "w-[20vw] h-[20vw] md:w-[15vw] md:h-[15vw] max-w-[150px] max-h-[150px]"
+                  sizes = "(max-width: 500px) 30vw, 15vw" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href="https://www.survio.com/survey/d/G9O6A6P0N4C6V9Q9F"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setShowSurvey(false)}
+                className={`flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-green-400 px-4 py-2.5 text-lg font-semibold text-gray-900 transition hover:from-blue-600 hover:to-green-500 ${FOCUS_RING_CLASSES}`}              >
+                Zur Umfrage
+              </a>
+              <button
+                type="button"
+                onClick={() => setShowSurvey(false)}
+                className={`flex-1 rounded-lg border border-gray-600 px-4 py-2.5 text-sm font-semibold text-gray-600 transition hover:bg-white/10 hover:text-gray-900 ${FOCUS_RING_CLASSES}`}
+              >
+                Habe ich bereits gemacht
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Section 1 — Intro ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center">
@@ -422,6 +471,56 @@ export default function Home() {
             Explainable AI gemacht. Bleib neugierig, stelle Fragen und vor allem: 
             Hab Spaß beim Lernen! 🚀✨
           </p>
+          <button 
+            onClick={() => setShowAfterSurvey(true)}
+            className="flex-1 rounded-lg border border-white/70 px-4 py-2 text-center text-lg font-semibold text-white transition hover:text-gray-300 ${FOCUS_RING_CLASSES}">
+            klick hier
+          </button>
+
+          {/* Umfrage-Popup beim ersten Laden */}
+          {showAfterSurvey && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4">
+              <div className="w-full max-w-md rounded-2xl border border-white/10 bg-orange-200 p-6 shadow-2xl sm:p-8">
+                <h2 className="mb-3 text-center text-lg font-bold text-black sm:text-xl">
+                  Kurze Umfrage
+                </h2>
+                <p className="mb-6 text-center text-sm text-gray-700 sm:text-base">
+                  Vielen Dank für deine Teilnahme! 
+                  Bitte fülle die kurze Umfrage aus, um mir Feedback zu geben. 
+                  Das dauert nur wenige Minuten.
+                </p>
+                <div className="mb-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                  <div>
+                    <img src="/qr_code_nachher.png" alt="QR Code" className="mx-auto mb-4 w-32 h-32" />
+                  </div>
+                  <div className="order-1 md:order-3">
+                    <Character 
+                      src="/pixel6L.png" 
+                      alt="Pixel" loading="eager" 
+                      className = "w-[30vw] h-[30vw] md:w-[25vw] md:h-[25vw] max-w-[180px] max-h-[180px]"
+                      sizes = "(max-width: 500px) 30vw, 15vw" />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="https://www.survio.com/survey/d/G9O6A6P0N4C6V9Q9F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setShowAfterSurvey(false)}
+                    className={`flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-green-400 px-4 py-2.5 text-lg font-semibold text-gray-900 transition hover:from-blue-600 hover:to-green-500 ${FOCUS_RING_CLASSES}`}              >
+                    Zur Umfrage
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setShowAfterSurvey(false)}
+                    className={`flex-1 rounded-lg border border-gray-600 px-4 py-2.5 text-sm font-semibold text-gray-600 transition hover:bg-white/10 hover:text-gray-900 ${FOCUS_RING_CLASSES}`}
+                  >
+                    Habe ich bereits gemacht
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
