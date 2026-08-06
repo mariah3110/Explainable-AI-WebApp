@@ -18,7 +18,6 @@ import wineLocalData from "../../public/data/wine/shap_local.json";
 
 import { classLabels } from "@/components/featureLabels";
 import { motion } from "framer-motion";
-import router from "next/dist/shared/lib/router/router";
 
 // Dauer eines Durchlaufs der ForestAnimationForModul in ms. */
 const ANIMATION_CYCLE_MS = 5500;
