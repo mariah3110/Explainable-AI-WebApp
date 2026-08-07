@@ -172,7 +172,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://www.survio.com/survey/d/G9O6A6P0N4C6V9Q9F"
+                href="https://www.survio.com/survey/d/J6H0E3G0M3F4H7K5C"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowSurvey(false)}

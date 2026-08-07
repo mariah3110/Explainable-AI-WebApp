@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 
 // Konstanten, Typen, und Komponenten für die Seite
 const ANIMATION_CYCLE_MS = 5500;
-const TESTING = true;
+const TESTING = false;
 
 let MIN_TRAINING_RUNS: number;
 let MAX_TRAINING_RUNS: number;
@@ -174,12 +174,54 @@ type DatasetButtonProps = {
   onSelect: (datasetId: DatasetId) => void;
 };
 
-function DatasetButton({
-  dataset,
-  isSelected,
-  isLocked,
-  onSelect,
-}: DatasetButtonProps) {
+// Hook: kann das Gerät hovern?
+function useCanHover() {
+  const [canHover, setCanHover] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover)");
+    setCanHover(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  return canHover;
+}
+
+/** Auswahl-Button für einen Datensatz.
+ *  Desktop (hover-fähig): Hover-Tooltip + Klick wählt direkt aus.
+ *  Mobile/Tablet (kein Hover): 1. Tap → Info-Panel aufklappen, 2. Tap auf "Auswählen" → Datensatz auswählen. */
+function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButtonProps) {
+  const canHover = useCanHover();
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Tap außerhalb des Panels → zuklappen
+  useEffect(() => {
+    if (!expanded) return;
+    const close = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setExpanded(false);
+    };
+    document.addEventListener("pointerdown", close);
+    return () => document.removeEventListener("pointerdown", close);
+  }, [expanded]);
+
+  const handleClick = () => {
+    if (isLocked) return;
+
+    // Desktop: direkt auswählen (wie bisher)
+    if (canHover) {
+      onSelect(dataset.id);
+      return;
+    }
+
+    // Mobile: erster Tap → Info aufklappen
+    if (!expanded) {
+      setExpanded(true);
+    }
+  };
+
   const stateClassName = isLocked
     ? "cursor-not-allowed border border-gray-500/50 opacity-50"
     : dataset.idleClassName;
@@ -188,33 +230,63 @@ function DatasetButton({
     ? "bg-gray-500/50 opacity-100 shadow-lg shadow-teal-300/50"
     : "";
 
+  // Gemeinsamer Tooltip-Inhalt für Desktop-Hover und Mobile-Panel
+  const tooltipContent = (
+    <>
+      <h3 className="mb-1 text-center text-sm font-bold">{dataset.label}</h3>
+      <div className="relative mx-auto mb-2 h-20 w-32">
+        <Image
+          src={dataset.tooltip.imageSrc}
+          alt={dataset.tooltip.imageAlt}
+          fill
+          sizes="128px"
+          className="object-contain"
+        />
+      </div>
+      <p className="text-center">{dataset.tooltip.stats}</p>
+      <p className="mt-2 text-center">{dataset.tooltip.description}</p>
+    </>
+  );
+
   return (
-    <div className="group relative w-full">
+    <div ref={ref} className="group relative w-full">
       <button
         type="button"
         disabled={isLocked}
-        onClick={() => onSelect(dataset.id)}
+        onClick={handleClick}
         className={`w-full rounded-md px-2 py-2.5 text-sm font-medium transition sm:px-3 ${FOCUS_RING_CLASSES} ${stateClassName} ${selectedClassName}`}
       >
         {dataset.label}
       </button>
 
-      <div
-        className={`pointer-events-none absolute top-full z-[60] mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
-      >
-        <h3 className="mb-1 text-center text-sm font-bold">{dataset.label}</h3>
-        <div className="relative mx-auto mb-2 h-20 w-32">
-          <Image
-            src={dataset.tooltip.imageSrc}
-            alt={dataset.tooltip.imageAlt}
-            fill
-            sizes="128px"
-            className="object-contain"
-          />
+      {/* Desktop: Hover-Tooltip (wie bisher) */}
+      {canHover && (
+        <div
+          className={`pointer-events-none absolute top-full z-[60] mt-2 w-44 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-2 text-xs text-white opacity-0 transition group-hover:opacity-100 ${dataset.tooltipAlignmentClassName}`}
+        >
+          {tooltipContent}
         </div>
-        <p className="text-center">{dataset.tooltip.stats}</p>
-        <p className="mt-2 text-center">{dataset.tooltip.description}</p>
-      </div>
+      )}
+
+      {/* Mobile/Tablet: Tap-to-reveal Panel mit explizitem Auswahl-Button */}
+      {!canHover && expanded && (
+        <div
+          className={`absolute top-full z-[60] mt-2 w-52 rounded-lg bg-gradient-to-r ${COLORES.tooltip} p-3 text-xs text-white shadow-lg ${dataset.tooltipAlignmentClassName}`}
+        >
+          {tooltipContent}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(dataset.id);
+              setExpanded(false);
+            }}
+            className={`mt-2 w-full rounded-md bg-white/20 py-1.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/30 ${FOCUS_RING_CLASSES}`}
+          >
+            Auswählen
+          </button>
+        </div>
+      )}
     </div>
   );
 }

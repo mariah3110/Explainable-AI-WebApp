@@ -21,13 +21,13 @@ import { motion } from "framer-motion";
 
 // Dauer eines Durchlaufs der ForestAnimationForModul in ms. */
 const ANIMATION_CYCLE_MS = 5500;
-const TESTING = true; // true = keine Trainings-Animation, sofort SHAP-Plot anzeigen
+const TESTING = false; // true = keine Trainings-Animation, sofort SHAP-Plot anzeigen
 
 // Die Anzahl der Trainings-Durchläufe wird zufällig aus diesem Bereich gewählt (inklusive).
 let MIN_TRAINING_RUNS: number;
 let MAX_TRAINING_RUNS: number;
 
-if (TESTING === true) {
+if (TESTING) {
   MIN_TRAINING_RUNS = 0;
   MAX_TRAINING_RUNS = 0;
 } else {
@@ -393,10 +393,8 @@ export default function TryShapPage() {
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
-
     check();
     window.addEventListener("resize", check);
-
     return () => window.removeEventListener("resize", check);
   }, []);
 

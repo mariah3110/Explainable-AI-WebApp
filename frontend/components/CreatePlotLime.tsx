@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine} from "recharts";
 import { formatFeatureName } from "./featureLabels";
 
@@ -21,11 +22,30 @@ interface Props {
   predictionLabel?: string;
 }
 
+// Erkennt schmale Viewports (Standard-Breakpoint: 640px = Tailwind "sm")
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
+const truncate = (s: string, max: number) =>
+  s.length > max ? s.slice(0, max - 1) + "…" : s;
+
 export default function CreatePlotLime({
   data,
   title = "Lokale LIME-Erklärung",
   predictionLabel,
 }: Props) {
+  const isMobile = useIsMobile();
   const pred = predictionLabel ?? data.prediction;
   const chartData = [...data.features]
     .sort((a, b) => b.absWeight - a.absWeight)
@@ -35,7 +55,10 @@ export default function CreatePlotLime({
         weight: Number(item.weight.toFixed(3)),
     }));
 
-const chartHeight = Math.max(400, chartData.length * 35);
+  const chartHeight = Math.max(
+    isMobile ? 320 : 400,
+    chartData.length * (isMobile ? 30 : 35)
+  );
 
   return (
     <div className="w-full">
@@ -54,15 +77,21 @@ const chartHeight = Math.max(400, chartData.length * 35);
         <BarChart
           data={chartData}
           layout="vertical"
-          margin={{ top: 10, right: 20, left: 30, bottom: 10 }}
+          margin={
+            isMobile
+              ? { top: 10, right: 10, left: 0, bottom: 10 }
+              : { top: 10, right: 20, left: 30, bottom: 10 }
+          }
         >
-          <XAxis type="number" />
+          <XAxis type="number" tick={{ fontSize: isMobile ? 11 : 13 }} />
 
           <YAxis
             type="category"
             dataKey="feature"
-            width={260}
+            width={isMobile ? 120 : 260}
             interval={0}
+            tick={{ fontSize: isMobile ? 11 : 13 }}
+            tickFormatter={(v: string) => (isMobile ? truncate(v, 18) : v)}
           />
 
           <ReferenceLine x={0} stroke="#999" />
