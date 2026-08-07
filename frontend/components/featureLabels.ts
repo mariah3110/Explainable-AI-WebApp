@@ -100,7 +100,7 @@ const categoryValues: Record<string, Record<string, string>> = {
 export const classLabels: Record<string, Record<string, string>> = {
   mushroom: { e: "essbar", p: "giftig" },
   penguins: { Adelie: "Adelie", Chinstrap: "Chinstrap", Gentoo: "Gentoo" },
-  wine:     { class_0: "Klasse 0", class_1: "Klasse 1", class_2: "Klasse 2" },
+  wine:     { "class_0": "Weinart 1", "0": "Weinart 1", "class_1": "Weinart 2", "1": "Weinart 2", "class_2": "Weinart 3", "2": "Weinart 3" },
 };
 
 export interface ParsedFeature {

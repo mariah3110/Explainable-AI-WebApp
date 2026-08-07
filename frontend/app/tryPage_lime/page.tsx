@@ -63,8 +63,8 @@ const MESSAGES = {
       <br />
       Dein erster LIME-Plot auf echten Daten!
       <br />
-      Hier siehst du einen dir schon bekannten Plot: den <b>Waterfall-Plot</b>. 
-      Er zeigt die <b>lokale Feature-Importanz</b> für ein einzelnes Sample. 
+      Hier siehst du einen dir schon bekannten Plot: den <b>Waterfall-Plot</b>.
+      Er zeigt die <b>lokale Feature-Importanz</b> für ein einzelnes Datenpunkt.
       <br />
       {DRAG_HINT}
     </>,
@@ -76,16 +76,16 @@ const MESSAGES = {
     <>
       Beide Methoden erklären einzelne Vorhersagen, verfolgen dabei aber unterschiedliche Ansätze.
       SHAP berechnet für jedes Feature einen <em>mathematisch fundierten Beitrag</em> zur Vorhersage.
-      LIME erstellt in der Umgebung des ausgewählten Samples ein einfaches <em>Ersatzmodell</em> und erklärt dessen Verhalten.
+      LIME erstellt in der Umgebung des ausgewählten Datenpunkts ein einfaches <em>Ersatzmodell</em> und erklärt dessen Verhalten.
     </>,
     <>
       Beide Methoden haben Vor- und Nachteile.
       SHAP liefert konsistente und theoretisch fundierte Erklärungen, benötigt dafür aber meist mehr Rechenzeit.
-      LIME ist oft schneller und einfacher, die Ergebnisse können jedoch stärker von der erzeugten Nachbarschaft abhängen. 
+      LIME ist oft schneller und einfacher, die Ergebnisse können jedoch stärker von der erzeugten Nachbarschaft abhängen.
     </>,
     <>
-    Probiere verschiedene Samples und Datensätze aus und schaue dir die Plots in Ruhe an.
-    Wenn du so weit bist, kehre zur Hauptseite zurück.
+      Probiere verschiedene Datenpunkte und Datensätze aus und schau dir die Plots in Ruhe an.
+      Wenn du so weit bist, kehre zur Hauptseite zurück.
     </>
   ],
 } as const;
@@ -532,7 +532,7 @@ export default function TryLimePage() {
               {/* Sample-Auswahl */}
               <div className="mb-4">
                 <label className="flex items-center gap-2 text-sm text-gray-400">
-                  Sample:
+                  Beispiel auswählen:
                   <select
                     value={currentSample.sampleId}
                     onChange={(e) =>

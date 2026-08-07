@@ -67,8 +67,8 @@ const MESSAGES = {
       <br />
       Dein erster SHAP-Plot auf echten Daten!
       <br />
-      Hier siehst du einen <b>Beeswarm-Plot</b>, der <b>globalen Feature-Importanzen</b> zeigt.
-      Jeder Punkt ist ein Sample. Schauen wir mal genauer hin ...
+      Hier siehst du einen <b>Beeswarm-Plot</b>, der <b>globale Feature-Importanzen</b> (Einfluss der Merkmale) zeigt.
+      Jeder Punkt ist ein Datenpunkt. Schauen wir mal genauer hin ...
       <br />
       {DRAG_HINT}
     </>,
@@ -76,7 +76,7 @@ const MESSAGES = {
       Die Features sind nach ihrem durchschnittlichen Einfluss auf die Vorhersage sortiert.
       Merkmale oben sind insgesamt wichtiger als Merkmale weiter unten.
       Rote Punkte bedeuten einen hohen Feature-Wert, blaue Punkte einen niedrigen.
-      Punkte rechts erhöhen die Wahrscheinlichkeit für die aktuell ausgewählte Klasse, 
+      Punkte rechts erhöhen die Wahrscheinlichkeit für die aktuell ausgewählte Klasse,
       Punkte links verringern sie.
     </>,
     <>
@@ -88,23 +88,22 @@ const MESSAGES = {
   waterfall: [
     <>
       Nun schauen wir uns eine weitere Funktion von SHAP an: die <b>lokale Feature-Analyse</b>.
-      Im <b>Waterfall-Plot</b> betrachten wir ein einzelnes Sample und sehen, wie jedes Merkmal die Vorhersage beeinflusst.
+      Im <b>Waterfall-Plot</b> betrachten wir ein einzelnen Datenpunkt und sehen, wie jedes Merkmal die Vorhersage beeinflusst.
       Jedes Feature kann die Vorhersage erhöhen (grün) oder verringern (blau).
       <br />
       {DRAG_HINT}
     </>,
     <>
-      Basiswert plus alle Beiträge ergeben exakt die Vorhersage. Du kannst nachrechnen.
-      Du kannst nachrechnen: 
+      Basiswert plus alle Beiträge ergeben exakt die Vorhersage. Du kannst nachrechnen:
       <br />
       Basiswert + alle Balken = Vorhersage.
     </>,
     <>
-      Probiere verschiedene Samples aus!
+      Probiere verschiedene Datenpunkte aus!
       Die wichtigsten Merkmale können sich von Vorhersage zu Vorhersage unterscheiden.
     </>,
     <>
-      Probiere verschiedene Datensätze aus und schaue dir die Plots in Ruhe an.
+      Probiere verschiedene Datensätze aus und schau dir die Plots in Ruhe an.
       Wenn du so weit bist, kehre zur Hauptseite zurück. Dann machen wir mit dem nächsten Modell weiter.
     </>
   ],
@@ -635,7 +634,7 @@ export default function TryShapPage() {
 
                 {plotView === "waterfall" && (
                   <label className="flex items-center gap-2 text-sm text-gray-400">
-                    Sample:
+                    Beispiel auswählen:
                     <select
                       value={currentSample?.sampleId ?? 0}
                       onChange={(event) =>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ExplAIn IT to Me",
+  title: "ExplAIn IT to me",
   description: "Learn Explainable AI, Machine Learning and KI interactively.",
 };
 

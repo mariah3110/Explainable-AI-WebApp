@@ -193,22 +193,44 @@ export default function Home() {
 
       {/* ── Section 1 — Intro ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center">
+        {/*
         <h1 className="max-w-4xl text-5xl md:text-7xl font-bold tracking-tight leading-tight">
           Understand AI.
           <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
             {" "}Visually.
           </span>
         </h1>
+        */}
+        {/*
+        <h1 className="max-w-4xl text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+          Verstehe KI.
+          <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+            {" "}Visuell.
+          </span>
+        </h1>
+        */}
+        <h1 className="max-w-4xl text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+          Expl
+          <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+            AI
+          </span>
+          n 
+          <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+            {" "}IT {" "}
+          </span>
+           to me.
+        </h1>
+        
 
         <p className="mt-6 max-w-4xl text-lg text-white/70 mb-20 md:mb-32">
-          Lerne die Welt der Künstlichen Intelligenz etwas besser kennen. Hier erklärt dir Pixel anhand von einem Maschien Learning Modell, 
-          wie man mithilfe von Explainable AI die Entscheidungen von KI und Machine Learning Modellen besser verstehen und nachvollziehen kann.
+          Lerne die Welt der Künstlichen Intelligenz etwas besser kennen. Hier erklärt dir Pixel anhand von einem Machine-Learning-Modell, 
+          wie man mithilfe von Explainable AI die Entscheidungen von KI und Machine-Learning-Modellen besser verstehen und nachvollziehen kann.
         </p>
 
         <div className="mt-10 w-full flex justify-center items-end gap-2 md:mt-0 md:w-auto md:absolute md:left-20 md:bottom-10">
           <PixelAnimation frames={["/pixel_waving1.png", "/pixel_waving2.png"]} interval={500} />
           <div className="relative mb-6 md:mb-20 max-w-[180px] md:max-w-[240px] rounded-2xl bg-gray-200 text-black px-4 py-3 text-sm shadow-xl">
-            Hi, ich bin Pixel. Ich werde dich durch die Welt der KI und des Machine Learnings führen. 
+            Hi, ich bin Pixel. Ich werde dich durch die Welt der KI und des Machine-Learnings führen. 
             Lass es uns gemeinsam entdecken!
             <div className="absolute bottom-6 -left-2 w-4 h-4 bg-gray-200 rotate-45" />
           </div>
@@ -240,7 +262,7 @@ export default function Home() {
             </div>
 
             <SpeechBubble scrollRef={ml.bubbleRef} arrowSide="right" className="order-2">
-              <b>Machine Learning</b> ist ein Teilgebiet der Künstlichen Intelligenz, 
+              <b>Machine-Learning</b> ist ein Teilgebiet der Künstlichen Intelligenz, 
               bei dem Computer aus Daten lernen, anstatt explizit programmiert zu werden.
               Die Algorithmen enthalten flexible Regeln, die sich anpassen, während sie mit 
               mehr Daten trainiert werden. So können sie Muster erkennen und Vorhersagen treffen.
@@ -329,41 +351,41 @@ export default function Home() {
             </div>
 
             <SpeechBubble scrollRef={shap.bubbleRef} arrowSide="right" className="order-2">
-              Schauen wir uns jetzt <b>SHAP</b> an. 🔍
+              Schauen wir uns jetzt <b>SHAP</b> an.
               <br /><br />
               SHAP hilft uns zu verstehen, warum ein Modell genau dieses Ergebnis
               vorhergesagt hat. Dafür wird berechnet, welchen Beitrag jedes
-              einzelne Merkmal zur Entscheidung leistet. Dafür spielt SHAP verschiedene 
-              Kombinationen von Merkmalen durch und beobachtet, wie sich die Vorhersage verändert, 
+              einzelne Merkmal zur Entscheidung leistet. Dafür spielt SHAP verschiedene
+              Kombinationen von Merkmalen durch und beobachtet, wie sich die Vorhersage verändert,
               wenn ein Merkmal fehlt.
               <br /><br />
-              Das kann SHAP sowohl lokal als auch global. 
-              Global bedeutet, dass wir uns das gesamte Modell mit allen Samples anschauen. 
-              Lokal bedeutet, dass wir uns nur ein einzelnes Sample anschauen.
+              Das kann SHAP sowohl lokal als auch global.
+              Global bedeutet, dass wir uns das gesamte Modell mit allen Datenpunkten anschauen.
+              Lokal bedeutet, dass wir uns nur ein einzelnes Datenpunkt anschauen.
               <br /><br />
-              Stell dir das wie ein Team aus Spielern vor. ⚽
-              Jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.
+              Stell dir das wie ein Team aus Spielerinnen und Spielern vor.
+              Jede Spielerin und jeder Spieler beeinflusst das Endergebnis unterschiedlich stark.
               <br /><br />
               <b>Jetzt bist du dran!</b>
               <br />
-              Du bist jetzt SHAP und versuchst herauszufinden, 
-              welcher Spieler/ welche Spielerinwelchen Beitrag geleistet hat.
-              Ziehe die Spielenden auf das Feld oder zurück auf die Bank und beobachte, 
+              Du bist jetzt SHAP und versuchst herauszufinden,
+              welche Spielerin bzw. welcher Spieler welchen Beitrag geleistet hat.
+              Ziehe die Spielenden auf das Feld oder zurück auf die Bank und beobachte,
               wie sich die Vorhersage verändert.
               <br /><br />
               <b>Wie bekommen wir das beste Ergebnis?</b> (2:0)
               <br />
-              <b>Welche SpielerInnen haben den größten Einfluss?</b>
+              <b>Welche Spielerinnen und Spieler haben den größten Einfluss?</b>
               <br /><br />
-              Einige SpielerInnen verbessern das Ergebnis, andere verschlechtern es, 
+              Einige Spielerinnen und Spieler verbessern das Ergebnis, andere verschlechtern es,
               andere wiederum haben keinen Einfluss.
               <br />
-              In unserer Visualisierung steht jede Spielerin und jeder Spieler für ein Merkmal. 
-              Auf eine ähnliche Weise findet SHAP heraus, welchen Beitrag die einzelnen Merkmale zur Vorhersage leisten. 
-              Der Wert wird berechnet und du kannst sie dir direkt anschauen.
+              In unserer Visualisierung steht jede Spielerin und jeder Spieler für ein Merkmal.
+              Auf eine ähnliche Weise findet SHAP heraus, welchen Beitrag die einzelnen Merkmale zur Vorhersage leisten.
+              Der Wert wird berechnet und du kannst ihn dir direkt anschauen.
               <br /><br />
               <b>Probiere SHAP an einem echten Datensatz aus</b> und schau dir die Werte an!
-              Klicke auf den Button "Try it out!" und entdecke es selbst! 🚀
+              Klicke auf den Button "Try it out!" und entdecke es selbst! 🚀            
             </SpeechBubble>
 
             <div className="order-1 md:order-3">
@@ -389,7 +411,7 @@ export default function Home() {
             <Character src="/pixel5R.png" />
 
             <SpeechBubble scrollRef={lime.bubbleRef} arrowSide="left">
-              Jetzt schauen wir uns <b>LIME</b> an. 🔍
+              Jetzt schauen wir uns <b>LIME</b> an.
               <br /><br />
               LIME hilft uns zu verstehen, warum ein Modell genau bei einem 
               einzelnen Beispiel so entschieden hat. Dabei wird nicht das ganze 
@@ -412,19 +434,19 @@ export default function Home() {
               Du kannst zum Beispiel:
               <br />
               <span
-                className="gap-1 inline-flex items-center">
+                className="gap-2 inline-flex items-center">
                   <PawPrint size={17} /> 
                   die Ohren verändern
               </span>
               <br />
               <span
-                className="mt-2 inline-flex items-center">
+                className="gap-2 inline-flex items-center">
                   <PawPrint size={17} /> 
                   den Schwanz verändern
               </span>
               <br />
               <span
-                className="mt-2 inline-flex items-center">
+                className="gap-2 inline-flex items-center">
                   <PawPrint size={17} /> 
                   die Füße verändern
               </span>
