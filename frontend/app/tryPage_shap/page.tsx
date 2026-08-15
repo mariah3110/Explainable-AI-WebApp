@@ -211,7 +211,7 @@ function useCanHover() {
   return canHover;
 }
 
-/** Segment-Umschalter zwischen den beiden Plot-Typen. */
+// Segment-Umschalter zwischen den beiden Plot-Typen. 
 function PlotViewToggle({ view, onChange }: PlotViewToggleProps) {
   const options: { id: PlotView; label: string }[] = [
     { id: "beeswarm", label: "Beeswarm (global)" },
@@ -355,7 +355,7 @@ function DatasetButton({ dataset, isSelected, isLocked, onSelect }: DatasetButto
   );
 }
 
-/** Seitentitel, wird in der Sidebar und in der mobilen Kopfzeile verwendet. */
+// Seitentitel, wird in der Sidebar und in der mobilen Kopfzeile verwendet.
 function PageTitle({ className = "" }: { className?: string }) {
   return (
     <h1 className={`font-bold ${className}`}>
@@ -456,7 +456,7 @@ export default function TryShapPage() {
     startAnimation();
   };
 
-  /** Blendet die Plots ein und lässt den Charakter den aktiven Plot erklären. */
+  // Blendet die Plots ein und lässt den Charakter den aktiven Plot erklären.
   const handleShapClick = () => {
     setShowShapPlot(true);
     setCharacterText(MESSAGES[plotView]);
@@ -465,7 +465,7 @@ export default function TryShapPage() {
     setIsSidebarOpen(false);
   };
 
-  /** Wechselt zwischen Beeswarm und Waterfall und passt den Charakter-Text an. */
+  // Wechselt zwischen Beeswarm und Waterfall und passt den Charakter-Text an.
   const handlePlotViewChange = (view: PlotView) => {
     setPlotView(view);
     setCharacterText(MESSAGES[view]);

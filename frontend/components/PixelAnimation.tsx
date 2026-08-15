@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 
 type Props = {
   frames: string[];
-  interval?: number; // Geschwindigkeit (ms)
+  interval?: number;
   className?: string;
-  size?: string; // Größe (z.B. "w-32 h-32")
+  size?: string;
 };
 
 export default function PixelAnimation({

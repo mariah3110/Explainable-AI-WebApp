@@ -1,17 +1,12 @@
-// SpeechBubble.tsx
-// Sprechblase des Begleiter-Charakters.
-// Akzeptiert eine einzelne Nachricht oder ein Array — bei mehreren
-// erscheinen kleine Pfeile zum Durchklicken.
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type SpeechBubbleProps = {
-  /** Eine einzelne Nachricht oder ein Array zum Durchblättern. */
+  //Eine einzelne Nachricht oder ein Array zum Durchblättern.
   text: React.ReactNode | React.ReactNode[];
-  /** Seite, auf der die Sprechblasen-Spitze sitzt (zeigt zum Charakter). */
+  // Seite, auf der die Sprechblasen-Spitze sitzt (zeigt zum Charakter).
   tail: "left" | "right";
   className?: string;
 };

@@ -232,18 +232,6 @@ const lineColorBorder = "border-white/40"
           <FootballPlayer color={oponentColors} />
         </div>
       </div>
-
-
-      {/* ERKLÄRUNG 
-      <div className="mt-3 rounded-2xl bg-black/20 border border-white/10 p-3 text-xs text-white/70 space-y-1">
-        {players.map(([id, player]) => (
-          <div key={id} className={activePlayers[id] ? "text-white" : ""}>
-            {activePlayers[id] ? "●" : "○"} {player.name}:{" "}
-            {player.description}
-          </div>
-        ))}
-      </div>*/}
-      
     </div>
   );
 }

@@ -1,8 +1,3 @@
-// featureLabels.ts
-// Zentrales Übersetzungsmodul für Feature-Namen und Kategorie-Werte
-// der drei Datensätze (Mushroom, Penguins, Wine).
-// Wird von allen SHAP- und LIME-Plots verwendet.
-
 /* ───────── Farb-Codes (mehrfach verwendet, Mushroom) ───────── */
 const colors: Record<string, string> = {
   n: "braun",  b: "beige",  c: "zimt",   g: "grau",

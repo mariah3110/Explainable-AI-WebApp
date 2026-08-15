@@ -1,6 +1,3 @@
-// CreatePlotShapBeeswarm.tsx — SHAP Beeswarm
-// Jeder Punkt = ein Sample. x = SHAP-Wert. Farbe = Feature-Wert.
-
 import { useMemo, useState } from "react";
 import { formatFeatureName } from "./featureLabels";
 
